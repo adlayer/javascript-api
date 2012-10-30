@@ -1,0 +1,15 @@
+{
+    "name": "adlayer-js-library"
+  , "version": "0.0.2"
+  , "description": "Adlayer javascript domain library"
+  , "keywords": []
+  , "author": "Gabriel de Oliveira Barbosa <manobi.oliveira@gmail.com>"
+  , "dependencies": {
+	"smoosh": "x.x.x",
+	"jsdom":"x.x.x",
+	"mocha": "x.x.x",
+	"knox": "0.3.1"
+  }
+  , "main": "index"
+  , "engines": { "node": "0.6.x" }
+}
