@@ -68,8 +68,8 @@ var config = [
 ];
 
 var api = [
-	"./lib/src/api/page.js",
-	"./lib/src/api/api.js"
+	"./api/page.js",
+	"./api/api.js"
 ];
 
 var footer = ["./template/footer.js"];
