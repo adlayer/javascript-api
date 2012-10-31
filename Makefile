@@ -1,0 +1,1 @@
+deploy: s3cmd put --acl-public dist/api.js dist/api.min.js s3://api.adlayerjavascriptsdk.com

@@ -1672,8 +1672,6 @@ exports.Swf = Swf;
 		var __construct = (function(self){
 			// Default create the image
 			self.create('img');
-			self.element.setAttribute('height', self.height);
-			self.element.setAttribute('width', self.width);
 			self.element.src = self.src;
 			var img = self.element;
 			
@@ -1689,7 +1687,12 @@ exports.Swf = Swf;
 				self.element.href = self.link;
 				self.append(img);
 			}
-		
+			
+			self.element.style.height = self.height + 'px';
+			self.element.style.width = self.width + 'px';
+			self.element.setAttribute('height', self.height);
+			self.element.setAttribute('width', self.width);
+			
 			return self.element;
 		})(this);
 	};
@@ -1839,7 +1842,7 @@ exports.Swf = Swf;
 	ExpandableSpace.prototype.expand = function(){
 		var childAd = this.element.firstChild;
 		if(childAd){
-			this.clip(childAd.width + 'px', childAd.height + 'px');
+			this.clip(childAd.style.width, childAd.style.height);
 			return this;
 		}
 	};

@@ -77,7 +77,7 @@ var footer = ["./template/footer.js"];
 modules.api = [].concat(head, utils, domain, request, connection, tracker, dom, ads, spaces, config, api, footer);
 
 var config = {
-	"VERSION": "1.0.0",
+	"VERSION": "",
 	"JSHINT_OPTS": { 
 		"boss": true,
 		"forin": true,
