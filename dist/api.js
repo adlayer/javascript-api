@@ -1842,7 +1842,9 @@ exports.Swf = Swf;
 	ExpandableSpace.prototype.expand = function(){
 		var childAd = this.element.firstChild;
 		if(childAd){
-			this.clip(childAd.style.width, childAd.style.height);
+			var width = childAd.style.width || (childAd.width + 'px');
+			var height = childAd.style.height || (childAd.height + 'px');
+			this.clip(width, height);
 			return this;
 		}
 	};
