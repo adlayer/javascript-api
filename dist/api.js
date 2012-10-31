@@ -1186,7 +1186,9 @@ exports.Connection = Connection;
 		if( event.validate() ){
 			opts.qs = event;
 			var req = request().get(opts, function(err, data){
-				console.log(data);
+				if(err){
+					throw new Error({'message': 'impossible to track'});
+				}
 			});
 			this.connection.next(req);
 		}
