@@ -99,6 +99,13 @@ api.markAdAsLoaded = function(id){
 };
 
 /**
+* Exports Adlayer namespace
+*
+* @property adlayer
+* @type object
+*/
+global.adlayer = api;
+/**
 * @method initialization
 * @private
 */
