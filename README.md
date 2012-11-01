@@ -5,7 +5,6 @@ Este projeto open source é a versão oficial do cliente javascript responsável
 
 #### Páginas
 Para integrar o Adlayer ao seu site você precisa adicionar uma ```nova página``` dentro de algum site de sua conta.
-
 Cada página possui um ```código de integração``` único e que pode ser obtido na aba ```código``` dentro da página adicionada.
 
 Insira esse código dentro de cada página de seu site dentro da tag `head`.
@@ -43,16 +42,32 @@ A Adlayer js Api foi desenvolvida para que a integração do Adlayer com seu sit
 
 Você poderá obter o 'código de integração' que utiliza a Adlayer Javascript API em sua conta Adlayer ao adicionar uma nova página.
 
-Este bloco carregará a última versão testada e publicada desta biblioteca e passará alguns parametros de configuração para identificar o comportamente de qual página deverá ser executado.
+Quando o código de integração é inserido por padrão automaticamente a API é executada.
 
 ### Parametros de requisição
+Cada página possui um script unico que passa parametros na url de carregamento.
+
+A primeira ação da JS API é parsear essas informações para obter os valores de ```page```e ```site```.
+
 #### Page
 O parametro ```page``` trata-se de um UUID (id único) que identifica a página requisitada.
-ex: ```api.min.js?***page=204ff4c502862221fa389fb18905fb42***```
+ex: ```api.min.js?page=204ff4c502862221fa389fb18905fb42```
 
 #### Site
-O parametro ```site``` consiste de um UUID que idenfica o site selecionado e será necessário para descobrir se o dominio requisitado tem permissão para servir os dados da página e respectivos espaços e peças publicitárias.
-ex: ```api.min.js?***site=effedddbcae1529f6728e7dd7d000da3***```
+O parametro ```site``` consiste de um UUID que identifica o site selecionado e será necessário para descobrir se o domínio requisitado tem permissão para servir os dados da página e respectivos espaços e peças publicitárias.
+ex: ```api.min.js?site=effedddbcae1529f6728e7dd7d000da3```
+
+Uma vez que se obtém o os ids do site e página, a biblioteca tenta se comunicar com o API de Adserving da Adlayer a fim de obter os dados relacionados a esta página, como lista de espaços publicitários cadastrados e respectivas peças.
+
+LINK PARA DOCUMENTACAO DO JOCASTA
+
+Ao receber os dados do Ad Server a biblioteca passará a escanear o html tentando encontrar espaços que já foram integrados. 
+
+Para cada espaços já inserido a biblioteca colocará a melhor peça publicitário para aquele usuário.
+
+Quando uma peça é inserida e devidamente carregada, caracteriza-se uma ```impressão``` LINK PARA O GLOSSARIO.
+
+A biblioteca então se comunica com outro serviço web disponível na plataforma Adlayer chamado de Tracker para registrar uma visualização de páginas para que essa esteja disponível no relatório da campanha.
 
 ### Espaços
 Para que a biblioteca possa preencher os espaços publicitários com as devidas peças eles devem estar presentes no corpo do Adlayer.
