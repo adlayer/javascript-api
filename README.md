@@ -94,17 +94,17 @@ Se você deseja mudar esse comportamento, poderá antes de carregar a biblioteca
 ```
 
 
-## Métodos
+### Métodos
 
-### markAdAsLoaded
+#### markAdAsLoaded
 
 Marca uma peça como carregada
 
 
-## Propriedades
+### Propriedades
 
 
-### config
+#### config
 > Configurações da biblioteca
 
 * Url 
@@ -114,7 +114,7 @@ Marca uma peça como carregada
 ** scriptTagId
 
 
-### ads
+#### ads
 
 Lista de peças renderizadas
 
@@ -125,15 +125,15 @@ var ad = adlayer.ads['mfkvfmvkdfvdf84848484'];
 ad.emit('load');
 ```
 
-### connections
+#### connections
 
 Lista de conexões abertas e fechadas
 
-### page
+#### page
 
 Representação da página atual
 
-### spaces
+#### spaces
 
 Lista de espaços renderizados
 
