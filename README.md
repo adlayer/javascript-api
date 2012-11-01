@@ -17,11 +17,11 @@ Este bloco carregará a última versão testada e publicada desta biblioteca e p
 ### Parametros de requisição
 #### Page
 O parametro ```page``` trata-se de um UUID (id único) que identifica a página requisitada.
-ex: ```api.min.js?page=204ff4c502862221fa389fb18905fb42```
+ex: ```api.min.js?***page=204ff4c502862221fa389fb18905fb42***```
 
 #### Site
 O parametro ```site``` consiste de um UUID que idenfica o site selecionado e será necessário para descobrir se o dominio requisitado tem permissão para servir os dados da página e respectivos espaços e peças publicitárias.
-ex: ```api.min.js?site=effedddbcae1529f6728e7dd7d000da3```
+ex: ```api.min.js?***site=effedddbcae1529f6728e7dd7d000da3***```
 
 ### Espaços
 Para que a biblioteca possa preencher os espaços publicitários com as devidas peças eles devem estar presentes no corpo do Adlayer.
