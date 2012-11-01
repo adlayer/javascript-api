@@ -1,5 +1,5 @@
 # [Adlayer](http://adlayer.com.br) Javascript Api
-Este projeto open source é a versão oficial do cliente javascript responsável por se conectar com os webservices Adlayer e é mantida principalmente pela equipe Adlayer.
+Este projeto open source é a versão oficial do cliente javascript responsável por se conectar com os webservices da Adlayer e é mantida principalmente pela equipe Adlayer.
 
 ### Integração
 
@@ -7,7 +7,7 @@ Este projeto open source é a versão oficial do cliente javascript responsável
 Para integrar o Adlayer ao seu site você precisa adicionar uma ```nova página``` dentro de algum site de sua conta.
 Cada página possui um ```código de integração``` único e que pode ser obtido na aba ```código``` dentro da página adicionada.
 
-Insira esse código dentro de cada página de seu site dentro da tag `head`.
+Insira esse código no html de sua página dentro da tag `head`.
 
 EX:
 ```html
@@ -37,7 +37,7 @@ EX:
 ```
 
 
-## Como funciona
+## Como funciona (Para curiosos)
 A Adlayer js Api foi desenvolvida para que a integração do Adlayer com seu site seja extremamente simples e que não exija muito conhecimento técnico para implementar.
 
 Você poderá obter o 'código de integração' que utiliza a Adlayer Javascript API em sua conta Adlayer ao adicionar uma nova página.
@@ -69,7 +69,20 @@ Quando uma peça é inserida e devidamente carregada, caracteriza-se uma ```impr
 
 A biblioteca então se comunica com outro serviço web, disponível na plataforma Adlayer chamado Tracker, para registrar uma visualização de peça e disponibilizando essa informação no relatório da campanha.
 
-## Para desenvolvedores
+## API (Para desenvolvedores)
+
+Para acessar os metodos e propriedades disponiveis na API, você poderá usar a varíavel/namespace ```adlayer```.
+
+O namespace ```adlayer``` é a unica variável global exposta pela Adlayer JS API. Esta variável estará disponível para o seu uso exatamente após o script ter sido inserido e carregado.
+
+Exemplo:
+```javascript
+console.log(adlayer);
+console.log(adlayer.ads);
+console.log(adlayer.page);
+console.log(adlayer.spaces);
+```
+
 Por padrão a inclusão dessa biblioteca executará automaticamente e preencherá os espaços publicitários com as devidas peças.
 
 Se você deseja mudar esse comportamento, poderá antes de carregar a biblioteca inserir o seguinte código.
@@ -88,6 +101,10 @@ Se você deseja mudar esse comportamento, poderá antes de carregar a biblioteca
 
 Marca uma peça como carregada
 
+Exemplo de uso:
+```javascript
+var ad = adlayer.markAdAsLoaded'mfkvfmvkdfvdf84848484');
+```
 
 ### Propriedades
 
