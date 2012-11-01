@@ -14,11 +14,36 @@ O código fornecido será similar a esse:
 
 Este bloco carregará a última versão testada e publicada desta biblioteca e passará alguns parametros de configuração para identificar o comportamente de qual página deverá ser executado.
 
-### Page
+### Parametros de requisição
+#### Page
 O parametro ```page``` trata-se de um UUID (id único) que identifica a página requisitada.
+ex: ```api.min.js?page=204ff4c502862221fa389fb18905fb42```
 
-### Site
+#### Site
 O parametro ```site``` consiste de um UUID que idenfica o site selecionado e será necessário para descobrir se o dominio requisitado tem permissão para servir os dados da página e respectivos espaços e peças publicitárias.
+ex: ```api.min.js?site=effedddbcae1529f6728e7dd7d000da3```
+
+### Espaços
+Para que a biblioteca possa preencher os espaços publicitários com as devidas peças eles devem estar presentes no corpo do Adlayer.
+
+O bloco de código relativo a cada espaço pode ser encontrado na aba "espaços" dentro da página desejada em sua conta Adlayer.
+Exemplo:1
+```html
+<div id="509051bed98c463abd4b213cee58a4a5" class="adlayer_space"></div>
+```
+
+## Feito para a 'hackabilidade'
+Por padrão a inclusão dessa biblioteca executará automaticamente e preencherá os espaços publicitários com as devidas peças.
+
+Se você deseja mudar esse comportamento, poderá antes de carregar a biblioteca inserir o seguinte código.
+```javascript
+<script type="text/javascript">
+		var adlayer = adlayer || {};
+		adlayer.config = {
+			page:{autoRun:false;}
+		};
+</script>
+```
 
 
 ## Métodos
