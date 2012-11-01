@@ -903,14 +903,22 @@ var ImgRequest = function(){
 		if(data) this.qs = data;
 		
 		// http://www.nczonline.net/blog/2009/07/28/the-best-way-to-load-external-javascript/
-		var document = this.document || document;
-		var img = document.createElement('img');
+		var doc = ImgRequest.document || document;
+		
+		var img = doc.createElement('img');
 		img.src = this.getUrl();
 		if( this.callback ){
 			img.onload = this.callback.apply({ok:true});
 		}
 		return this;
 	};
+	
+	/**
+	* @property document
+	* @type object
+	* @static
+	*/
+	ImgRequest.document = undefined;
 	
 	/**
 	* @method make
@@ -1185,7 +1193,7 @@ exports.Connection = Connection;
 		//  validate in client is necessary ? or is it just slow
 		if( event.validate() ){
 			opts.qs = event;
-			var req = request().get(opts, function(err, data){
+			var req = request().img(opts, function(err, data){
 				if(err){
 					throw new Error({'message': 'impossible to track'});
 				}
