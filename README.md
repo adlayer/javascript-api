@@ -1,17 +1,46 @@
 # [Adlayer](http://adlayer.com.br) Javascript Api
+Este projeto open source é a versão oficial do cliente javascript responsável por se conectar com os webservices Adlayer e é mantida principalmente pela equipe Adlayer.
 
 
-## API
+## Como utilizar
+A API foi desenvolvida para que a integração do Adlayer com seu site seja estremamente simples e que não requeira muito conhecimento técnico para implementar.
 
-### Métodos
+Você poderá obter o 'código de integração' que utiliza a Adlayer Javascript API em sua interface Adlayer ao adicionar uma nova página.
 
-* markAdAsLoaded
+O código fornecido será similar a esse:
+```html
+<script type="text/javascript" src="//api.adlayerjavascriptsdk.com/api.min.js?page=204ff4c502862221fa389fb18905fb42&site=effedddbcae1529f6728e7dd7d000da3" async="true" language="javascript" id="adlayerScript"></script>
+```
+
+Este bloco carregará a última versão testada e publicada desta biblioteca e passará alguns parametros de configuração para identificar o comportamente de qual página deverá ser executado.
+
+### Page
+O parametro ```page``` trata-se de um UUID (id único) que identifica a página requisitada.
+
+### Site
+O parametro ```site``` consiste de um UUID que idenfica o site selecionado e será necessário para descobrir se o dominio requisitado tem permissão para servir os dados da página e respectivos espaços e peças publicitárias.
+
+
+## Métodos
+
+### markAdAsLoaded
 
 Marca uma peça como carregada
 
-### Propriedades
 
-* ads
+## Propriedades
+
+
+### config
+> Configurações da biblioteca
+* Url
+* AdsPerSpace
+* Page
+** autoRun
+** scriptTagId
+
+
+### ads
 
 Lista de peças renderizadas
 
@@ -22,19 +51,15 @@ var ad = adlayer.ads['mfkvfmvkdfvdf84848484'];
 ad.emit('load');
 ```
 
-* config
-
-Configurações da biblioteca
-
-* connections
+### connections
 
 Lista de conexões abertas e fechadas
 
-* page
+### page
 
 Representação da página atual
 
-* spaces
+### spaces
 
 Lista de espaços renderizados
 
