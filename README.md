@@ -15,7 +15,7 @@ EX:
 ```
 
 #### Espaços
-Você precisará também criar os espaços publicitários para a página criada. Depois de adicionados insira o código do espaço fornecido no lugar que pretende mostrar publicidade em seu html.
+Você precisará também criar os espaços publicitários para a página criada. Depois de adicionado insira o código do espaço no lugar que pretende mostrar publicidade em seu html.
 EX:
 ```html
 <div id="509051bed98c463abd4b213cee58a4a5" class="adlayer_space"></div>
@@ -42,10 +42,8 @@ A Adlayer js Api foi desenvolvida para que a integração do Adlayer com seu sit
 
 Você poderá obter o 'código de integração' que utiliza a Adlayer Javascript API em sua conta Adlayer ao adicionar uma nova página.
 
-Quando o código de integração é inserido por padrão automaticamente a API é executada.
-
 ### Parametros de requisição
-Cada página possui um script unico que passa parametros na url de carregamento.
+Cada página possui um código de integração único que passa parametros na url de carregamento.
 
 A primeira ação da JS API é parsear essas informações para obter os valores de ```page```e ```site```.
 
@@ -59,28 +57,19 @@ ex: ```api.min.js?site=effedddbcae1529f6728e7dd7d000da3```
 
 ### Execução
 
-Uma vez que se obtém o os ids do site e página, a biblioteca tenta se comunicar com o API de Adserving da Adlayer a fim de obter os dados relacionados a esta página, como lista de espaços publicitários cadastrados e respectivas peças.
+Uma vez que se obtém os ids do site e página, a biblioteca tenta se comunicar com o API de Adserving da Adlayer a fim de obter os dados relacionados a esta página, como lista de espaços publicitários cadastrados e respectivas peças.
 
-LINK PARA DOCUMENTACAO DO JOCASTA
+> Em breve documentação completa da API de Adserving
 
 Ao receber os dados do Ad Server a biblioteca passará a escanear o html tentando encontrar espaços que já foram integrados. 
 
 Para cada espaços já inserido a biblioteca colocará a melhor peça publicitário para aquele usuário.
 
-Quando uma peça é inserida e devidamente carregada, caracteriza-se uma ```impressão``` LINK PARA O GLOSSARIO.
+Quando uma peça é inserida e devidamente carregada, caracteriza-se uma ```impressão```.
 
-A biblioteca então se comunica com outro serviço web disponível na plataforma Adlayer chamado de Tracker para registrar uma visualização de páginas para que essa esteja disponível no relatório da campanha.
+A biblioteca então se comunica com outro serviço web, disponível na plataforma Adlayer chamado Tracker, para registrar uma visualização de peça e disponibilizando essa informação no relatório da campanha.
 
-### Espaços
-Para que a biblioteca possa preencher os espaços publicitários com as devidas peças eles devem estar presentes no corpo do Adlayer.
-
-O bloco de código relativo a cada espaço pode ser encontrado na aba "espaços" dentro da página desejada em sua conta Adlayer.
-Exemplo:1
-```html
-<div id="509051bed98c463abd4b213cee58a4a5" class="adlayer_space"></div>
-```
-
-## Feito para a 'hackabilidade'
+## Para desenvolvedores
 Por padrão a inclusão dessa biblioteca executará automaticamente e preencherá os espaços publicitários com as devidas peças.
 
 Se você deseja mudar esse comportamento, poderá antes de carregar a biblioteca inserir o seguinte código.
@@ -93,7 +82,6 @@ Se você deseja mudar esse comportamento, poderá antes de carregar a biblioteca
 </script>
 ```
 
-
 ### Métodos
 
 #### markAdAsLoaded
@@ -105,7 +93,6 @@ Marca uma peça como carregada
 
 
 #### config
-> Configurações da biblioteca
 
 * Url 
 * AdsPerSpace 
@@ -116,9 +103,9 @@ Marca uma peça como carregada
 
 #### ads
 
-Lista de peças renderizadas
+Lista de peças renderizadas na página
 
-Exemplo:
+Exemplo de uso:
 
 ```javascript
 var ad = adlayer.ads['mfkvfmvkdfvdf84848484'];
@@ -127,7 +114,7 @@ ad.emit('load');
 
 #### connections
 
-Lista de conexões abertas e fechadas
+Lista de conexões abertas e fechadas desse page view
 
 #### page
 
@@ -135,9 +122,9 @@ Representação da página atual
 
 #### spaces
 
-Lista de espaços renderizados
+Lista de espaços renderizados na página
 
-Exemplo:
+Exemplo de uso:
 ```javascript
 var space = adlayer.spaces['0202kjj44949999992j8'];
 space.close();
