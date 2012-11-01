@@ -3,7 +3,7 @@ Este projeto open source é a versão oficial do cliente javascript responsável
 
 
 ## Como utilizar
-A API foi desenvolvida para que a integração do Adlayer com seu site seja estremamente simples e que não requeira muito conhecimento técnico para implementar.
+A Adayer js Api foi desenvolvida para que a integração do Adlayer com seu site seja extremamente simples e que não exija muito conhecimento técnico para implementar.
 
 Você poderá obter o 'código de integração' que utiliza a Adlayer Javascript API em sua interface Adlayer ao adicionar uma nova página.
 
@@ -33,9 +33,10 @@ Marca uma peça como carregada
 
 ### config
 > Configurações da biblioteca
-* Url
-* AdsPerSpace
-* Page
+
+* Url 
+* AdsPerSpace 
+* Page 
 ** autoRun
 ** scriptTagId
 
