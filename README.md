@@ -37,14 +37,14 @@ Sintetizando para integrar uma página simples com um espaço publicitário, seu
 ```html
 <!DOCTYPE html>
 <html>
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<title>index</title>
-<script type="text/javascript" src="//api.adlayerjavascriptsdk.com/api.min.js?page=204ff4c502862221fa389fb18905fb42&site=effedddbcae1529f6728e7dd7d000da3" async="true" language="javascript" id="adlayerScript"></script>
-</head>
-<body>
-	<div id="507ef609b60045a396d96dd8d8779272" class="adlayer_space"></div>
-</body>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<title>index</title>
+		<script type="text/javascript" src="//api.adlayerjavascriptsdk.com/api.min.js?page=204ff4c502862221fa389fb18905fb42&site=effedddbcae1529f6728e7dd7d000da3" async="true" language="javascript" id="adlayerScript"></script>
+	</head>
+	<body>
+		<div id="507ef609b60045a396d96dd8d8779272" class="adlayer_space"></div>
+	</body>
 </html>
 ```
 
