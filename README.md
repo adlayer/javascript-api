@@ -57,6 +57,8 @@ ex: ```api.min.js?page=204ff4c502862221fa389fb18905fb42```
 O parametro ```site``` consiste de um UUID que identifica o site selecionado e será necessário para descobrir se o domínio requisitado tem permissão para servir os dados da página e respectivos espaços e peças publicitárias.
 ex: ```api.min.js?site=effedddbcae1529f6728e7dd7d000da3```
 
+### Execução
+
 Uma vez que se obtém o os ids do site e página, a biblioteca tenta se comunicar com o API de Adserving da Adlayer a fim de obter os dados relacionados a esta página, como lista de espaços publicitários cadastrados e respectivas peças.
 
 LINK PARA DOCUMENTACAO DO JOCASTA
