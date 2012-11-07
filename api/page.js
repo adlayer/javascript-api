@@ -1,5 +1,5 @@
 /**
-* @module api
+* @module PageApi
 */
 (function(){
 	var EventEmitter = require('../node_modules/events').events.EventEmitter;
