@@ -3,7 +3,7 @@
 */
 (function(){
 	var EventEmitter = require('../node_modules/events').events.EventEmitter;
-	var Ad = require('../domain/ad').Ad;
+	var AdDom = require('../lib/dom/ad_dom').AdDom;
 	var ads = require('./lib/src/ads/ads').ads;
 	var request = require('../request/request').request;
 	var spaces = require('../spaces/spaces').spaces;
@@ -15,15 +15,11 @@
 	* @extends EventEmitter
 	*/			
 	var AdApi = function(){
-		Ad.apply(this, arguments);
-		EventEmitter.apply(this, arguments);
+		AdDom.apply(this, arguments);
 		
 		this.document;
 		this.tracker;
 		this.connection;
-		
-		this.spacesCollection = {};
-		this.adsCollection = {};
 	};
 	
 	/**
@@ -48,12 +44,15 @@
 	* @method init
 	* @public 
 	*/
-	AdApi.prototype.init = function(callback){
+	AdApi.prototype.init = function(tracker, callback){
 		var self = this;
 		// Get all page data
 		this.getData(function(err, data){
 			var ad = ads.create(data);
+			ad.tracker = tracker;
+			ad.init({id: undefined}, data);
 			self.element = ad.element;
+			
 			callback.call(self);
 		});
 		return this;

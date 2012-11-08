@@ -13,7 +13,8 @@ var utils = [
 	"./lib/src/utils/merge.js",
 	"./lib/src/utils/loadscript.js",
 	"./lib/src/node_modules/events.js",
-	"./lib/src/node_modules/querystring.js"
+	"./lib/src/node_modules/querystring.js",
+	"./lib/src/utils/contentloaded.js"
 ];
 
 var domain = [

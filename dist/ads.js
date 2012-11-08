@@ -178,6 +178,64 @@ var queryString = {
 	}
 };
 exports.querystring = queryString;
+/*!
+ * contentloaded.js
+ *
+ * Author: Diego Perini (diego.perini at gmail.com)
+ * Summary: cross-browser wrapper for DOMContentLoaded
+ * Updated: 20101020
+ * License: MIT
+ * Version: 1.2
+ *
+ * URL:
+ * http://javascript.nwbox.com/ContentLoaded/
+ * http://javascript.nwbox.com/ContentLoaded/MIT-LICENSE
+ *
+ */
+
+// @win window reference
+// @fn function reference
+function contentLoaded(win, fn) {
+
+	var done = false, top = true,
+
+	doc = win.document, root = doc.documentElement,
+
+	add = doc.addEventListener ? 'addEventListener' : 'attachEvent',
+	rem = doc.addEventListener ? 'removeEventListener' : 'detachEvent',
+	pre = doc.addEventListener ? '' : 'on',
+
+	init = function(e) {
+		if (e.type === 'readystatechange' && doc.readyState !== 'complete') {
+			return;
+		}
+		(e.type === 'load' ? win : doc)[rem](pre + e.type, init, false);
+		if (!done && (done = true)) {
+			fn.call(win, e.type || e);
+		}
+	},
+
+	poll = function() {
+		try { root.doScroll('left'); } catch(e) { setTimeout(poll, 50); return; }
+		init('poll');
+	};
+
+	if (doc.readyState === 'complete') {
+		fn.call(win, 'lazy');
+	}
+	else {
+		if (doc.createEventObject && root.doScroll) {
+			try { top = !win.frameElement; } catch(e) { }
+			if (top) {
+				poll();
+			}
+		}
+		doc[add](pre + 'DOMContentLoaded', init, false);
+		doc[add](pre + 'readystatechange', init, false);
+		win[add](pre + 'load', init, false);
+	}
+}
+exports.contentloaded = contentLoaded;
 /**
 * @module core
 */
@@ -323,10 +381,8 @@ var Event = function( attributes ){
 	*/
 	Event.required = [
 		'type',
-		'campaign_id',
-		'space_id',
-		'page_url',
-		'page_id'
+		'ad_id',
+		'campaign_id'
 	];
 	/**
 	* @method track
@@ -1363,6 +1419,7 @@ var DomElement = function(){
 		var trackerUrl = this.tracker.connection.getUrl();
 
 		var event = new Event({
+			ad_id: this.id,
 			type: 'click',
 			campaign_id: this.campaign_id,
 			space_id: this.getSpaceId(),
@@ -1390,8 +1447,8 @@ var DomElement = function(){
 		var ad = this;
 		// Listener for 'LOAD' event
 		ad.on('load', function(){
-
-			ad.tracker.track({
+			/**
+			{
 				type: 'impression',
 				
 				site_id: config.site_id,
@@ -1402,7 +1459,14 @@ var DomElement = function(){
 				ad_id: ad.id,
 				campaign_id: ad.campaign_id,
 				space_id: space.id
-			});
+			}
+			**/
+			config.type = 'impression';
+			config.ad_id = ad.id;
+			config.space_id = space.id;
+			config.campaign_id = ad.campaign_id;
+			
+			ad.tracker.track(config);
 		});
 
 		// Listener for 'PLACEMENT' event
@@ -1989,7 +2053,7 @@ exports.config = {
 */
 (function(){
 	var EventEmitter = require('../node_modules/events').events.EventEmitter;
-	var Ad = require('../domain/ad').Ad;
+	var AdDom = require('../lib/dom/ad_dom').AdDom;
 	var ads = require('./lib/src/ads/ads').ads;
 	var request = require('../request/request').request;
 	var spaces = require('../spaces/spaces').spaces;
@@ -2001,15 +2065,11 @@ exports.config = {
 	* @extends EventEmitter
 	*/			
 	var AdApi = function(){
-		Ad.apply(this, arguments);
-		EventEmitter.apply(this, arguments);
+		AdDom.apply(this, arguments);
 		
 		this.document;
 		this.tracker;
 		this.connection;
-		
-		this.spacesCollection = {};
-		this.adsCollection = {};
 	};
 	
 	/**
@@ -2034,12 +2094,15 @@ exports.config = {
 	* @method init
 	* @public 
 	*/
-	AdApi.prototype.init = function(callback){
+	AdApi.prototype.init = function(tracker, callback){
 		var self = this;
 		// Get all page data
 		this.getData(function(err, data){
 			var ad = ads.create(data);
+			ad.tracker = tracker;
+			ad.init({id: undefined}, data);
 			self.element = ad.element;
+			
 			callback.call(self);
 		});
 		return this;
@@ -2061,7 +2124,7 @@ exports.config = {
 	var AdApi = require('./ad_api').AdApi;
 	var Tracker = require('../tracker/tracker').Tracker;
 	var defaultConfig = require('../config/config').config;
-
+	var contentloaded = require('../lib/src/utils/contentloaded').contentloaded;
 	
 	/**
 	* @class Api
@@ -2161,29 +2224,27 @@ exports.config = {
 	* @private
 	*/
 	(function initialization(){
-		var document = global.document;
-		window.onload = function(){
-			
+		contentloaded(global, function(){
+			var document = global.document;
 			var placeholders = document.getElementsByClassName('adlayer_ad_placeholder');
 			
 			for(var i = 0; i < placeholders.length; i++){
 				var placeholder = placeholders[i];
 				var id = placeholder.id;
 				var el = document.getElementById(id);
-				
 				var ad = new AdApi({
 					id: id,
-					tracker: tracker,
 					connection: connections.adserver,
 					document: document
 				});
-
-				ad.init(function(){
+				
+				ad.init(tracker, function(){
 					var parent = el.parentNode;
 					parent.replaceChild(this.element, el);
+					api.ads[id] = this;
 				});
 			}
-		};
+		});
 	})();
 	
 })(this);

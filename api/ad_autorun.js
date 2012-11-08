@@ -11,7 +11,7 @@
 	var AdApi = require('./ad_api').AdApi;
 	var Tracker = require('../tracker/tracker').Tracker;
 	var defaultConfig = require('../config/config').config;
-
+	var contentloaded = require('../lib/src/utils/contentloaded').contentloaded;
 	
 	/**
 	* @class Api
@@ -111,29 +111,27 @@
 	* @private
 	*/
 	(function initialization(){
-		var document = global.document;
-		window.onload = function(){
-			
+		contentloaded(global, function(){
+			var document = global.document;
 			var placeholders = document.getElementsByClassName('adlayer_ad_placeholder');
 			
 			for(var i = 0; i < placeholders.length; i++){
 				var placeholder = placeholders[i];
 				var id = placeholder.id;
 				var el = document.getElementById(id);
-				
 				var ad = new AdApi({
 					id: id,
-					tracker: tracker,
 					connection: connections.adserver,
 					document: document
 				});
-
-				ad.init(function(){
+				
+				ad.init(tracker, function(){
 					var parent = el.parentNode;
 					parent.replaceChild(this.element, el);
+					api.ads[id] = this;
 				});
 			}
-		};
+		});
 	})();
 	
 })(this);
