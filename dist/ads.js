@@ -1989,23 +1989,25 @@ exports.config = {
 */
 (function(){
 	var EventEmitter = require('../node_modules/events').events.EventEmitter;
-	var Page = require('../domain/page').Page;
+	var Ad = require('../domain/ad').Ad;
+	var ads = require('./lib/src/ads/ads').ads;
 	var request = require('../request/request').request;
 	var spaces = require('../spaces/spaces').spaces;
 	
 	/**
-	* @class PageApi
+	* @class AdApi
 	* @constructor
-	* @extends Page
+	* @extends Ad
 	* @extends EventEmitter
 	*/			
-	var PageApi = function(){
-		Page.apply(this, arguments);
+	var AdApi = function(){
+		Ad.apply(this, arguments);
 		EventEmitter.apply(this, arguments);
 		
 		this.document;
 		this.tracker;
 		this.connection;
+		
 		this.spacesCollection = {};
 		this.adsCollection = {};
 	};
@@ -2014,235 +2016,175 @@ exports.config = {
 	* @method getData
 	* @param {Function} callback
 	*/
-	PageApi.prototype.getData = function(callback){
+	AdApi.prototype.getData = function(callback){
 		var sign = this.connection.id();
 		var opts = copy(this.connection);
 		opts.host = opts.host;
-		opts.path = '/pages/' + this.id;
+		opts.path = '/ads/' + this.id;
 		opts.qs = {
-			callback: 'adlayer.connections.adserver.requests.' + sign + '.callback',
-			domain: this.domain,
-			site_id: this.site_id,
-			ads_per_space: this.adsPerSpace
+			callback: 'adlayer.connections.adserver.requests.' + sign + '.callback'
 		};
 		var req = request().get(opts, callback);
 		this.connection.requests[sign] = req;
 		
 	};
 	
-	/**
-	* @method scanSpaces
-	* @param {Function} collection
-	* @param {Function} callback
-	*/
-	PageApi.prototype.scanSpaces = function(collection, callback){
-
-		for( var i = 0; i < collection.length; i++ ){
-			var space = collection[i];
-			space.document = this.document;
-			space = spaces.create(collection[i]);
-			space.element = space.getElement();
-			
-			if ( space.element ){
-				callback(null, space);
-			} else {
-				var error = {
-					error: 'not found',
-					id: space._id
-				};
-				callback(error, null);
-			}
-		}
-	};
 	
-	/**
-	* @method renderSpace
-	* @param {Object} space Instance of Space Class to find and render in DOM
-	* @param {Object} data Data of current view to track events
-	* @public
-	*/
-	PageApi.prototype.renderSpace = function (space, data){
-		var result = space.init(this.tracker, data);
-		if(result.ad){
-			this.adsCollection[result.ad.id] = result.ad;
-		}
-	};
-
 	/**
 	* @method init
 	* @public 
 	*/
-	PageApi.prototype.init = function(){
-		
-		var page = this;
-
+	AdApi.prototype.init = function(callback){
+		var self = this;
 		// Get all page data
 		this.getData(function(err, data){
-			// When we get spaces in this page
-			if(data && data.spaces){
-				// For each space found in document
-				page.scanSpaces(data.spaces, function(err, space){
-					// When find spaces
-					if(!err){
-
-						var config = {
-							domain: page.domain,
-							page_url: page.url,
-							page_id: page.id,
-							site_id: page.site_id
-						};
-						page.renderSpace(space, config);
-						// exporting space to api
-						page.spacesCollection[space.id] = space;
-					}
-				});
-			}
+			var ad = ads.create(data);
+			self.element = ad.element;
+			callback.call(self);
 		});
-		return page;
+		return this;
+		
 	};
 	
-	exports.PageApi = PageApi;
+	exports.AdApi = AdApi;
 })();
 (function(window){
 	
-/**
-* Api wrapper
-* @module api
-* @main api
-*/
+	/**
+	* Api wrapper
+	* @module api
+	* @main api
+	*/
 
-var queryString = require('../node_modules/querystring').querystring;
-var Connection = require('../connection/connection').Connection;
-var Page = require('./page').PageApi;
-var Tracker = require('../tracker/tracker').Tracker;
-var defaultConfig = require('../config/config').config;
+	var queryString = require('../node_modules/querystring').querystring;
+	var Connection = require('../connection/connection').Connection;
+	var AdApi = require('./ad_api').AdApi;
+	var Tracker = require('../tracker/tracker').Tracker;
+	var defaultConfig = require('../config/config').config;
 
 	
-/**
-* @class Api
-*/
-var global = global || window;
-var api = global.adlayer || {};
+	/**
+	* @class Api
+	*/
+	var global = global || window;
+	var api = global.adlayer || {};
 
-// Defining configs
-var config = api.config || {};
+	// Defining configs
+	var config = api.config || {};
 
-// Merging config options
-config.url = config.url || defaultConfig.url;
-config.adsPerSpace = config.adsPerSpace || defaultConfig.adsPerSpace;
-config.page = config.page || defaultConfig.page;
+	// Merging config options
+	config.url = config.url || defaultConfig.url;
+	config.adsPerSpace = config.adsPerSpace || defaultConfig.adsPerSpace;
+	config.page = config.page || defaultConfig.page;
 
-/**
-* Exports config
-*
-* @property config
-* @type object
-*/
-api.config = config;
+	/**
+	* Exports config
+	*
+	* @property config
+	* @type object
+	*/
+	api.config = config;
 
-// Defining connections
-var connections = {
-	adserver: new Connection(config.url.adserver),
-	tracker: new Connection(config.url.tracker)
-};
+	// Defining connections
+	var connections = {
+		adserver: new Connection(config.url.adserver),
+		tracker: new Connection(config.url.tracker)
+	};
 
-// Defining tracker	
-var tracker = new Tracker();
-tracker.connection = connections.tracker;
+	// Defining tracker	
+	var tracker = new Tracker();
+	tracker.connection = connections.tracker;
 
-/**
-* Exports page api
-*
-* @property page
-* @type object
-*/
-api.page = {};
-/**
-* Exports configuration
-*
-* @property config
-* @type object
-*/
-api.config = config;
-/**
-* Exports connections
-*
-* @property connections
-* @type object
-*/
-api.connections = connections;
-/**
-* Exports spaces
-*
-* @property spaces
-* @type object
-* @example 
-	var space = adlayer.spaces['0202kjj44949999992j8'];
-	space.close();
-*/
-api.spaces = {};
-/**
-* Exports ads
-*
-* @property ads
-* @type object
-* @example 
-	var ad = adlayer.ads['mfkvfmvkdfvdf84848484'];
-	ad.emit('load');
-*/
-api.ads = {};
+	/**
+	* Exports page api
+	*
+	* @property page
+	* @type object
+	*/
+	api.page = {};
+	/**
+	* Exports configuration
+	*
+	* @property config
+	* @type object
+	*/
+	api.config = config;
+	/**
+	* Exports connections
+	*
+	* @property connections
+	* @type object
+	*/
+	api.connections = connections;
+	/**
+	* Exports spaces
+	*
+	* @property spaces
+	* @type object
+	* @example 
+		var space = adlayer.spaces['0202kjj44949999992j8'];
+		space.close();
+	*/
+	api.spaces = {};
+	/**
+	* Exports ads
+	*
+	* @property ads
+	* @type object
+	* @example 
+		var ad = adlayer.ads['mfkvfmvkdfvdf84848484'];
+		ad.emit('load');
+	*/
+	api.ads = {};
 
-/**
-* Shortcut for adlayer.ads[id].emit, used by flash preloaders
-*
-* @method markAdAsLoaded
-* @param {String} id
-* @public
-*/
-api.markAdAsLoaded = function(id){	
-	api.ads[id].emit('load');
-};
+	/**
+	* Shortcut for adlayer.ads[id].emit, used by flash preloaders
+	*
+	* @method markAdAsLoaded
+	* @param {String} id
+	* @public
+	*/
+	api.markAdAsLoaded = function(id){	
+		api.ads[id].emit('load');
+	};
 
-/**
-* Exports Adlayer namespace
-*
-* @property adlayer
-* @type object
-*/
-global.adlayer = api;
-/**
-* @method initialization
-* @private
-*/
-(function initialization(){
-	var document = global.document;
+	/**
+	* Exports Adlayer namespace
+	*
+	* @property adlayer
+	* @type object
+	*/
+	global.adlayer = api;
 	
-	if(config.page.autoRun && document) {
-		
-		var scriptTag = document.getElementById(config.page.scriptTagId);
-		var queries = scriptTag.src.split('?')[1];
-		var params = queryString.parse(queries);
+	/**
+	* @method initialization
+	* @private
+	*/
+	(function initialization(){
+		var document = global.document;
+		window.onload = function(){
+			
+			var placeholders = document.getElementsByClassName('adlayer_ad_placeholder');
+			
+			for(var i = 0; i < placeholders.length; i++){
+				var placeholder = placeholders[i];
+				var id = placeholder.id;
+				var el = document.getElementById(id);
+				
+				var ad = new AdApi({
+					id: id,
+					tracker: tracker,
+					connection: connections.adserver,
+					document: document
+				});
 
-		config.site_id = config.site_id || params.site;
-		config.domain = config.domain || global.location.hostname;
-		config.page_id = config.page_id || params.page;
-		config.page_url = config.page_url || global.location.href;
-
-		var page = new Page({
-			tracker: tracker,
-			id: config.page_id,
-			url: config.page_url,
-			site_id: config.site_id,
-			domain: config.domain,
-			connection: connections.adserver,
-			document: document,
-			adsPerSpace: config.adsPerSpace
-		});
-
-		api.page = page.init();
-		api.spaces = page.spacesCollection;
-		api.ads = page.adsCollection;
-	}
-})();
+				ad.init(function(){
+					var parent = el.parentNode;
+					parent.replaceChild(this.element, el);
+				});
+			}
+		};
+	})();
+	
 })(this);
 })(this);

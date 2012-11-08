@@ -67,14 +67,19 @@ var config = [
 	"./lib/src/config/config.js"
 ];
 
-var api = [
-	"./api/page.js",
-	"./api/api.js"
+var pageApi = [
+	"./api/page_api.js",
+	"./api/page_autorun.js"
+];
+var adsApi = [
+	"./api/ad_api.js",
+	"./api/ad_autorun.js"
 ];
 
 var footer = ["./template/footer.js"];
 
-modules.api = [].concat(head, utils, domain, request, connection, tracker, dom, ads, spaces, config, api, footer);
+modules.api = [].concat(head, utils, domain, request, connection, tracker, dom, ads, spaces, config, pageApi, footer);
+modules.ads = [].concat(head, utils, domain, request, connection, tracker, dom, ads, spaces, config, adsApi, footer);
 
 var config = {
 	"VERSION": "",

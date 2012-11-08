@@ -143,3 +143,6 @@ Exemplo de uso:
 var space = adlayer.spaces['0202kjj44949999992j8'];
 space.close();
 ```
+
+## Widgets
+### Placeholders
