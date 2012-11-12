@@ -49,7 +49,7 @@ tracker.connection = connections.tracker;
 * @property tracker
 * @type object
 */
-api.tracker = tracker;
+api.tracker = api.tracker || tracker;
 
 /**
 * Exports page api
@@ -57,7 +57,7 @@ api.tracker = tracker;
 * @property page
 * @type object
 */
-api.page = {};
+api.page = api.page || {};
 /**
 * Exports configuration
 *
@@ -71,7 +71,7 @@ api.config = config;
 * @property connections
 * @type object
 */
-api.connections = connections;
+api.connections = api.connections || connections;
 /**
 * Exports spaces
 *
@@ -81,7 +81,7 @@ api.connections = connections;
 	var space = adlayer.spaces['0202kjj44949999992j8'];
 	space.close();
 */
-api.spaces = {};
+api.spaces = api.spaces || {};
 /**
 * Exports ads
 *
@@ -91,7 +91,7 @@ api.spaces = {};
 	var ad = adlayer.ads['mfkvfmvkdfvdf84848484'];
 	ad.emit('load');
 */
-api.ads = {};
+api.ads = api.ads || {};
 
 /**
 * Shortcut for adlayer.ads[id].emit, used by flash preloaders
@@ -100,7 +100,7 @@ api.ads = {};
 * @param {String} id
 * @public
 */
-api.markAdAsLoaded = function(id){	
+api.markAdAsLoaded = api.markAdAsLoaded || function(id){	
 	api.ads[id].emit('load');
 };
 
