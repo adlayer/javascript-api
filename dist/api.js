@@ -2175,9 +2175,7 @@ exports.config = {
 * @main api
 */
 
-var queryString = require('../node_modules/querystring').querystring;
 var Connection = require('../connection/connection').Connection;
-var Page = require('./page').PageApi;
 var Tracker = require('../tracker/tracker').Tracker;
 var defaultConfig = require('../config/config').config;
 
@@ -2213,6 +2211,14 @@ var connections = {
 // Defining tracker	
 var tracker = new Tracker();
 tracker.connection = connections.tracker;
+
+/**
+* Exports tracker
+*
+* @property tracker
+* @type object
+*/
+api.tracker = tracker;
 
 /**
 * Exports page api
@@ -2268,45 +2274,59 @@ api.markAdAsLoaded = function(id){
 };
 
 /**
+* A list of all adlayer modules
+*
+* @property lib
+* @type object
+*/
+api.lib = require('*');
+
+/**
 * Exports Adlayer namespace
 *
 * @property adlayer
 * @type object
 */
 global.adlayer = api;
-/**
-* @method initialization
-* @private
-*/
-(function initialization(){
-	var document = global.document;
+})(this);
+(function(window){
+	/**
+	* @method initialization
+	* @private
+	*/
+	(function initialization(){
+		var api = window.adlayer;
+		var queryString = api.lib.querystring;
+		var Page = api.lib.PageApi;
+		var document = global.document;
+		var config = api.config;
 	
-	if(config.page.autoRun && document) {
+		if(config.page.autoRun && document) {
 		
-		var scriptTag = document.getElementById(config.page.scriptTagId);
-		var queries = scriptTag.src.split('?')[1];
-		var params = queryString.parse(queries);
+			var scriptTag = document.getElementById(config.page.scriptTagId);
+			var queries = scriptTag.src.split('?')[1];
+			var params = queryString.parse(queries);
 
-		config.site_id = config.site_id || params.site;
-		config.domain = config.domain || global.location.hostname;
-		config.page_id = config.page_id || params.page;
-		config.page_url = config.page_url || global.location.href;
+			config.site_id = config.site_id || params.site;
+			config.domain = config.domain || global.location.hostname;
+			config.page_id = config.page_id || params.page;
+			config.page_url = config.page_url || global.location.href;
 
-		var page = new Page({
-			tracker: tracker,
-			id: config.page_id,
-			url: config.page_url,
-			site_id: config.site_id,
-			domain: config.domain,
-			connection: connections.adserver,
-			document: document,
-			adsPerSpace: config.adsPerSpace
-		});
+			var page = new Page({
+				tracker: api.tracker,
+				id: config.page_id,
+				url: config.page_url,
+				site_id: config.site_id,
+				domain: config.domain,
+				connection: api.connections.adserver,
+				document: document,
+				adsPerSpace: config.adsPerSpace
+			});
 
-		api.page = page.init();
-		api.spaces = page.spacesCollection;
-		api.ads = page.adsCollection;
-	}
-})();
+			api.page = page.init();
+			api.spaces = page.spacesCollection;
+			api.ads = page.adsCollection;
+		}
+	})();
 })(this);
 })(this);

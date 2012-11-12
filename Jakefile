@@ -65,15 +65,17 @@ var spaces = [
 
 
 var config = [
-	"./lib/src/config/config.js"
+	"./api/config.js"
 ];
 
 var pageApi = [
 	"./api/page_api.js",
+	"./api/api.js",
 	"./api/page_autorun.js"
 ];
 var adsApi = [
 	"./api/ad_api.js",
+	"./api/api.js",
 	"./api/ad_autorun.js"
 ];
 
