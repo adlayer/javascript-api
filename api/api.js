@@ -8,6 +8,7 @@
 
 var Connection = require('../connection/connection').Connection;
 var Tracker = require('../tracker/tracker').Tracker;
+var Adserver = require('./adserver').Adserver;
 var defaultConfig = require('../config/config').config;
 
 	
@@ -34,14 +35,36 @@ config.page = config.page || defaultConfig.page;
 api.config = config;
 
 // Defining connections
-var connections = {
-	adserver: new Connection(config.url.adserver),
-	tracker: new Connection(config.url.tracker)
-};
+var connections = {};
+connections.adserver = new Connection(config.url.adserver);
+connections.adserver.name = 'adserver';
+
+connections.tracker = new Connection(config.url.tracker);
+connections.tracker.name = 'tracker';
+
+
+
+
+
+
+
+// Defining adserver
+var adserver = new Adserver();
+adserver.connection = connections.adserver;
 
 // Defining tracker	
 var tracker = new Tracker();
 tracker.connection = connections.tracker;
+
+
+
+/**
+* Exports adserver
+*
+* @property adserver
+* @type object
+*/
+api.adserver = api.adserver || adserver;
 
 /**
 * Exports tracker
@@ -100,7 +123,7 @@ api.ads = api.ads || {};
 * @param {String} id
 * @public
 */
-api.markAdAsLoaded = api.markAdAsLoaded || function(id){	
+api.markAdAsLoaded = function(id){
 	api.ads[id].emit('load');
 };
 

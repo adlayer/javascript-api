@@ -1,5 +1,23 @@
 (function(window){
 	
+	function getElementsByClass(searchClass,node,tag) {
+		var classElements = [];
+		if ( node === null )
+			node = document;
+		if ( tag == null )
+			tag = '*';
+		var els = node.getElementsByTagName(tag);
+		var elsLen = els.length;
+		var pattern = new RegExp("(^|\\s)"+searchClass+"(\\s|$)");
+		for (i = 0, j = 0; i < elsLen; i++) {
+			if ( pattern.test(els[i].className) ) {
+				classElements[j] = els[i];
+				j++;
+			}
+		}
+		return classElements;
+	}
+	
 	/**
 	* @method initialization
 	* @private
@@ -11,7 +29,7 @@
 		
 		contentloaded(global, function(){
 			var document = global.document;
-			var placeholders = document.getElementsByClassName('adlayer_ad_placeholder');
+			var placeholders = getElementsByClass('adlayer_ad_placeholder', document);
 			
 			for(var i = 0; i < placeholders.length; i++){
 				var placeholder = placeholders[i];
@@ -19,10 +37,10 @@
 				var el = document.getElementById(id);
 				var ad = new AdApi({
 					id: id,
-					connection: api.connections.adserver,
+					adserver: api.adserver,
 					document: document
 				});
-				
+
 				ad.init(api.tracker, function(){
 					var parent = el.parentNode;
 					parent.replaceChild(this.element, el);

@@ -19,7 +19,7 @@
 		
 		this.document;
 		this.tracker;
-		this.connection;
+		this.adserver;
 		this.spacesCollection = {};
 		this.adsCollection = {};
 	};
@@ -29,19 +29,12 @@
 	* @param {Function} callback
 	*/
 	PageApi.prototype.getData = function(callback){
-		var sign = this.connection.id();
-		var opts = copy(this.connection);
-		opts.host = opts.host;
-		opts.path = '/pages/' + this.id;
-		opts.qs = {
-			callback: 'adlayer.connections.adserver.requests.' + sign + '.callback',
+		var qs = {
 			domain: this.domain,
 			site_id: this.site_id,
 			ads_per_space: this.adsPerSpace
 		};
-		var req = request().get(opts, callback);
-		this.connection.requests[sign] = req;
-		
+		this.adserver.pages(this.id, qs, callback);
 	};
 	
 	/**

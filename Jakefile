@@ -69,11 +69,13 @@ var config = [
 ];
 
 var pageApi = [
+	"./api/adserver.js",
 	"./api/page_api.js",
 	"./api/api.js",
 	"./api/page_autorun.js"
 ];
 var adsApi = [
+	"./api/adserver.js",
 	"./api/ad_api.js",
 	"./api/api.js",
 	"./api/ad_autorun.js"

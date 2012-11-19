@@ -27,7 +27,7 @@
 				url: config.page_url,
 				site_id: config.site_id,
 				domain: config.domain,
-				connection: api.connections.adserver,
+				adserver: api.adserver,
 				document: document,
 				adsPerSpace: config.adsPerSpace
 			});

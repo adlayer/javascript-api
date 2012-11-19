@@ -19,7 +19,7 @@
 		
 		this.document;
 		this.tracker;
-		this.connection;
+		this.adserver;
 	};
 	
 	/**
@@ -27,16 +27,7 @@
 	* @param {Function} callback
 	*/
 	AdApi.prototype.getData = function(callback){
-		var sign = this.connection.id();
-		var opts = copy(this.connection);
-		opts.host = opts.host;
-		opts.path = '/ads/' + this.id;
-		opts.qs = {
-			callback: 'adlayer.connections.adserver.requests.' + sign + '.callback'
-		};
-		var req = request().get(opts, callback);
-		this.connection.requests[sign] = req;
-		
+		this.adserver.ads(this.id, null, callback);
 	};
 	
 	
@@ -48,12 +39,15 @@
 		var self = this;
 		// Get all page data
 		this.getData(function(err, data){
-			var ad = ads.create(data);
-			ad.tracker = tracker;
-			ad.init({id: undefined}, {});
-			self.element = ad.element;
-			
-			callback.call(self);
+			if(!err && data){
+				var ad = ads.create(data);
+				ad.tracker = tracker;
+				ad.init({id: undefined}, {});
+				ad.emit('placement');
+				self.element = ad.element;
+
+				callback.call(self);
+			}
 		});
 		return this;
 		

@@ -1337,10 +1337,13 @@ var DomElement = function(){
 	*/
 	DomElement.prototype.findParentTag = function(tag){
 		var parent = this.element.parentNode;
-		while(parent.nodeName != tag){
-			parent = parent.parentNode;
+		if(parent){
+			while(parent.nodeName != tag){
+				parent = parent.parentNode;
+			}
+			return parent;
 		}
-		return parent;
+		return false;
 	};
 	/**
 	* @method addDomEventListener
@@ -1408,13 +1411,11 @@ var DomElement = function(){
 	
 	/**
 	* @method getClickTag
-	* @param {String} site_id
-	* @param {String} page_id
-	* @param {String} page_url
+	* @param {Object} config
 	* @returns {String} the full url to track this link
 	* @example http://tracker.adlayerapp.com/click/10?&campaign_id=1235&link=http://www.adlayer.com.br
 	*/
-	AdDom.prototype.getClickTag = function(site_id, page_id, page_url ){
+	AdDom.prototype.getClickTag = function(config){
 		// Tracker url
 		var trackerUrl = this.tracker.connection.getUrl();
 
@@ -1423,9 +1424,9 @@ var DomElement = function(){
 			type: 'click',
 			campaign_id: this.campaign_id,
 			space_id: this.getSpaceId(),
-			site_id: site_id,
-			page_id: page_id,
-			page_url: page_url,
+			site_id: config.site_id,
+			page_id: config.page_id,
+			page_url: config.page_url,
 			link: this.link
 		});
 
@@ -1441,38 +1442,43 @@ var DomElement = function(){
 	* @method init
 	* @param {Object} space
 	* @param {Object} config
-	* @param {String} page_url
 	*/
 	AdDom.prototype.init = function(space, config){
 		var ad = this;
+		
+		/**
+		{
+			type: 'impression',
+			
+			site_id: config.site_id,
+			domain: config.domain,
+			page_url: config.page_url,
+			page_id: config.page_id,
+			
+			ad_id: ad.id,
+			campaign_id: ad.campaign_id,
+			space_id: space.id
+		}
+		**/
+		config.ad_id = ad.id;
+		
+		config.space_id = space.id;
+		config.space_id || delete config.space_id;
+		
+		config.campaign_id = ad.campaign_id;
+		
 		// Listener for 'LOAD' event
 		ad.on('load', function(){
-			/**
-			{
-				type: 'impression',
-				
-				site_id: config.site_id,
-				domain: config.domain,
-				page_url: config.page_url,
-				page_id: config.page_id,
-				
-				ad_id: ad.id,
-				campaign_id: ad.campaign_id,
-				space_id: space.id
-			}
-			**/
+
 			config.type = 'impression';
-			config.ad_id = ad.id;
-			config.space_id = space.id;
-			config.campaign_id = ad.campaign_id;
-			
 			ad.tracker.track(config);
+			
 		});
 
 		// Listener for 'PLACEMENT' event
 		ad.on('placement', function(){
 			// Setting click tag in ad element
-			var clickTag = ad.getClickTag(config.site_id, config.page_id, config.page_url);
+			var clickTag = ad.getClickTag(config);
 			ad.element.href = clickTag;
 		});
 		return ad;
@@ -2048,6 +2054,56 @@ exports.config = {
 		scriptTagId: 'adlayerScript'
 	}
 };
+(function(){
+	/**
+	* @class Adserver
+	* @constructor
+	*/
+	var Adserver = function(connection){
+		this.connection = connection;
+	};
+	/*
+	* Main method to make http requests
+	* @method request
+	* @param {String} path path to request in server
+	* @param {Object} query query string to request
+	* @param {Function} callback
+	* @public
+	*/
+	Adserver.prototype.request = function(path, query, callback){
+		var sign = this.connection.id();
+		var opts = copy(this.connection);
+		opts.host = opts.host;
+		opts.path = path;
+		opts.qs = query || {};
+		opts.qs.callback = 'adlayer.connections.' + opts.name + '.requests.' + sign + '.callback';
+		var req = request().get(opts, callback);
+		this.connection.requests[sign] = req;
+	};
+	/*
+	* Access to 'pages' endpoint
+	* @method pages
+	* @param {String} id
+	* @param {Object} query query string to request
+	* @param {Function} callback
+	* @public
+	*/
+	Adserver.prototype.pages = function(id, query, callback){
+		this.request('/pages/' + id, query, callback);
+	};
+	/*
+	* Access to 'ads' endpoint
+	* @method pages
+	* @param {String} id
+	* @param {Object} query query string to request
+	* @param {Function} callback
+	* @public
+	*/
+	Adserver.prototype.ads = function(id, query, callback){
+		this.request('/ads/' + id, query, callback);
+	};
+	exports.Adserver = Adserver;
+})();
 /**
 * @module PageApi
 */
@@ -2069,7 +2125,7 @@ exports.config = {
 		
 		this.document;
 		this.tracker;
-		this.connection;
+		this.adserver;
 	};
 	
 	/**
@@ -2077,16 +2133,7 @@ exports.config = {
 	* @param {Function} callback
 	*/
 	AdApi.prototype.getData = function(callback){
-		var sign = this.connection.id();
-		var opts = copy(this.connection);
-		opts.host = opts.host;
-		opts.path = '/ads/' + this.id;
-		opts.qs = {
-			callback: 'adlayer.connections.adserver.requests.' + sign + '.callback'
-		};
-		var req = request().get(opts, callback);
-		this.connection.requests[sign] = req;
-		
+		this.adserver.ads(this.id, null, callback);
 	};
 	
 	
@@ -2098,12 +2145,15 @@ exports.config = {
 		var self = this;
 		// Get all page data
 		this.getData(function(err, data){
-			var ad = ads.create(data);
-			ad.tracker = tracker;
-			ad.init({id: undefined}, {});
-			self.element = ad.element;
-			
-			callback.call(self);
+			if(!err && data){
+				var ad = ads.create(data);
+				ad.tracker = tracker;
+				ad.init({id: undefined}, {});
+				ad.emit('placement');
+				self.element = ad.element;
+
+				callback.call(self);
+			}
 		});
 		return this;
 		
@@ -2121,6 +2171,7 @@ exports.config = {
 
 var Connection = require('../connection/connection').Connection;
 var Tracker = require('../tracker/tracker').Tracker;
+var Adserver = require('./adserver').Adserver;
 var defaultConfig = require('../config/config').config;
 
 	
@@ -2147,14 +2198,36 @@ config.page = config.page || defaultConfig.page;
 api.config = config;
 
 // Defining connections
-var connections = {
-	adserver: new Connection(config.url.adserver),
-	tracker: new Connection(config.url.tracker)
-};
+var connections = {};
+connections.adserver = new Connection(config.url.adserver);
+connections.adserver.name = 'adserver';
+
+connections.tracker = new Connection(config.url.tracker);
+connections.tracker.name = 'tracker';
+
+
+
+
+
+
+
+// Defining adserver
+var adserver = new Adserver();
+adserver.connection = connections.adserver;
 
 // Defining tracker	
 var tracker = new Tracker();
 tracker.connection = connections.tracker;
+
+
+
+/**
+* Exports adserver
+*
+* @property adserver
+* @type object
+*/
+api.adserver = api.adserver || adserver;
 
 /**
 * Exports tracker
@@ -2213,7 +2286,7 @@ api.ads = api.ads || {};
 * @param {String} id
 * @public
 */
-api.markAdAsLoaded = api.markAdAsLoaded || function(id){	
+api.markAdAsLoaded = function(id){
 	api.ads[id].emit('load');
 };
 
@@ -2235,6 +2308,24 @@ global.adlayer = api;
 })(this);
 (function(window){
 	
+	function getElementsByClass(searchClass,node,tag) {
+		var classElements = [];
+		if ( node === null )
+			node = document;
+		if ( tag == null )
+			tag = '*';
+		var els = node.getElementsByTagName(tag);
+		var elsLen = els.length;
+		var pattern = new RegExp("(^|\\s)"+searchClass+"(\\s|$)");
+		for (i = 0, j = 0; i < elsLen; i++) {
+			if ( pattern.test(els[i].className) ) {
+				classElements[j] = els[i];
+				j++;
+			}
+		}
+		return classElements;
+	}
+	
 	/**
 	* @method initialization
 	* @private
@@ -2246,7 +2337,7 @@ global.adlayer = api;
 		
 		contentloaded(global, function(){
 			var document = global.document;
-			var placeholders = document.getElementsByClassName('adlayer_ad_placeholder');
+			var placeholders = getElementsByClass('adlayer_ad_placeholder', document);
 			
 			for(var i = 0; i < placeholders.length; i++){
 				var placeholder = placeholders[i];
@@ -2254,10 +2345,10 @@ global.adlayer = api;
 				var el = document.getElementById(id);
 				var ad = new AdApi({
 					id: id,
-					connection: api.connections.adserver,
+					adserver: api.adserver,
 					document: document
 				});
-				
+
 				ad.init(api.tracker, function(){
 					var parent = el.parentNode;
 					parent.replaceChild(this.element, el);
