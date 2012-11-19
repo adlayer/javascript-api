@@ -68,12 +68,18 @@ var config = [
 	"./api/config.js"
 ];
 
+var api = [
+	"./api/adserver.js",
+	"./api/api.js"
+];
+
 var pageApi = [
 	"./api/adserver.js",
 	"./api/page_api.js",
 	"./api/api.js",
 	"./api/page_autorun.js"
 ];
+
 var adsApi = [
 	"./api/adserver.js",
 	"./api/ad_api.js",
@@ -83,7 +89,8 @@ var adsApi = [
 
 var footer = ["./template/footer.js"];
 
-modules.api = [].concat(head, utils, domain, request, connection, tracker, dom, ads, spaces, config, pageApi, footer);
+modules.api = [].concat(head, utils, domain, request, connection, tracker, dom, ads, spaces, config, api, footer);
+modules.page = [].concat(head, utils, domain, request, connection, tracker, dom, ads, spaces, config, pageApi, footer);
 modules.ads = [].concat(head, utils, domain, request, connection, tracker, dom, ads, spaces, config, adsApi, footer);
 
 var config = {
