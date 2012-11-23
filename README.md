@@ -76,3 +76,31 @@ adlayer.tracker.track('0210288667211ff5b96d3a4ec50647ce', event, function(err, r
 	// Handle result
 });
 ```
+
+# Page
+Para manipular e ler dados referentes a página renderizada utilize o modulo ```adlayer.page```.
+
+# Spaces
+
+O modulo spaces permite a interação com espaços publicitários da página.
+
+Listando todos os espaços:
+```javascript
+console.log(adlayer.spaces);
+```
+
+Fechando um espaço publicitário:
+```javascript
+var space = adlayer.spaces['0210288667211ff5b96d3a4ec50647ce'];
+space.close();
+```
+
+## Biblioteca
+Este repositório tem como base grande parte de seu conteúdo proviente da Adlayer JS Library, e a API js expoe todos os modulos dessa biblioteca da seguinte forma:
+
+```javascript
+console.log(adlayer.lib);
+```
+
+Confira a [lista completa de modulos](http://github.com/adlayer/javascript-library);
+
