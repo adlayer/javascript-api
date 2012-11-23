@@ -8,7 +8,7 @@ Este widget possui duas partes:
 ex: 
 
 ```html
-	<script type="text/javascript" src="//api.adlayerjavascriptsdk.com/ads.min.js" async="true" language="javascript"></script>
+<script type="text/javascript" src="//api.adlayerjavascriptsdk.com/ads.min.js" async="true" language="javascript"></script>
 ```
 
 ### 2 - Html placeholder da peça
