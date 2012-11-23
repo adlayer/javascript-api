@@ -2,7 +2,12 @@
 
 Esta documentação é relativa aos metodos e propriedades expostos   pela Adlayer javascript api standalone ou os widgets fornecidos neste repositório.
 
-## Visão geral
+## Widgets
+Afim de deixar o processo de integração muito mais simples providencias widgets (recursos embedaveis) que permitem inserir publicidade em seu site apenas copiando e colando pequenos trechos de código sem se preocupar com programação.
+
+Veja os [widgets disponíveis](https://github.com/adlayer/javascript-api/blob/master/docs/widgets.md)
+
+## API
 * [Configurações](https://github.com/adlayer/javascript-api#configurações)
 * [Conexões](https://github.com/adlayer/javascript-api#conexões)
 * [Adserver](https://github.com/adlayer/javascript-api#adserver)
