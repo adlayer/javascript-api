@@ -5,4 +5,4 @@ Widgets são blocos de códigos preparados para rederizar recursos embedáveis c
 
 ## Widgets
 * [Page](https://github.com/adlayer/javascript-api/blob/master/docs/pages.md)
-* Ads
+* [Ads](https://github.com/adlayer/javascript-api/blob/master/docs/ads.md)
