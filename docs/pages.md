@@ -1,7 +1,8 @@
-# [Adlayer](http://adlayer.com.br) Javascript Api
-Este projeto open source é a versão oficial do cliente javascript responsável por se conectar com os webservices da Adlayer e é mantida principalmente pela equipe Adlayer.
+# Adlayer Widgets
 
-## Integração
+Widgets são blocos de códigos preparados para rederizar recursos embedáveis como peças publicitárias, páginas e seus espaços.
+
+
 
 ### Páginas
 Para integrar o Adlayer ao seu site você precisa adicionar uma ```nova página``` dentro de algum site de sua conta.
@@ -68,81 +69,3 @@ Para cada espaços já inserido a biblioteca colocará a melhor peça publicitá
 Quando uma peça é inserida e devidamente carregada, caracteriza-se uma ```impressão```.
 
 A biblioteca então se comunica com outro serviço web, disponível na plataforma Adlayer chamado Tracker, para registrar uma visualização de peça e disponibilizando essa informação no relatório da campanha.
-
-## API (Para desenvolvedores)
-
-Para acessar os métodos e propriedades disponíveis na API, você poderá usar a varíavel/namespace ```adlayer```.
-
-O namespace ```adlayer``` é a única variável global exposta pela Adlayer JS API. Esta variável estará disponível para o seu uso exatamente após o script ter sido inserido e carregado.
-
-Exemplo:
-```javascript
-console.log(adlayer);
-console.log(adlayer.ads);
-console.log(adlayer.page);
-console.log(adlayer.spaces);
-```
-
-Por padrão a inclusão dessa biblioteca executará automaticamente e preencherá os espaços publicitários com as devidas peças.
-
-Se você deseja mudar esse comportamento, poderá antes de carregar a biblioteca inserir o seguinte código.
-```javascript
-<script type="text/javascript">
-		var adlayer = adlayer || {};
-		adlayer.config = {
-			page:{autoRun:false;}
-		};
-</script>
-```
-
-### Métodos
-
-#### markAdAsLoaded
-
-Marca uma peça como carregada
-
-Exemplo de uso:
-```javascript
-var ad = adlayer.markAdAsLoaded'mfkvfmvkdfvdf84848484');
-```
-
-### Propriedades
-
-
-#### config
-
-* Url 
-* AdsPerSpace 
-* Page
-
-#### ads
-
-Lista de peças renderizadas na página
-
-Exemplo de uso:
-
-```javascript
-var ad = adlayer.ads['mfkvfmvkdfvdf84848484'];
-ad.emit('load');
-```
-
-#### connections
-
-Lista de conexões abertas e fechadas desse page view
-
-#### page
-
-Representação da página atual
-
-#### spaces
-
-Lista de espaços renderizados na página
-
-Exemplo de uso:
-```javascript
-var space = adlayer.spaces['0202kjj44949999992j8'];
-space.close();
-```
-
-## Widgets
-### Placeholders
