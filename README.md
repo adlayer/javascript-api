@@ -3,13 +3,13 @@
 Esta documentação é relativa aos metodos e propriedades expostos   pela Adlayer javascript api standalone ou os widgets fornecidos neste repositório.
 
 ## Visão geral
-* Configurações
-* Conexões
-* Adserver
-* Tracker
-* Page
-* Espaços
-* Biblioteca
+* [Configurações](https://github.com/adlayer/javascript-api#configurações)
+* [Conexões](https://github.com/adlayer/javascript-api#conexões)
+* [Adserver](https://github.com/adlayer/javascript-api#adserver)
+* [Tracker](https://github.com/adlayer/javascript-api#tracker)
+* [Page](https://github.com/adlayer/javascript-api#page)
+* [Espaços](https://github.com/adlayer/javascript-api#spaces)
+* [Biblioteca](https://github.com/adlayer/javascript-api#biblioteca)
 
 ## Configurações
 Propriedades disponíveis:
