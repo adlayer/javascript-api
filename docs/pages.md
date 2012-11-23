@@ -1,20 +1,17 @@
-# Adlayer Widgets
-
-Widgets são blocos de códigos preparados para rederizar recursos embedáveis como peças publicitárias, páginas e seus espaços.
-
 # Adlayer Page Widget
 Adlayer Page Widget é uma maneira automatizada e fácil de integrar o Adlayer em seus sites.
 
 ## Estrutura
 Este widget possui duas partes:
 
-1. Javascript page widget
+### 1 - Javascript page widget
 ex: 
 
 ```html
 <script type="text/javascript" src="../../dist/page.js?page=82e719877b60e205471a9d8ef00564ab&site=82e719877b60e205471a9d8ef0055af6" async="true" language="javascript" id="adlayerScript"></script>
 ```
-2. Código dos espaços publicitários
+
+### 2 - Código dos espaços
 ex:
 
 ```html
