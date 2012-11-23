@@ -80,6 +80,16 @@ adlayer.tracker.track('0210288667211ff5b96d3a4ec50647ce', event, function(err, r
 # Page
 Para manipular e ler dados referentes a página renderizada utilize o modulo ```adlayer.page```.
 
+Obtendo o id da página:
+```javascript
+console.log(adlayer.page.id);
+```
+
+Lista de espaços da página:
+```javascript
+console.log(adlayer.page.spaces);
+```
+
 # Spaces
 
 O modulo spaces permite a interação com espaços publicitários da página.
