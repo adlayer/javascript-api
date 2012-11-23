@@ -10,17 +10,19 @@ Este widget possui duas partes:
 
 1. Javascript page widget
 ex: 
+
 ```html
 <script type="text/javascript" src="../../dist/page.js?page=82e719877b60e205471a9d8ef00564ab&site=82e719877b60e205471a9d8ef0055af6" async="true" language="javascript" id="adlayerScript"></script>
 ```
 2. Código dos espaços publicitários
 ex:
+
 ```html
-	<div id="509051bed98c463abd4b213cee58a4a5" class="adlayer_space"></div>
+<div id="509051bed98c463abd4b213cee58a4a5" class="adlayer_space"></div>
 ```
 
 ```html
-	<div id="82e719877b60e205471a9d8ef00564ab" class="adlayer_space"></div>
+<div id="82e719877b60e205471a9d8ef00564ab" class="adlayer_space"></div>
 ```
 
 # Como funciona
