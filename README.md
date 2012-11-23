@@ -35,12 +35,44 @@ adlayer.url.adserver = 'dev.adserver.adlayer.com.br';
 ## Conexões
 Está sessão armazena as conexões expostas pela api, este modulo permite monitorar e criar requições para conexões estabelecidas.
 
+Para listar todas as conexões da feitas:
+```javascript
+console.log(adlayer.connections);
+```
+
+Para acessar todas as requisições feitas ao servidor de trackamento:
+```javascript
+console.log(adlayer.connections.tracker);
+```
+
 ## Adserver
-```adlayer.adlayer``` é o cliente responsável por se comunicar com o [adserver da adlayer](https://github.com/adlayer/adserver-api-docs) através de uma api 1 x 1 dos metodos suportados.
+```adlayer.adlayer``` é o cliente responsável por se comunicar com o [adserver da adlayer](https://github.com/adlayer/adserver-api-docs) via http.
 
 Para obter dados sobre uma página usando esta api:
 ```javascript
 adlayer.adserver.page('0210288667211ff5b96d3a4ec50647ce', function(err, res){
 	// Handle request
+});
+```
+
+Para obter dados de uma peça específica:
+```javascript
+adlayer.adserver.ads('0210288667211ff5b96d3a4ec50647ce', function(err, res){
+	// Handle request
+});
+```
+
+## Tracker
+O modulo tracker ```adlayer.tracker``` permite que se faça o tracking dos eventos como as impressões que serão visualizadas em tempo real na respectiva conta Adlayer.
+
+Adicionando uma impressão ao relatório:
+```javascript
+var event = {
+campaign_id: '0210288667211ff5b96d3a4ec50647ce',
+type: 'impression'
+};
+
+adlayer.tracker.track('0210288667211ff5b96d3a4ec50647ce', event, function(err, res){
+	// Handle result
 });
 ```
