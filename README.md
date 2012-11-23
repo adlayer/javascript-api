@@ -1,4 +1,4 @@
-# [Adlayer](http://adlayer.com.br) Javascript Api
+# Adlayer Javascript Api
 
 ## [Widgets](https://github.com/adlayer/javascript-api/blob/master/docs/widgets.md)
 Afim de deixar o processo de integração muito mais simples providencias widgets (recursos embedaveis) que permitem inserir publicidade em seu site apenas copiando e colando pequenos trechos de código sem se preocupar com programação.
