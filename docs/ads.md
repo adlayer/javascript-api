@@ -19,4 +19,6 @@ ex:
 ```
 
 # Como funciona
-Depois de inserir o script e o html placeholder da peça, o script buscará todos os placeholders da página e o substituirá pela peça publicitária que deverá aparecer alí.
+Depois de inserir o script e o html placeholder da peça, o script buscará todos os placeholders da página e o substituirá pela peça publicitária que deverá aparecer ali.
+
+Ao embedar mais de uma peça o código javascript não deve ser repetido, para evitar a re-execução do código e para não prejudicar a performance de seu site. 

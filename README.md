@@ -118,4 +118,3 @@ console.log(adlayer.lib);
 ```
 
 Confira a [lista completa de modulos](http://github.com/adlayer/javascript-library);
-
