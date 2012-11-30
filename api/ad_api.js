@@ -40,13 +40,13 @@
 		// Get all page data
 		this.getData(function(err, data){
 			if(!err && data){
+
 				var ad = ads.create(data);
 				ad.tracker = tracker;
 				ad.init({id: undefined}, {});
 				ad.emit('placement');
 				self.element = ad.element;
-
-				callback.call(self);
+				callback.call(ad);
 			}
 		});
 		return this;

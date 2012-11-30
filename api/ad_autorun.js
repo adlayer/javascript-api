@@ -34,7 +34,8 @@
 			for(var i = 0; i < placeholders.length; i++){
 				var placeholder = placeholders[i];
 				var id = placeholder.id;
-				var el = document.getElementById(id);
+				var parent = placeholder.parentNode;
+
 				var ad = new AdApi({
 					id: id,
 					adserver: api.adserver,
@@ -42,8 +43,7 @@
 				});
 
 				ad.init(api.tracker, function(){
-					var parent = el.parentNode;
-					parent.replaceChild(this.element, el);
+					parent.replaceChild(this.element, document.getElementById(this.id));
 					api.ads[id] = this;
 				});
 			}

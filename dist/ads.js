@@ -2146,13 +2146,13 @@ exports.config = {
 		// Get all page data
 		this.getData(function(err, data){
 			if(!err && data){
+
 				var ad = ads.create(data);
 				ad.tracker = tracker;
 				ad.init({id: undefined}, {});
 				ad.emit('placement');
 				self.element = ad.element;
-
-				callback.call(self);
+				callback.call(ad);
 			}
 		});
 		return this;
@@ -2342,7 +2342,8 @@ global.adlayer = api;
 			for(var i = 0; i < placeholders.length; i++){
 				var placeholder = placeholders[i];
 				var id = placeholder.id;
-				var el = document.getElementById(id);
+				var parent = placeholder.parentNode;
+
 				var ad = new AdApi({
 					id: id,
 					adserver: api.adserver,
@@ -2350,8 +2351,7 @@ global.adlayer = api;
 				});
 
 				ad.init(api.tracker, function(){
-					var parent = el.parentNode;
-					parent.replaceChild(this.element, el);
+					parent.replaceChild(this.element, document.getElementById(this.id));
 					api.ads[id] = this;
 				});
 			}
