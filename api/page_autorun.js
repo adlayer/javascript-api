@@ -9,7 +9,8 @@
 		var Page = api.lib.PageApi;
 		var document = global.document;
 		var config = api.config;
-	
+		var contentloaded = require('../lib/src/utils/contentloaded').contentloaded;
+			
 		if(config.page.autoRun && document) {
 		
 			var scriptTag = document.getElementById(config.page.scriptTagId);
@@ -31,10 +32,12 @@
 				document: document,
 				adsPerSpace: config.adsPerSpace
 			});
-
-			api.page = page.init();
-			api.spaces = page.spacesCollection;
-			api.ads = page.adsCollection;
+			
+			contentloaded(global, function(){
+				api.page = page.init();
+				api.spaces = page.spacesCollection;
+				api.ads = page.adsCollection;
+			});
 		}
 	})();
 })(this);

@@ -47,7 +47,7 @@
 		for( var i = 0; i < collection.length; i++ ){
 			var space = collection[i];
 			space.document = this.document;
-			space = spaces.create(collection[i]);
+			space = spaces.create(space);
 			space.element = space.getElement();
 			
 			if ( space.element ){
