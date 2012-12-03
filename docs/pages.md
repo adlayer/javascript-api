@@ -22,5 +22,12 @@ ex:
 <div id="82e719877b60e205471a9d8ef00564ab" class="adlayer_space"></div>
 ```
 
-# Como funciona
+## Como funciona
 Depois inserir o script do widget dentro da tag head da página e o código dos espaços no body, o script iniciará uma busca pelos espaços publicitários disponíveis na página e passará a preencher cada espaço com uma peça publicitária vinculada ao mesmo.
+
+## Troubleshotting
+1 . A página integrada deve existir no adserver.
+2 . Deve haver apenas um script em cada página.
+3 . O script integrado deve fornecer o uuid da página e do site.
+4 . O domínio que requisita os dados do adserver devem estar habilitados.
+5 . Todos os espaços da página devem estar integrados.
