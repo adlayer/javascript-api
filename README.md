@@ -6,7 +6,7 @@ Afim de deixar o processo de integração muito mais simples providencias widget
 Veja os [widgets disponíveis](https://github.com/adlayer/javascript-api/blob/master/docs/widgets.md)
 [saiba mais](https://github.com/adlayer/javascript-api/blob/master/docs/widgets.md)
 
-## [API](https://github.com/adlayer/javascript-api/blob/master/docs/api)
+## [API](https://github.com/adlayer/javascript-api/tree/master/docs/widgets)
 Confira a documentação da API acessível quando se usa a api Adlayer javascript standalone ou quando se usa algum widget oficial do Adlayer.
 
 Entenda como personalizar o comportamento das peças e espaços publicitários do Adlayer em suas páginas.
