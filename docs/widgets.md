@@ -18,7 +18,7 @@ Os widgets usam e expõem a Adlayer Javascript API o que permite que os scripts 
 
 ## Troubleshotting
 
-1. Protocolo de requisição
+### Protocolo de requisição
 Os scripts dos widgets fornecidos pelo Adlayer apontam para algum arquivo javascript hospedado em nossos servidores.
 
 ex:
@@ -32,7 +32,7 @@ ex:
 
 http://api.adlayerjavascriptsdk.com/page.min.js
 
-2. Múltiplos scripts de widgets
+### Múltiplos scripts de widgets
 É altamente recomendado que o script de renderização de widget não seja duplicado durante a visualização da página. Inserir mais de uma vez o mesmo script pode prejudicar a performace do seu site bem como gerar incompatibilidade na execução do código.
 
 ***Certo***:
