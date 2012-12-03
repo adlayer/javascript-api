@@ -12,6 +12,7 @@ Widgets são blocos de códigos preparados para renderizar recursos embedáveis 
 ### Protocolo de requisição
 Os scripts dos widgets fornecidos pelo Adlayer apontam para algum arquivo javascript hospedado em nossos servidores.
 ex:
+
 ```//api.adlayerjavascriptsdk.com/page.min.js```
 
 A url do javascript copiado da interface de gerenciamento começa com ```//```, este padrão permite que o script seja carregado usando o mesmo protocolo que o a página foi carregado (http ou https).
@@ -19,6 +20,7 @@ A url do javascript copiado da interface de gerenciamento começa com ```//```, 
 Se deseja visualizar um widget renderizado em ambiente de teste ou desenvolvimento onde a página que embeda o código não está em um webserver (ex: apache) será necessário inserir um protocolo para fazer a requisição.
 
 ex:
+
 ```http://api.adlayerjavascriptsdk.com/page.min.js``` 
 
 ### Múltiplos scripts de widgets
