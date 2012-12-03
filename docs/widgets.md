@@ -21,7 +21,7 @@ Se deseja visualizar um widget renderizado em ambiente de teste ou desenvolvimen
 
 ex:
 
-```http://api.adlayerjavascriptsdk.com/page.min.js``` 
+http://api.adlayerjavascriptsdk.com/page.min.js
 
 ### Múltiplos scripts de widgets
 É altamente recomendado que o script de renderização de widget não seja duplicado durante a visualização da página. Inserir mais de uma vez o mesmo script pode prejudicar a performace do seu site bem como gerar incompatibilidade na execução do código.
