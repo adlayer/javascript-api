@@ -25,6 +25,7 @@ ex:
 É altamente recomendado que o script de renderização de widget não seja duplicado durante a visualização da página. Inserir mais de uma vez o mesmo script pode prejudicar a performace do seu site bem como gerar incompatibilidade na execução do código.
 
 ***Certo***:
+
 ```html
 <script type="text/javascript" src="//api.adlayerjavascriptsdk.com/ads.min.js" async="true" language="javascript"></script>
 <div id="5091dbdf4bb049a79ac80f11d8779272" class="adlayer_ad_placeholder"></div>
@@ -35,6 +36,7 @@ ex:
 ```
 
 ***Errado***
+
 ```html
 <script type="text/javascript" src="//api.adlayerjavascriptsdk.com/ads.min.js" async="true" language="javascript"></script>
 <div id="5091dbdf4bb049a79ac80f11d8779272" class="adlayer_ad_placeholder"></div>
