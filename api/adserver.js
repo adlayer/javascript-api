@@ -46,5 +46,18 @@
 	Adserver.prototype.ads = function(id, query, callback){
 		this.request('/ads/' + id, query, callback);
 	};
+	
+	/*
+	* Access to 'ads' endpoint
+	* @method pages
+	* @param {String} id
+	* @param {Object} query query string to request
+	* @param {Function} callback
+	* @public
+	*/
+	Adserver.prototype.spaces = function(id, query, callback){
+		this.request('/spaces/' + id, query, callback);
+	};
+	
 	exports.Adserver = Adserver;
 })();
