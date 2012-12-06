@@ -2122,56 +2122,75 @@ exports.config = {
 */
 (function(){
 	var EventEmitter = require('../node_modules/events').events.EventEmitter;
-	var AdDom = require('../lib/dom/ad_dom').AdDom;
-	var ads = require('./lib/src/ads/ads').ads;
+	var Space = require('../domain/page').Space;
 	var request = require('../request/request').request;
 	var spaces = require('../spaces/spaces').spaces;
 	
 	/**
-	* @class AdApi
+	* @class PageApi
 	* @constructor
-	* @extends Ad
+	* @extends Page
 	* @extends EventEmitter
 	*/			
-	var AdApi = function(){
-		AdDom.apply(this, arguments);
+	var SpaceApi = function(){
+		Space.apply(this, arguments);
+		EventEmitter.apply(this, arguments);
 		
 		this.document;
 		this.tracker;
 		this.adserver;
+		this.spacesCollection = {};
+		this.adsCollection = {};
 	};
 	
 	/**
 	* @method getData
 	* @param {Function} callback
 	*/
-	AdApi.prototype.getData = function(callback){
-		this.adserver.ads(this.id, null, callback);
+	SpaceApi.prototype.getData = function(callback){
+		var qs = {
+			ads_per_space: this.adsPerSpace
+		};
+		this.adserver.spaces(this.id, qs, callback);
 	};
 	
-	
+	/**
+	* @method renderSpace
+	* @param {Object} space Instance of Space Class to find and render in DOM
+	* @param {Object} data Data of current view to track events
+	* @public
+	*/
+	SpaceApi.prototype.renderSpace = function (space, data){
+		var result = space.init(this.tracker, data);
+		if(result.ad){
+			this.adsCollection[result.ad.id] = result.ad;
+		}
+	};
+
 	/**
 	* @method init
 	* @public 
 	*/
-	AdApi.prototype.init = function(tracker, callback){
+	/**
+	* @method init
+	* @public 
+	*/
+	SpaceApi.prototype.init = function(callback){
 		var self = this;
 		// Get all page data
 		this.getData(function(err, data){
 			if(!err && data){
-
-				var ad = ads.create(data);
-				ad.tracker = tracker;
-				ad.init({id: undefined}, {});
-				ad.emit('placement');
-				self.element = ad.element;
-				callback.call(ad);
+				data.document = self.document;
+				var space = spaces.create(data);
+				self.renderSpace(space, {space_id: data._id});
+				self.element = space.element;
+				callback.call(space);
 			}
 		});
 		return this;	
 	};
 	
-	exports.AdApi = AdApi;
+	exports.SpaceApi = SpaceApi;
 })();
 (function(window){
 	
@@ -2344,30 +2363,33 @@ global.adlayer = api;
 	*/
 	(function initialization(){
 		var api = window.adlayer;
-		var AdApi = api.lib.AdApi;
+		var SpaceApi = api.lib.SpaceApi;
 		var contentloaded = require('../lib/src/utils/contentloaded').contentloaded;
+		var config = api.config;
 		
 		contentloaded(global, function(){
 			var document = global.document;
-			var placeholders = getElementsByClass('adlayer_ad_placeholder', document);
+			var spaces = getElementsByClass('adlayer_space', document);
 			
-			for(var i = 0; i < placeholders.length; i++){
-				var placeholder = placeholders[i];
-				var id = placeholder.id;
-				var parent = placeholder.parentNode;
-
-				var ad = new AdApi({
-					id: id,
+			for(var i = 0; i < spaces.length; i++){
+				var element = spaces[i];
+				
+				var space = new SpaceApi({
+					id:element.id,
 					adserver: api.adserver,
-					document: document
+					tracker: api.tracker,
+					document: document,
+					adsPerSpace: config.adsPerSpace
 				});
 
-				ad.init(api.tracker, function(){
-					parent.replaceChild(this.element, document.getElementById(this.id));
-					api.ads[id] = this;
+				space.init(function(){
+					console.log(this);
 				});
+				
 			}
+			
 		});
+		
 	})();
 	
 })(this);

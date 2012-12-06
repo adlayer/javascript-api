@@ -19,7 +19,19 @@
 			}
 		}
 	  </script>
-	<script type="text/javascript" src="../../dist/space.js" async="true" language="javascript"></script>
+	<script type="text/javascript" src="../../dist/spaces.js" language="javascript"></script>
+	<script>/**
+	window.onload = function(){
+		var spaces = document.getElementsByClassName('adlayer_space');
+		for(var i = 0; i < spaces.length; i++){
+			var element = spaces[i];
+			adlayer.adserver.spaces(element.id, {ads_per_space:1}, function(err, data){
+				console.log(data);
+			});
+		}
+	}
+	**/
+	</script>
 </head>
 
 <body>

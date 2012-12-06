@@ -87,11 +87,19 @@ var adsApi = [
 	"./api/ad_autorun.js"
 ];
 
+var spacesApi = [
+	"./api/adserver.js",
+	"./api/spaces_api.js",
+	"./api/api.js",
+	"./api/spaces_autorun.js"
+];
+
 var footer = ["./template/footer.js"];
 
 modules.api = [].concat(head, utils, domain, request, connection, tracker, dom, ads, spaces, config, api, footer);
 modules.page = [].concat(head, utils, domain, request, connection, tracker, dom, ads, spaces, config, pageApi, footer);
 modules.ads = [].concat(head, utils, domain, request, connection, tracker, dom, ads, spaces, config, adsApi, footer);
+modules.spaces = [].concat(head, utils, domain, request, connection, tracker, dom, ads, spaces, config, spacesApi, footer);
 
 var config = {
 	"VERSION": "",

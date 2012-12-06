@@ -49,8 +49,7 @@
 				callback.call(ad);
 			}
 		});
-		return this;
-		
+		return this;	
 	};
 	
 	exports.AdApi = AdApi;

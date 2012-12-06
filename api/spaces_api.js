@@ -30,36 +30,9 @@
 	*/
 	SpaceApi.prototype.getData = function(callback){
 		var qs = {
-			domain: this.domain,
-			site_id: this.site_id,
 			ads_per_space: this.adsPerSpace
 		};
-		this.adserver.pages(this.id, qs, callback);
-	};
-	
-	/**
-	* @method scanSpaces
-	* @param {Function} collection
-	* @param {Function} callback
-	*/
-	SpaceApi.prototype.scanSpaces = function(collection, callback){
-
-		for( var i = 0; i < collection.length; i++ ){
-			var space = collection[i];
-			space.document = this.document;
-			space = spaces.create(space);
-			space.element = space.getElement();
-			
-			if ( space.element ){
-				callback(null, space);
-			} else {
-				var error = {
-					error: 'not found',
-					id: space._id
-				};
-				callback(error, null);
-			}
-		}
+		this.adserver.spaces(this.id, qs, callback);
 	};
 	
 	/**
@@ -79,34 +52,24 @@
 	* @method init
 	* @public 
 	*/
-	SpaceApi.prototype.init = function(){
-		
-		var page = this;
-
+	/**
+	* @method init
+	* @public 
+	*/
+	SpaceApi.prototype.init = function(callback){
+		var self = this;
 		// Get all page data
 		this.getData(function(err, data){
-			// When we get spaces in this page
-			if(data && data.spaces){
-				// For each space found in document
-				page.scanSpaces(data.spaces, function(err, space){
-					// When find spaces
-					if(!err){
-
-						var config = {
-							domain: page.domain,
-							page_url: page.url,
-							page_id: page.id,
-							site_id: page.site_id
-						};
-						page.renderSpace(space, config);
-						// exporting space to api
-						page.spacesCollection[space.id] = space;
-					}
-				});
+			if(!err && data){
+				data.document = self.document;
+				var space = spaces.create(data);
+				self.renderSpace(space, {space_id: data._id});
+				self.element = space.element;
+				callback.call(space);
 			}
 		});
-		return page;
+		return this;	
 	};
 	
-	exports.PageApi = PageApi;
+	exports.SpaceApi = SpaceApi;
 })();
