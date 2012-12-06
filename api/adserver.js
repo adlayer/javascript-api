@@ -48,7 +48,7 @@
 	};
 	
 	/*
-	* Access to 'ads' endpoint
+	* Access to 'spaces' endpoint
 	* @method pages
 	* @param {String} id
 	* @param {Object} query query string to request
