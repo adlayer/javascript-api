@@ -6,8 +6,9 @@ Widgets são blocos de códigos preparados para renderizar recursos embedáveis 
 Os widgets usam e expõem a [Adlayer Javascript API](https://github.com/adlayer/javascript-api) o que permite que os scripts inseridos possam se comunicar com os webservers do Adlayer.
 
 ## Documentação de cada widget
-* [Page](https://github.com/adlayer/javascript-api/blob/master/docs/pages.md)
-* [Ads](https://github.com/adlayer/javascript-api/blob/master/docs/ads.md)
+* [Page](https://github.com/adlayer/javascript-api/blob/master/docs/widgets/pages.md)
+* [Ads](https://github.com/adlayer/javascript-api/blob/master/docs/widgets/ads.md)
+* [Spaces](https://github.com/adlayer/javascript-api/blob/master/docs/widgets/spaces.md)
 
 ## Funcionamento
 1. Depois de inseridos cada bloco de código em seu devido lugar.
