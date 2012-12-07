@@ -8,9 +8,9 @@
 	var spaces = require('../spaces/spaces').spaces;
 	
 	/**
-	* @class PageApi
+	* @class SpaceApi
 	* @constructor
-	* @extends Page
+	* @extends Space
 	* @extends EventEmitter
 	*/			
 	var SpaceApi = function(){
@@ -50,10 +50,7 @@
 
 	/**
 	* @method init
-	* @public 
-	*/
-	/**
-	* @method init
+	* @param {Function} callback Function to be called ofter space rendering process
 	* @public 
 	*/
 	SpaceApi.prototype.init = function(callback){
