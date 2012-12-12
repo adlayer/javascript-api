@@ -3,14 +3,12 @@
 
 Widgets são blocos de códigos preparados para renderizar recursos embedáveis do Adlayer (peças publicitárias, páginas e seus espaços).
 
-Os widgets usam e expõem a [Adlayer Javascript API](https://github.com/adlayer/javascript-api) o que permite que os scripts inseridos possam se comunicar com os webservers do Adlayer.
-
 ## Documentação de cada widget
 * [Page](https://github.com/adlayer/javascript-api/blob/master/docs/widgets/pages.md)
 * [Ads](https://github.com/adlayer/javascript-api/blob/master/docs/widgets/ads.md)
 * [Spaces](https://github.com/adlayer/javascript-api/blob/master/docs/widgets/spaces.md)
 
-## Funcionamento
+## Funcionamento geral
 1. Depois de inseridos cada bloco de código em seu devido lugar.
 2. O script dos widgets se comunicam com o adserver do Adlayer, para certificar-se que o recurso requisitado está disponível e obter os dados relacionados a ele.
 3. Com os dados transferidos do adserver os recursos são renderizados no html.
@@ -27,14 +25,16 @@ ex:
 
 A url do javascript copiado da interface de gerenciamento começa com __"//"__, este padrão permite que o script seja carregado usando o mesmo protocolo que o a página foi carregado (http ou https).
 
-Se deseja visualizar um widget renderizado em ambiente de teste ou desenvolvimento onde a página que embeda o código não está em um webserver (ex: apache) será necessário inserir um protocolo para fazer a requisição.
+Se deseja visualizar um widget renderizado em ambiente onde a página que embeda o código não está em um webserver (ex: apache), será necessário inserir um protocolo para fazer a requisição.
 
 ex:
-
 http://api.adlayerjavascriptsdk.com/page.min.js
+**http://***api.adlayerjavascriptsdk.com/page.min.js
 
 ### Múltiplos scripts de widgets
-É altamente recomendado que o script de renderização de widget não seja duplicado durante a visualização da página. Inserir mais de uma vez o mesmo script pode prejudicar a performace do seu site bem como gerar incompatibilidade na execução do código.
+É altamente recomendado que o script de renderização de um widget não seja duplicado durante a visualização da página. 
+
+Inserir mais de uma vez o mesmo script pode prejudicar a performace do seu site bem como gerar incompatibilidade na execução do código.
 
 ***Certo***:
 
