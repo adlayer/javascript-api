@@ -28,7 +28,7 @@ A url do javascript copiado da interface de gerenciamento começa com __"//"__, 
 Se deseja visualizar um widget renderizado em ambiente onde a página que embeda o código não está em um webserver (ex: apache), será necessário inserir um protocolo para fazer a requisição.
 
 ex:
-**http://***api.adlayerjavascriptsdk.com/page.min.js
+**http://**api.adlayerjavascriptsdk.com/page.min.js
 
 ### Múltiplos scripts de widgets
 É altamente recomendado que o script de renderização de um widget não seja duplicado durante a visualização da página. 
