@@ -1807,7 +1807,7 @@ exports.Swf = Swf;
 		return {
 			create: function(data){
 				// mixin
-				data.id = data._id;
+				data.id = data._id || data.id;
 				data.src = data.file;
 				delete data.file;
 				delete data._id;
@@ -2159,10 +2159,9 @@ exports.config = {
 		// Get all page data
 		this.getData(function(err, data){
 			if(!err && data){
-
 				var ad = ads.create(data);
 				ad.tracker = tracker;
-				ad.init({id: undefined}, {});
+				ad.init({id: self.id}, {});
 				ad.emit('placement');
 				self.element = ad.element;
 				callback.call(ad);
