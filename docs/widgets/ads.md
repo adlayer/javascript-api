@@ -5,6 +5,7 @@ Adlayer Ads Widget é uma maneira de embedar peças de sua conta Adlayer.
 Este widget possui duas partes:
 
 **Javascript ads widget**
+
 ex: 
 
 ```html
@@ -12,6 +13,7 @@ ex:
 ```
 
 **Html placeholder da peça**
+
 ex:
 
 ```html
