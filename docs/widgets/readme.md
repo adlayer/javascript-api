@@ -4,9 +4,9 @@
 Widgets são blocos de códigos preparados para renderizar recursos embedáveis do Adlayer (peças publicitárias, páginas e seus espaços).
 
 ## Documentação de cada widget
-* [Page](widgets/pages.md)
-* [Ads](widgets/ads.md)
-* [Spaces](widgets/spaces.md)
+* [Page](pages.md)
+* [Ads](ads.md)
+* [Spaces](spaces.md)
 
 ## Funcionamento geral
 1. Depois de inseridos cada bloco de código em seu devido lugar.

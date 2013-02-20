@@ -4,7 +4,8 @@ Adlayer Spaces Widget é uma maneira de embedar espaços publicitarios de sua co
 ## Estrutura
 Este widget possui duas partes:
 
-**Javascript ads widget**
+**Javascript Spaces Widget**
+
 ex: 
 
 ```html
@@ -12,6 +13,7 @@ ex:
 ```
 
 **Código do espaço**
+
 ex:
 
 ```html
@@ -24,5 +26,14 @@ ex:
 
 ## Funcionamento
 1. Após carregar a página.
-2. O script consulta os dados de cada peça integrada (nome, uuid, arquivo e etc).
+2. O script de espaços vasculha a página e para cada espaço que possoui a classe "adlayer-global-space" efetua uma requisição ao  Adlayer adserver.
 3. Cada espaço publicitário encontrado no corpo da página é renderizado com as devidas propriedades e preenchido a melhor peças publicitária disponível.
+
+## Troubleshotting
+
+### Conflito com integração de página
+Certifique-se de que o código do seus espaços possuem a classe "adlayer-global-space". 
+
+O código de espaços locais ou de página possuem a classe "adlayer-local-space".
+
+Caso seus espaços globais não tenham a classe "adlayer-global-space" este não será interpretado como um espaço global e as respectivas peças não serão exibidas.
