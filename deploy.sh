@@ -1,1 +1,1 @@
-s3cmd put --acl-public dist/api.js dist/api.min.js dist/page.js dist/page.min.js dist/ads.js dist/ads.min.js s3://api.adlayerjavascriptsdk.com
+s3cmd put --acl-public dist/api.js dist/api.min.js dist/page.js dist/page.min.js dist/ads.js dist/ads.min.js dist/spaces.js dist/spaces.min.js s3://api.adlayerjavascriptsdk.com

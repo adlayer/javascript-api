@@ -1807,7 +1807,7 @@ exports.Swf = Swf;
 		return {
 			create: function(data){
 				// mixin
-				data.id = data._id || data.id;
+				data.id = data._id;
 				data.src = data.file;
 				delete data.file;
 				delete data._id;
@@ -2071,7 +2071,7 @@ exports.config = {
 	* @public
 	*/
 	Adserver.prototype.request = function(path, query, callback){
-		var sign = this.connection.id();
+		var sign = this.connection.newId();
 		var opts = copy(this.connection);
 		opts.host = opts.host;
 		opts.path = path;
@@ -2181,7 +2181,9 @@ exports.config = {
 				var space = spaces.create(data);
 				self.renderSpace(space, {space_id: data._id});
 				self.element = space.element;
-				callback.call(space);
+				if(callback){
+					callback.call(space);
+				}
 			}
 		});
 		return this;	
@@ -2363,7 +2365,7 @@ exports.config = {
 		
 		contentloaded(global, function(){
 			var document = global.document;
-			var spaces = getElementsByClass('adlayer_space', document);
+			var spaces = getElementsByClass('adlayer_space_global', document);
 			
 			for(var i = 0; i < spaces.length; i++){
 				var element = spaces[i];
@@ -2375,10 +2377,9 @@ exports.config = {
 					document: document,
 					adsPerSpace: config.adsPerSpace
 				});
-
-				space.init(function(){
-					console.log(this);
-				});
+				
+				// notify the parent api using callback
+				space.init();
 				
 			}
 			

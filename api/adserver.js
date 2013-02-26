@@ -15,7 +15,7 @@
 	* @public
 	*/
 	Adserver.prototype.request = function(path, query, callback){
-		var sign = this.connection.id();
+		var sign = this.connection.newId();
 		var opts = copy(this.connection);
 		opts.host = opts.host;
 		opts.path = path;

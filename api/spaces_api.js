@@ -62,7 +62,9 @@
 				var space = spaces.create(data);
 				self.renderSpace(space, {space_id: data._id});
 				self.element = space.element;
-				callback.call(space);
+				if(callback){
+					callback.call(space);
+				}
 			}
 		});
 		return this;	

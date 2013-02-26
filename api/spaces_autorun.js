@@ -30,7 +30,7 @@
 		
 		contentloaded(global, function(){
 			var document = global.document;
-			var spaces = getElementsByClass('adlayer_space', document);
+			var spaces = getElementsByClass('adlayer_space_global', document);
 			
 			for(var i = 0; i < spaces.length; i++){
 				var element = spaces[i];
@@ -42,10 +42,9 @@
 					document: document,
 					adsPerSpace: config.adsPerSpace
 				});
-
-				space.init(function(){
-					console.log(this);
-				});
+				
+				// notify the parent api using callback
+				space.init();
 				
 			}
 			
