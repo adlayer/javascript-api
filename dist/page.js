@@ -1807,7 +1807,7 @@ exports.Swf = Swf;
 		return {
 			create: function(data){
 				// mixin
-				data.id = data._id;
+				data.id = data._id || data.id;
 				data.src = data.file;
 				delete data.file;
 				delete data._id;
