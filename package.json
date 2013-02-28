@@ -1,15 +1,21 @@
 {
-    "name": "adlayer-js-api"
-  , "version": "1.5.1"
-  , "description": "Adlayer javascript api"
-  , "keywords": []
-  , "author": "Gabriel de Oliveira Barbosa <manobi.oliveira@gmail.com>"
-  , "dependencies": {
-	"smoosh": "x.x.x",
-	"jsdom":"x.x.x",
-	"mocha": "x.x.x",
-	"grunt": "x.x.x"
+  "name": "adlayer-js-api",
+  "version": "1.5.1",
+  "description": "Adlayer javascript api",
+  "keywords": [],
+  "author": "Gabriel de Oliveira Barbosa <manobi.oliveira@gmail.com>",
+  "dependencies": {
+    "smoosh": "x.x.x",
+    "jsdom": "x.x.x",
+    "mocha": "x.x.x",
+    "grunt": "x.x.x"
+  },
+  "main": "index",
+  "engines": {
+    "node": ">=0.6.x"
+  },
+  "devDependencies": {
+    "grunt-contrib-concat": "~0.1.3",
+    "grunt-contrib-uglify": "~0.1.2"
   }
-  , "main": "index"
-  , "engines": { "node": ">=0.6.x" }
 }
