@@ -1,5 +1,5 @@
 # Adlayer Spaces Widget
-Adlayer Spaces Widget é uma maneira de embedar espaços publicitarios de sua conta Adlayer.
+Adlayer Spaces Widget é uma maneira de embedar espaços publicitários de sua conta Adlayer.
 
 ## Estrutura
 Este widget possui duas partes:
@@ -17,7 +17,7 @@ ex:
 ex:
 
 ```html
-<div id="5091dbdf4bb049a79ac80f11d8779272" class="adlayer_space"></div>
+<div id="5091dbdf4bb049a79ac80f11d8779272" class="adlayer_space adlayer_global_space"></div>
 ```
 
 ## Integração
@@ -26,14 +26,12 @@ ex:
 
 ## Funcionamento
 1. Após carregar a página.
-2. O script de espaços vasculha a página e para cada espaço que possoui a classe "adlayer-global-space" efetua uma requisição ao  Adlayer adserver.
-3. Cada espaço publicitário encontrado no corpo da página é renderizado com as devidas propriedades e preenchido a melhor peças publicitária disponível.
+2. O script de espaços vasculha a página e para cada espaço que possui a classe "adlayer_global_space" efetua uma requisição ao  Adlayer Adserver.
+3. Cada espaço publicitário encontrado no corpo da página é "renderizado" com as devidas propriedades e preenchido a melhor peças publicitária disponível.
 
-## Troubleshotting
+## Troubleshooting
 
 ### Conflito com integração de página
-Certifique-se de que o código do seus espaços possuem a classe "adlayer-global-space". 
+Certifique-se de que o código do seus espaços possuem a classe "adlayer_global_space". 
 
-O código de espaços locais ou de página possuem a classe "adlayer-local-space".
-
-Caso seus espaços globais não tenham a classe "adlayer-global-space" este não será interpretado como um espaço global e as respectivas peças não serão exibidas.
+Caso seus espaços globais não tenham a classe "adlayer_global_space" este não será interpretado como um espaço global e as respectivas peças não serão exibidas.
