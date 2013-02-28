@@ -115,12 +115,25 @@ module.exports = function(grunt) {
 			}
 		},
 		uglify: {
-			
-			files: {
-				'dist/spaces.min.js': ['dist/spaces.js'],
-				'dist/ads.min.js': ['dist/ads.js'],
-				'dist/api.min.js': ['dist/api.js'],
-				'dist/page.min.js': ['dist/page.js']
+			api: {
+				files: {
+					'dist/api.min.js': ['dist/api.js'],
+				}
+			},
+			ads: {
+				files: {
+					'dist/ads.min.js': ['dist/ads.js'],
+				}
+			},
+			spaces: {
+				files: {
+					'dist/spaces.min.js': ['dist/spaces.js'],
+				}
+			},
+			page: {
+				files: {
+					'dist/page.min.js': ['dist/page.js'],
+				}
 			}
 		}
 	});
