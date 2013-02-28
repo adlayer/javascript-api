@@ -1,3 +1,4 @@
+var path = require('path');
 var head = ["./template/head.js"];
 
 var utils = [
@@ -115,24 +116,21 @@ module.exports = function(grunt) {
 			}
 		},
 		uglify: {
-			api: {
+			dist: {
+				options: {
+					sourceMap: function(dest){
+						return dest + '.map';
+					},
+					sourceMapPrefix: 1,
+					sourceMappingURL: function(map){
+						return path.basename(map) + '.map';
+					}
+				},
 				files: {
 					'dist/api.min.js': ['dist/api.js'],
-				}
-			},
-			ads: {
-				files: {
 					'dist/ads.min.js': ['dist/ads.js'],
-				}
-			},
-			spaces: {
-				files: {
 					'dist/spaces.min.js': ['dist/spaces.js'],
-				}
-			},
-			page: {
-				files: {
-					'dist/page.min.js': ['dist/page.js'],
+					'dist/page.min.js': ['dist/page.js']
 				}
 			}
 		}
