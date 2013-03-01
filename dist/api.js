@@ -2050,7 +2050,6 @@ exports.config = {
 	},
 	adsPerSpace: 1,
 	page: {
-		autoRun: true,
 		scriptTagId: 'adlayerScript'
 	}
 };
@@ -2117,112 +2116,63 @@ exports.config = {
 	
 	exports.Adserver = Adserver;
 })();
-(function(window){
+var config = require('./config').config;
+var Connection = require('../lib/connection/connection').Connection;
+var EventEmitter = require('../lib/node_modules/events').events.EventEmitter;
+var Tracker = require('../tracker/tracker').Tracker;
+var Adserver = require('./adserver').Adserver;
+
+/**
+* Abstraction of Adlayer Api
+*
+* @class Adlayer
+* @constructor
+*/
+var Adlayer = function(api){
+	/**
+	* A shortcut for Adlayer library
+	*
+	* @property lib
+	* @type object
+	*/
+	this.lib = require('*');
+	
 	
 	/**
-	* Adlayer API
-	* @module api
-	* @main api
-	*/
-	var Connection = require('../connection/connection').Connection;
-	var Tracker = require('../tracker/tracker').Tracker;
-	var Adserver = require('./adserver').Adserver;
-	var defaultConfig = require('../config/config').config;
-
-	
-	/**
-	* @class Api
-	*/
-	var global = global || window;
-	var api = global.adlayer || {};
-
-	// Defining configs
-	var config = api.config || {};
-
-	// Merging config options
-	config.url = config.url || defaultConfig.url;
-	config.adsPerSpace = config.adsPerSpace || defaultConfig.adsPerSpace;
-	config.page = config.page || defaultConfig.page;
-
-	/**
-	* Exports config
+	* Api configurations
 	*
 	* @property config
 	* @type object
 	*/
-	api.config = config;
-
-	// Defining connections
-	var connections = {};
-	connections.adserver = new Connection(config.url.adserver);
-	connections.adserver.name = 'adserver';
-
-	connections.tracker = new Connection(config.url.tracker);
-	connections.tracker.name = 'tracker';
-
-	// Defining adserver
-	var adserver = new Adserver();
-	adserver.connection = connections.adserver;
-
-	// Defining tracker	
-	var tracker = new Tracker();
-	tracker.connection = connections.tracker;
-
-
-
-	/**
-	* Exports adserver
-	*
-	* @property adserver
-	* @type object
-	*/
-	api.adserver = api.adserver || adserver;
-
-	/**
-	* Exports tracker
-	*
-	* @property tracker
-	* @type object
-	*/
-	api.tracker = api.tracker || tracker;
-
-	/**
-	* Exports page api
-	*
-	* @property page
-	* @type object
-	*/
-	api.page = api.page || {};
-
-	/**
-	* Exports configuration
-	*
-	* @property config
-	* @type object
-	*/
-	api.config = config;
-
+	this.config = config;
+	
+	
 	/**
 	* Exports connections
 	*
 	* @property connections
 	* @type object
 	*/
-	api.connections = api.connections || connections;
-
+	this.connections = api.connections || {};
+	
 	/**
-	* Exports spaces
+	* Exports adserver
 	*
-	* @property spaces
+	* @property adserver
 	* @type object
-	* @example 
-		var space = adlayer.spaces['0202kjj44949999992j8'];
-		space.close();
 	*/
-	api.spaces = api.spaces || {};
-
+	this.adserver = api.adserver || {};
+	
 	/**
-	* Exports ads
+	* Exports tracker
+	*
+	* @property tracker
+	* @type object
+	*/
+	this.tracker = api.tracker || {};;
+	
+	/**
+	* List of all ads rendered in the page
 	*
 	* @property ads
 	* @type object
@@ -2230,33 +2180,94 @@ exports.config = {
 		var ad = adlayer.ads['mfkvfmvkdfvdf84848484'];
 		ad.emit('load');
 	*/
+	this.ads = api.ads || {};
+	
+	/**
+	* Exports page api
+	*
+	* @property page
+	* @type object
+	*/
+	this.page = api.page || {};
+	
+	var __construct = (function(self){
+		if( api.config ){
+			self.config.url = api.config.url || self.config.url;
+			self.config.adsPerSpace = api.adsPerSpace || self.config.adsPerSpace;
+			self.config.page = api.config.page || self.config.page;
+		};
+		self.connect();
+	})(this);
+};
+
+Adlayer.prototype = new EventEmitter();
+/**
+* Shortcut for adlayer.ads[id].emit, used by flash preloaders
+*
+* @method markAdAsLoaded
+* @param {String} id
+* @public
+*/
+Adlayer.prototype.markAdAsLoaded = function(id){
+	api.ads[id].emit('load');
+};
+
+/**
+* Start or restart all connections based on config.urls
+*
+* @method connect
+* @param {String} id
+* @public
+*/
+Adlayer.prototype.connect = function(){
+	var config = this.config;
+	this.connections.adserver = new Connection(config.url.adserver);
+	this.connections.adserver.name = 'adserver';
+	
+	this.connections.tracker = new Connection(config.url.tracker);
+	this.connections.tracker.name = 'tracker';
+	
+	// Set adserver
+	this.adserver = new Adserver();
+	this.adserver.connection = this.connections.adserver;
+
+	// Set tracker	
+	this.tracker = new Tracker();
+	this.tracker.connection = this.connections.tracker;
+};
+
+exports.Adlayer = Adlayer;
+(function(window){
+
+	var Adlayer = require('./adlayer').Adlayer;
+	var defaultConfig = require('../config/config').config;
+
+	// Defining API
+	var global = global || window;
+	var api = global.adlayer || {};
+
+	// Defining configs
+	var config = api.config || {};
+
+	// Set Page
+	api.page = api.page || {};
+
+	// Set Config
+	api.config = config;
+
+	// Set Connections
+	api.connections = api.connections || {};
+
+	// Set Spaces
+	api.spaces = api.spaces || {};
+
+	// Set Ads
 	api.ads = api.ads || {};
 
-	/**
-	* Shortcut for adlayer.ads[id].emit, used by flash preloaders
-	*
-	* @method markAdAsLoaded
-	* @param {String} id
-	* @public
-	*/
-	api.markAdAsLoaded = function(id){
-		api.ads[id].emit('load');
-	};
 
-	/**
-	* A list of all adlayer modules
-	*
-	* @property lib
-	* @type object
-	*/
-	api.lib = require('*');
-
-	/**
-	* Exports Adlayer namespace
-	*
-	* @property adlayer
-	* @type object
-	*/
+	// api as an instance of Adlayer
+	api = new Adlayer(api);
 	global.adlayer = api;
+	
 })(this);
 })(this);

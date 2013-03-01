@@ -11,7 +11,7 @@
 		var config = api.config;
 		var contentloaded = require('../lib/src/utils/contentloaded').contentloaded;
 			
-		if(config.page.autoRun && document) {
+		if(document) {
 		
 			var scriptTag = document.getElementById(config.page.scriptTagId);
 			var queries = scriptTag.src.split('?')[1];

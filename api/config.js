@@ -9,7 +9,6 @@ exports.config = {
 	},
 	adsPerSpace: 1,
 	page: {
-		autoRun: true,
 		scriptTagId: 'adlayerScript'
 	}
 };

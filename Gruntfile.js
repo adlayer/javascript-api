@@ -64,18 +64,22 @@ var config = [
 
 var api = [
 	"./api/adserver.js",
+	"./api/adlayer.js",
 	"./api/api.js"
 ];
 
 var pageApi = [
 	"./api/adserver.js",
+	"./api/adlayer.js",
 	"./api/page_api.js",
 	"./api/api.js",
+	"./api/page_api.js",
 	"./api/page_autorun.js"
 ];
 
 var adsApi = [
 	"./api/adserver.js",
+	"./api/adlayer.js",
 	"./api/ad_api.js",
 	"./api/api.js",
 	"./api/ad_autorun.js"
@@ -83,6 +87,7 @@ var adsApi = [
 
 var spacesApi = [
 	"./api/adserver.js",
+	"./api/adlayer.js",
 	"./api/spaces_api.js",
 	"./api/api.js",
 	"./api/spaces_autorun.js"
