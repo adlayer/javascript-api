@@ -1,3 +1,6 @@
+/**
+* @modules widgets
+*/
 (function(window){
 	/**
 	* @method initialization

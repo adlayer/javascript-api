@@ -1,3 +1,6 @@
+/**
+* @module widgets
+*/
 (function(window){
 	
 	function getElementsByClass(searchClass,node,tag) {

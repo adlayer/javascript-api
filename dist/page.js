@@ -10,13 +10,29 @@ var exports = module.exports;
 var require = function(path){
 	return exports;	
 };
-// Prototype pattern Object.create() in old browsers
+/**
+* @module utils
+* @class Utils
+* @static
+*/
+
+/**
+* Prototype pattern Object.create() in old browsers
+* @method copy
+* @param {Object} obj
+*/
 function copy(obj){
 	function F(){}
 	F.prototype = obj;
 	return new F();
 }
 exports.copy = copy;
+/**
+* @module utils
+* @class Utils
+* @static
+*/
+
 /**
  * Util method for extend/merge objects
  * @method merge
@@ -31,10 +47,20 @@ var merge = function(destination,source) {
 };
 exports.merge = merge;
 /**
- * @method loadScript
- * @param {string}
- * @return {element}
- */
+* @module utils
+* @class Utils
+* @static
+*/
+
+/**
+* @method loadScript
+*
+* @param {String} url
+* @param {Function} sucess
+* @param {Function} error
+* @async
+* @return {element}
+*/
 function loadScript(url, sucess, error){
     var head = document.getElementsByTagName("head")[0] || document.insertBefore(document.firstChild.firstChild,document.createElement("head"));  
     var script = document.createElement("script");	
@@ -55,7 +81,7 @@ exports.loadscript = loadScript;
 var events = {};
 
 /**
-* Implementation minimized of node event emitter
+* Implementation minimized of node Event Emitter
 *
 * @class EventEmitter
 * @constructor
@@ -131,6 +157,7 @@ events.EventEmitter = EventEmitter;
 exports.events = events;
 /**
 * QueryString module for handle params
+*
 * @module queryString
 * @public
 */
@@ -178,20 +205,30 @@ var queryString = {
 	}
 };
 exports.querystring = queryString;
+/**
+* @module utils
+* @class Utils
+* @static
+*/
+
 /*!
- * contentloaded.js
- *
- * Author: Diego Perini (diego.perini at gmail.com)
- * Summary: cross-browser wrapper for DOMContentLoaded
- * Updated: 20101020
- * License: MIT
- * Version: 1.2
- *
- * URL:
- * http://javascript.nwbox.com/ContentLoaded/
- * http://javascript.nwbox.com/ContentLoaded/MIT-LICENSE
- *
- */
+* contentloaded.js
+*
+* Author: Diego Perini (diego.perini at gmail.com)
+* Summary: cross-browser wrapper for DOMContentLoaded
+* Updated: 20101020
+* License: MIT
+* Version: 1.2
+*
+* URL:
+* http://javascript.nwbox.com/ContentLoaded/
+* http://javascript.nwbox.com/ContentLoaded/MIT-LICENSE
+* 
+* @method contentLoaded
+* @param {Object} win Reference for window object
+* @param {Function} fn Callback for when content is loaded
+* @async
+*/
 
 // @win window reference
 // @fn function reference
@@ -352,7 +389,7 @@ var Event = function( attributes ){
 	
 	/**
 	* @method getFullDate
-	* @returns {String} Even if date is not converted to string return ISOString
+	* @return {String} Even if date is not converted to string return ISOString
 	*/
 	this.getFullDate = function(){
 		if( typeof date === 'object' ){
@@ -365,7 +402,7 @@ var Event = function( attributes ){
 	/*
 	* @method __construct
 	* @private
-	* @returns {Object} return this to allow chain pattern
+	* @return {Object} return this to allow chain pattern
 	*/
 	var __construct = function(self){
 		self = self.extend(attributes);
@@ -387,7 +424,7 @@ var Event = function( attributes ){
 	/**
 	* @method track
 	* @static
-	* @returns {Object} return the result of method save
+	* @return {Object} return the result of method save
 	*/
 	Event.track = function(attributes){
 		return new Event(attributes).save();
@@ -396,7 +433,7 @@ var Event = function( attributes ){
 	/**
 	* @method getDate
 	* @public
-	* @returns {String} The second part of a fulldate splited in T character
+	* @return {String} The second part of a fulldate splited in T character
 	*/
 	Event.prototype.getDate = function(){
 		return this.getFullDate().split('T')[0];
@@ -406,7 +443,7 @@ var Event = function( attributes ){
 	/**
 	* @method getTime
 	* @public
-	* @returns {String} he second part of a fulldate splited in T character
+	* @return {String} he second part of a fulldate splited in T character
 	*/
 	Event.prototype.getTime = function(){
 		return this.getFullDate().split('T')[1];
@@ -415,7 +452,7 @@ var Event = function( attributes ){
 	/**
 	* @method getHour
 	* @public
-	* @returns {String || Boolean} String of hour or false
+	* @return {String || Boolean} String of hour or false
 	*/
 	Event.prototype.getHour = function(){
 		if( this.time ){
@@ -426,7 +463,7 @@ var Event = function( attributes ){
 	/**
 	* @method validate
 	* @public
-	* @returns {Boolean} true for all attributes and false if any is missing
+	* @return {Boolean} true for all attributes and false if any is missing
 	*/
 	Event.prototype.validate = function(){
 		for( var i = 0; i < Event.required.length; i++ ){
@@ -441,7 +478,7 @@ var Event = function( attributes ){
 	/**
 	* @method toQuery
 	* @public
-	* @returns {String} convert object to network string
+	* @return {String} convert object to network string
 	*/
 	Event.prototype.toQuery = function(){
 		var querystring = require('../node_modules/querystring').querystring;
@@ -450,7 +487,7 @@ var Event = function( attributes ){
 	/**
 	* @method save
 	* @public
-	* @returns {Error} convert object to network string
+	* @return {Error} convert object to network string
 	*/
 	Event.prototype.save = function(){
 		throw new Error('You should override this');
@@ -459,6 +496,7 @@ var Event = function( attributes ){
 	exports.Event = Event;
 /**
 * @module core
+* @requires events
 */
 
 /**
@@ -467,12 +505,22 @@ var Event = function( attributes ){
 * @class Ad
 * @constructor
 * @extends Core
+* @uses EventEmiiter
 */
 var Ad = function( attributes ){
 	var Core = require('./core').Core;
 	var EventEmitter = require('../node_modules/events').events.EventEmitter;
 	Core.apply(this, arguments);
 	EventEmitter.apply(this, arguments);
+	/**
+	* @event load
+	*/
+	var loaded = null;
+	/**
+	* @event placement
+	*/
+	var placed = null;
+	
 	
 	/**
 	* Id of ad
@@ -527,7 +575,7 @@ var Ad = function( attributes ){
 	/**
 	* @method __construct
 	* @private
-	* @returns {Object} return this to allow chain pattern
+	* @return {Object} return this to allow chain pattern
 	*/
 	var __construct = function(self){
 		self = self.extend(attributes);
@@ -764,7 +812,7 @@ var Site = function( attributes ){
 	/**
 	* @method __construct
 	* @private
-	* @returns {Object} return this to allow chain pattern
+	* @return {Object} return this to allow chain pattern
 	*/
 	var __construct = function(self){
 		self = self.extend(attributes);
@@ -777,7 +825,7 @@ var Site = function( attributes ){
 	* @method hasDomain
 	* @public
 	* @param {String} entry - Domain string
-	* @returns {Boolean} - True when found a domain and false for not
+	* @return {Boolean} - True when found a domain and false for not
 	*/
 	Site.prototype.hasDomain = function(entry){
 		var self = this;
@@ -806,6 +854,11 @@ var Site = function( attributes ){
 	};
 
 	exports.Site = Site;
+/**
+* @module request
+* @requires core, utils
+*/
+
 /**
 * Abstract class to http requests, connections and responses
 *
@@ -870,7 +923,7 @@ var Http = function(){
 	
 	/**
 	* @method getUrl
-	* @returns {String} full url
+	* @return {String} full url
 	*/
 	this.getUrl = function(){
 		if( !this.url ){
@@ -916,7 +969,7 @@ var HttpRequest = function( attributes, callback ){
 	/**
 	* @method __construct
 	* @private
-	* @returns {Object} return this to allow chain pattern
+	* @return {Object} return this to allow chain pattern
 	*/
 	var __construct = function(self){
 		if( typeof attributes === 'string' ){
@@ -952,7 +1005,7 @@ var ImgRequest = function(){
 	* @method send
 	* @public
 	* @param {Object} data
-	* @returns {Object} this to chain
+	* @return {Object} this to chain
 	*/
 	ImgRequest.prototype.send = function(data){
 		//todo: use merge to data-> query
@@ -981,7 +1034,7 @@ var ImgRequest = function(){
 	* @static
 	* @param {Object} options	
 	* @param {Function} callback
-	* @returns {DOMObject} document
+	* @return {DOMObject} document
 	*/
 	ImgRequest.make = function(options, callback, document){
 		var instance = new ImgRequest(options, callback);
@@ -1015,7 +1068,7 @@ var JsonpRequest = function(){
 	* @method queryCallback
 	* @public
 	* @param {String} string to call in jsonpresult
-	* @returns {Object} this to chain
+	* @return {Object} this to chain
 	*/
 	JsonpRequest.prototype.queryCallback = function(str){
 		this.qs.callback = str;
@@ -1025,7 +1078,7 @@ var JsonpRequest = function(){
 	/**
 	* @method validate
 	* @public
-	* @returns {Boolean}
+	* @return {Boolean}
 	*/
 	JsonpRequest.prototype.validate = function(){
 		return this.qs.callback !== undefined;
@@ -1035,7 +1088,7 @@ var JsonpRequest = function(){
 	* @method send
 	* @public
 	* @param {Object} options
-	* @returns {Object} this to chain
+	* @return {Object} this to chain
 	*/
 	JsonpRequest.prototype.send = function(data){
 		//todo: use merge to data-> query
@@ -1064,7 +1117,7 @@ var JsonpRequest = function(){
 	* @static
 	* @param {Object} options	
 	* @param {Function} callback
-	* @returns {Object} this to chain
+	* @return {Object} this to chain
 	* @example JsonpRequest.make(options, callback).expose(root)
 	*/	
 	JsonpRequest.make = function(options, callback){
@@ -1100,7 +1153,8 @@ function request(){
 }
 exports.request = request;
 /**
-* @module Connection
+* @module connections
+* @requires request
 */
 
 /**
@@ -1149,7 +1203,7 @@ var Connection = function( attributes ){
 /**
 * @method id
 * @public
-* @returns {String} return current uuid
+* @return {String} return current uuid
 */
 Connection.prototype.id = function(){
 	return 'n' + this._index;
@@ -1158,7 +1212,7 @@ Connection.prototype.id = function(){
 /**
 * @method newId
 * @public
-* @returns {String} Increment the index and return a new id
+* @return {String} Increment the index and return a new id
 */
 Connection.prototype.newId = function(){
 	this._index++;
@@ -1177,7 +1231,7 @@ Connection.prototype.next = function(req){
 /**
 * @method getCallbackPath
 * @public
-* @returns {String} path of callback
+* @return {String} path of callback
 */
 Connection.prototype.getCallbackPath = function(){
 	return [this.name, 'requests', this.id(), 'callback'].join('.');
@@ -1185,13 +1239,13 @@ Connection.prototype.getCallbackPath = function(){
 /**
 * @method request
 * @public
-* @returns {Object}
+* @return {Object}
 */
 Connection.prototype.request = require('../request/request').request;
 /**
 * @method get
 * @public
-* @returns {Object}
+* @return {Object}
 */
 Connection.prototype.get = function(path, data, callback){
 	if(typeof data === 'function') {
@@ -1216,49 +1270,6 @@ Connection.prototype.get = function(path, data, callback){
 	return this;
 };
 exports.Connection = Connection;
-(function(){
-	var copy = require('../utils/copy').copy;
-	var Event = require('../domain/core').Event;
-	/**
-	* Responsible for make connections to tracker server
-	*
-	* @class Tracker
-	* @constructor
-	*/
-	function Tracker(){
-		/*
-		* @property {Connection} connection instance
-		* @public
-		*/
-		this.connection = {};
-	}
-	/*
-	* @method track
-	* @param {Object} data All data to track in an event
-	* @public
-	* @returns {undefined}
-	*/
-	Tracker.prototype.track = function(data){
-
-		var event = new Event(data);
-
-		var opts = copy(this.connection);
-		opts.host = opts.host;
-		opts.path = '/' + event.type + '/' + event.ad_id;
-
-		//  validate in client is necessary ? or is it just slow
-		if( event.validate() ){
-			opts.qs = event;
-			var req = request().img(opts, function(err, data){
-				if(err){
-					throw new Error({'message': 'impossible to track'});
-				}
-			});
-			this.connection.next(req);
-		}
-	};
-	exports.Tracker = Tracker;
-})();
 /**
 * @module dom
 */
@@ -1289,7 +1300,7 @@ var DomElement = function(){
 	* @param {String} tagName
 	* @param {Object} document
 	* @static
-	* @returns {Object} element
+	* @return {Object} element
 	*/
 	DomElement.create = function(tagName, document){
 		return document.createElement(tagName);
@@ -1299,7 +1310,7 @@ var DomElement = function(){
 	* @param {String} tagName
 	* @param {Object} document
 	* @public
-	* @returns {Object} this - Chainable method
+	* @return {Object} this - Chainable method
 	*/
 	DomElement.prototype.create = function(tagName, document){
 		//	file global || adlayer js module wrapper || passed document context
@@ -1312,7 +1323,7 @@ var DomElement = function(){
 	* @method setAttributes
 	* @param {Object} attributes
 	* @public
-	* @returns {Object} this - Chainable method
+	* @return {Object} this - Chainable method
 	*/
 	DomElement.prototype.setAttributes = function(attributes){
 		var merge = require('../utils/merge').merge;
@@ -1323,7 +1334,7 @@ var DomElement = function(){
 	* @method append
 	* @param {Object} child
 	* @public
-	* @returns {Object} this - Chainable method
+	* @return {Object} this - Chainable method
 	*/
 	DomElement.prototype.append = function(child){
 		this.element.appendChild(child);
@@ -1333,7 +1344,7 @@ var DomElement = function(){
 	* @method findParentTag
 	* @param {String} tag UPPERCASE tag name
 	* @public
-	* @returns {Object} parentElement
+	* @return {Object} parentElement
 	*/
 	DomElement.prototype.findParentTag = function(tag){
 		var parent = this.element.parentNode;
@@ -1350,7 +1361,7 @@ var DomElement = function(){
 	* @param {String} type Event name like 'click', 'load', 'mouseover'
 	* @param {Function} eventListener Callback for event trigger
 	* @public
-	* @returns {Object} return this to allow chainability
+	* @return {Object} return this to allow chainability
 	*/
 	DomElement.prototype.addDomEventListener = function(type, eventListener){
 		if(typeof addEventListener === 'function'){
@@ -1367,6 +1378,7 @@ var DomElement = function(){
 	exports.DomElement = DomElement;
 /**
 * @module dom
+* @requires core, events
 */
 (function(){
 	
@@ -1381,28 +1393,35 @@ var DomElement = function(){
 	*
 	* @class AdDom
 	* @constructor
-	* @extends Ad
 	* @extends DomElement
+	* @uses Ad
 	*/
 	var AdDom = function(){
-		// extends Ad
 		Ad.apply(this, arguments);
-		
+
 		/**
-		* Instance of tracker
-		* @property tracker
-		* @type tracker
+		* Url base of tracker
+		* @property trackerUrl
+		* @type string
 		* @public
 		*/
-		this.tracker = {};
+		this.trackerUrl = null;
+		
+		/**
+		* Information about the ad impression
+		* @property impression
+		* @type string
+		* @public
+		*/
+		this.impression = {};
+
 	};
 	// extends DomElement
 	AdDom.prototype = new DomElement();
 	
-	
 	/**
 	* @method getSpaceId
-	* @returns {String} return the id of the first parent div
+	* @return {String} return the id of the first parent div
 	*/
 	AdDom.prototype.getSpaceId = function(){
 		var node = this.findParentTag('DIV');
@@ -1410,15 +1429,46 @@ var DomElement = function(){
 	};
 	
 	/**
+	* @method setImpression
+	* @param {Object} space
+	* @param {Object} config
+	* @example
+		var config = {
+			type: 'impression',
+			
+			site_id: config.site_id,
+			domain: config.domain,
+			page_url: config.page_url,
+			page_id: config.page_id,
+			
+			ad_id: ad.id,
+			campaign_id: ad.campaign_id,
+			space_id: space.id
+		}
+		new AdDom(space, config);
+	*/
+	AdDom.prototype.setImpression = function(space, config){
+		config.type = 'impression';
+		config.ad_id = this.id;
+		
+		config.space_id = space.id;
+		config.space_id || delete config.space_id;
+		
+		config.campaign_id = this.campaign_id;
+		this.impression = config;
+		return this.impression;
+	};
+	
+	/**
 	* @method getClickTag
 	* @param {Object} config
-	* @returns {String} the full url to track this link
+	* @return {String} the full url to track this link
 	* @example http://tracker.adlayerapp.com/click/10?&campaign_id=1235&link=http://www.adlayer.com.br
 	*/
 	AdDom.prototype.getClickTag = function(config){
 		// Tracker url
-		var trackerUrl = this.tracker.connection.getUrl();
-
+		var trackerUrl = this.trackerUrl;
+		
 		var event = new Event({
 			ad_id: this.id,
 			type: 'click',
@@ -1438,57 +1488,15 @@ var DomElement = function(){
 		return false;
 	};
 	
-	/**
-	* @method init
-	* @param {Object} space
-	* @param {Object} config
-	*/
-	AdDom.prototype.init = function(space, config){
-		var ad = this;
-		
-		/**
-		{
-			type: 'impression',
-			
-			site_id: config.site_id,
-			domain: config.domain,
-			page_url: config.page_url,
-			page_id: config.page_id,
-			
-			ad_id: ad.id,
-			campaign_id: ad.campaign_id,
-			space_id: space.id
-		}
-		**/
-		config.ad_id = ad.id;
-		
-		config.space_id = space.id;
-		config.space_id || delete config.space_id;
-		
-		config.campaign_id = ad.campaign_id;
-		
-		// Listener for 'LOAD' event
-		ad.on('load', function(){
-
-			config.type = 'impression';
-			ad.tracker.track(config);
-			
-		});
-
-		// Listener for 'PLACEMENT' event
-		ad.on('placement', function(){
-			// Setting click tag in ad element
-			var clickTag = ad.getClickTag(config);
-			ad.element.href = clickTag;
-		});
-		return ad;
-	};
-	
 	exports.AdDom = AdDom;
 	
 	
 	
 })();
+/**
+* @module dom
+* @requires spaces
+*/
 (function(){
 	
 	// modules
@@ -1499,24 +1507,36 @@ var DomElement = function(){
 	* Space dom
 	*
 	* @class SpaceDom
-	* @extends DomElement
-	* @requires Ad
+	* @extends Space
+	* @uses Spaces
 	*/
 	var SpaceDom = function(){
 		// extends Space
 		Space.apply(this, arguments);
 		
+		/**
+		* Hash of all placements during this pageview on this space
+		* @property placements
+		* @type object
+		*/
 		this.placements = {};
-		// Current ad
+		
+		/**
+		* The current rendered ad
+		* @property ad
+		* @type object
+		*/
 		this.ad = {};
 	};
 	// extends DomElement
 	SpaceDom.prototype = new DomElement();
 	
 	/**
+	* Append the ad.element as a child and emit the ad event 'placement'
+	*
 	* @method placeAd
 	* @param {Object} DomElement Ad to append in element
-	* @returns {Object} return this to chain methods
+	* @return {Object} return this to chain methods
 	*/
 	SpaceDom.prototype.placeAd = function(ad){
 		this.element.appendChild(ad.element);
@@ -1527,7 +1547,7 @@ var DomElement = function(){
 	
 	/**
 	* @method getElement
-	* @returns {Object} return the DomElement
+	* @return {Object} return the DomElement
 	*/
 	SpaceDom.prototype.getElement = function(){
 		return this.document.getElementById(this.id);
@@ -1538,9 +1558,12 @@ var DomElement = function(){
 
 /**
 * @module ads
+* @requires utils
 */
+
 /**
 * @class Swf
+* @constructor
 */
 var Swf = function(){
 	var queryString = require('../node_modules/querystring').querystring;
@@ -1602,6 +1625,10 @@ var Swf = function(){
 	};
 };
 exports.Swf = Swf;
+/**
+* @module ads
+* @requires dom
+*/
 (function(){
 	var AdDom = require('../dom/ad_dom').AdDom;
 	var Swf = require('./swf').Swf;
@@ -1613,7 +1640,7 @@ exports.Swf = Swf;
 	* @constructor
 	* @param {Object} attributes
 	* @extends AdDom
-	* @extends Swf
+	* @uses Swf
 	*/
 	var EmbedAd = function(){
 		AdDom.apply(this, arguments);
@@ -1641,6 +1668,10 @@ exports.Swf = Swf;
 	EmbedAd.prototype = new AdDom();
 	exports.EmbedAd = EmbedAd;
 })();
+/**
+* @module ads
+* @requires dom
+*/
 (function(){
 	var AdDom = require('../dom/ad_dom').AdDom;
 	var Swf = require('./swf').Swf;
@@ -1653,7 +1684,7 @@ exports.Swf = Swf;
 	* @param {Object} attributes
 	*
 	* @extends AdDom
-	* @extends Swf
+	* @uses Swf
 	*/	
 	var ObjectAd = function(){
 		var superclass = this;
@@ -1741,11 +1772,15 @@ exports.Swf = Swf;
 	exports.ObjectAd = ObjectAd;
 })();
 /**
-* @class ImgAd
-* @extends AdDom
+* @module ads
 */
+
 (function(){
 	var AdDom = require('../dom/ad_dom').AdDom;
+	/**
+	* @class ImgAd
+	* @extends AdDom
+	*/
 	var ImgAd = function(){
 		AdDom.apply(this, arguments);
 		
@@ -1765,6 +1800,13 @@ exports.Swf = Swf;
 				// subscribe img with link
 				self.create('a');
 				self.element.href = self.link;
+				
+				self.on('placement', function(){
+					// Setting click tag in ad element
+					var clickTag = self.getClickTag(self.impression);
+					self.element.href = clickTag;
+				});
+				
 				self.append(img);
 			}
 			
@@ -1779,10 +1821,21 @@ exports.Swf = Swf;
 	ImgAd.prototype = new AdDom();
 	exports.ImgAd = ImgAd;
 })();
+/**
+* @module ads
+*/
 (function(){
 	var Embed = require('./embed_ad.js').EmbedAd;
 	var ObjectAd = require('./object_ad.js').ObjectAd;
+	/**
+	* @class FlashAd
+	* @constructor
+	*/
 	var FlashAd = function(data){
+		/**
+		* @method __construct
+		* @private
+		*/
 		var __construct = (function(self){
 			if(self.browser){
 				return new ObjectAd(data);
@@ -1796,7 +1849,13 @@ exports.Swf = Swf;
 	exports.FlashAd = FlashAd;
 })();
 /**
+* Handle all supported ad types (flash and image)
+*
 * @module ads
+* @main
+* @example
+	var ads = require('./src/ads/ads').ads;
+	ads.create({type: 'flash'});
 */
 (function(){
 	
@@ -1805,6 +1864,10 @@ exports.Swf = Swf;
 		var Img = require('./img_ad.js').ImgAd;
 		
 		return {
+			/**
+			* @method create
+			* @param {Object} data Config to create the ad
+			*/
 			create: function(data){
 				// mixin
 				data.id = data._id || data.id;
@@ -1825,6 +1888,11 @@ exports.Swf = Swf;
 	})();
 	
 })();
+/**
+* @module spaces
+* @requires dom, ads
+*/
+
 (function(){
 	
 	// modules
@@ -1835,25 +1903,39 @@ exports.Swf = Swf;
 	* Basic Space
 	*
 	* @class BasicSpace
-	* @extends DomElement
+	* @extends SpaceDom
+	* @uses SpaceDom
 	*/
 	var BasicSpace = function(){
 		// extends Space
 		SpaceDom.apply(this, arguments);
-		
-		this.placements = {};
-		// Current ad
-		this.ad = {};
 	};
-	// extends DomElement
+	// extending DomElement
 	BasicSpace.prototype = new SpaceDom();
 
+	/**
+	* When there are ads fetched for this space, select some Ad 
+	* from the fecthed collection using some configurable behaviour (Random by default).
+	*
+	* Create and initalize the seleted as an AdDom instance,
+	* register the 'Load' event, in order to track the impression when the file is fully loaded.
+	* Place the ad on the DomSpace, which will automatically trigger the 'Ad Placement' event.
+	*
+	* @method init
+	* @param {Object} tracker A instance of Tracker
+	* @param {Object} config Data to tracked
+	* @public
+	*/
 	BasicSpace.prototype.init = function(tracker, config){
 		if(this.ads && this.ads.length > 0){
 			var ad = ads.create(this.getAd());
-			ad.tracker = tracker;
-			ad = ad.init(this, config);
-
+			ad.trackerUrl = tracker.connection.getUrl();
+			ad.setImpression(this, config);
+			
+			ad.on('load', function(){
+				tracker.track(ad.impression);	
+			});
+			
 			// Placing ad in space
 			this.placeAd(ad);
 		}
@@ -1872,15 +1954,35 @@ exports.Swf = Swf;
 	* Represents the type Expander space
 	*
 	* @class ExpandableSpace
-	* @extends SpaceDom
-	* @implements ISpace
+	* @extends BasicSpace
 	*/
 	var ExpandableSpace = function(){
 		BasicSpace.apply(this, arguments);
 		
+		/**
+		* @event expandEvent
+		* @example 
+			var space = new ExpandableSpace();
+			space.addDomEventListener(space.exapandEvent)
+		*/
 		this.expandEvent = 'mouseover';
+		
+		/**
+		* @event retreatEvent
+		* @example 
+			var space = new ExpandableSpace();
+			space.addDomEventListener(space.retreatEvent)
+		*/
 		this.retreatEvent = 'mouseout';
 		
+		/**
+		* Get or create the element
+		* Set the element id and sizes
+		*
+		* @method __construct
+		* @param {Object} self
+		* @private
+		*/
 		var __construct = (function(self){
 			self.element = self.element || self.getElement() || self.create('DIV');
 			self.element.id = self.id;
@@ -1951,7 +2053,7 @@ exports.Swf = Swf;
 	/**
 	* Represents the type Floater
 	* @class FloaterSpace
-	* @extends SpaceDom
+	* @extends BasicSpace
 	*/
 	var FloaterSpace = function(){
 		BasicSpace.apply(this, arguments);
@@ -1994,7 +2096,7 @@ exports.Swf = Swf;
 	* Represents the type Static
 	* 
 	* @class StaticSpace
-	* @extends SpaceDom
+	* @extends BasicSpace
 	*/	
 	var StaticSpace = function(){
 		BasicSpace.apply(this, arguments);
@@ -2010,7 +2112,13 @@ exports.Swf = Swf;
 	exports.StaticSpace = StaticSpace;
 })();
 /**
+* Handle all suported advertising spaces (Floater, Expandable and Static)
+*
 * @module spaces
+* @submodule spaces-spaces
+* @main
+* @example
+	spaces.spaces.create({type:'floater'});
 */
 (function(){	
 	exports.spaces = (function(){
@@ -2019,6 +2127,10 @@ exports.Swf = Swf;
 			Static = require('./static_space.js').StaticSpace;
 		
 		return {
+			/**
+			* @method create
+			* @param {Object} data Config to create the Space
+			*/
 			create: function(data){
 				data.id = data._id;
 				data.width = data.size.width;
@@ -2039,7 +2151,18 @@ exports.Swf = Swf;
 	})();
 	
 })();
+/**
+* All configuration for adlayer api
+*
+* @module api
+* @submodule config
+*/
 exports.config = {
+	/**
+	* Adserver and tracker connection options
+	*
+	* @attribute url
+	*/	
 	url: {
 		adserver: {
 			host: 'jocasta.adlayerapp.com'
@@ -2048,21 +2171,92 @@ exports.config = {
 			host: 'tracker.adlayerapp.com'
 		}
 	},
+	/**
+	* Number of ads per spaces download for every request
+	*
+	* @attribute adsPerSpace
+	*/
 	adsPerSpace: 1,
+	/**
+	* Page specfic configurations
+	*
+	* @attribute page
+	*/
 	page: {
 		scriptTagId: 'adlayerScript'
 	}
 };
+/**
+* @module api
+* @requires utils, core
+*/
+(function(){
+	var copy = require('../utils/copy').copy;
+	var Event = require('../domain/core').Event;
+	/**
+	* High level API to handle with Adlayer Tracker server
+	*
+	* @class Tracker
+	* @constructor
+	*/
+	function Tracker(){
+		/**
+		* @property connection
+		* @type Object
+		* @public
+		*/
+		this.connection = {};
+	}
+	/**
+	* @method track
+	* @param {Object} data All data to track in an event
+	* @public
+	* @returns {undefined}
+	*/
+	Tracker.prototype.track = function(data){
+
+		var event = new Event(data);
+
+		var opts = copy(this.connection);
+		opts.host = opts.host;
+		opts.path = '/' + event.type + '/' + event.ad_id;
+
+		//  validate in client is necessary ? or is it just slow
+		if( event.validate() ){
+			opts.qs = event;
+			var req = request().img(opts, function(err, data){
+				if(err){
+					throw new Error({'message': 'impossible to track'});
+				}
+			});
+			this.connection.next(req);
+		}
+	};
+	exports.Tracker = Tracker;
+})();
+/**
+* @module api
+*/
 (function(){
 	/**
+	* High level API to handle with Adlayer Adserver
+	*
 	* @class Adserver
 	* @constructor
 	*/
 	var Adserver = function(connection){
+		/**
+		* The instace of connection to be used as adserver
+		*
+		* @property connection
+		* @type Object
+		*/
 		this.connection = connection;
 	};
-	/*
+	
+	/**
 	* Main method to make http requests
+	*
 	* @method request
 	* @param {String} path path to request in server
 	* @param {Object} query query string to request
@@ -2079,7 +2273,7 @@ exports.config = {
 		var req = request().get(opts, callback);
 		this.connection.requests[sign] = req;
 	};
-	/*
+	/**
 	* Access to 'pages' endpoint
 	* @method pages
 	* @param {String} id
@@ -2090,9 +2284,9 @@ exports.config = {
 	Adserver.prototype.pages = function(id, query, callback){
 		this.request('/pages/' + id, query, callback);
 	};
-	/*
+	/**
 	* Access to 'ads' endpoint
-	* @method pages
+	* @method ads
 	* @param {String} id
 	* @param {Object} query query string to request
 	* @param {Function} callback
@@ -2102,9 +2296,9 @@ exports.config = {
 		this.request('/ads/' + id, query, callback);
 	};
 	
-	/*
+	/**
 	* Access to 'spaces' endpoint
-	* @method pages
+	* @method spaces
 	* @param {String} id
 	* @param {Object} query query string to request
 	* @param {Function} callback
@@ -2123,10 +2317,15 @@ var Tracker = require('../tracker/tracker').Tracker;
 var Adserver = require('./adserver').Adserver;
 
 /**
+* @module api
+*/
+
+/**
 * Abstraction of Adlayer Api
 *
 * @class Adlayer
 * @constructor
+* @extensionfor api
 */
 var Adlayer = function(api){
 	/**
@@ -2135,22 +2334,27 @@ var Adlayer = function(api){
 	* @property lib
 	* @type object
 	*/
-	this.lib = require('*');
+	this.lib = {}
 	
 	
 	/**
-	* Api configurations
+	* Define or extends configuration for API
+	* You can use this for customize default attributes
 	*
 	* @property config
+	* @default object
 	* @type object
 	*/
 	this.config = config;
 	
 	
 	/**
-	* Exports connections
+	* A collection of all connections (open and closed ones)
+	* Provide total control over adserver and tracker connection and respective request
+	*
 	*
 	* @property connections
+	* @default object
 	* @type object
 	*/
 	this.connections = api.connections || {};
@@ -2169,12 +2373,25 @@ var Adlayer = function(api){
 	* @property tracker
 	* @type object
 	*/
-	this.tracker = api.tracker || {};;
+	this.tracker = api.tracker || {};
 	
 	/**
-	* List of all ads rendered in the page
+	* Collection of all rendered spaces on the page
+	*
+	*
+	* @property spaces
+	* @default object
+	* @type object
+	*/
+	this.spaces = api.spaces || {};
+	
+	
+	/**
+	* A shortcut for a collection of all ads rendered on the respective spaces
+	*
 	*
 	* @property ads
+	* @default object
 	* @type object
 	* @example 
 		var ad = adlayer.ads['mfkvfmvkdfvdf84848484'];
@@ -2183,9 +2400,12 @@ var Adlayer = function(api){
 	this.ads = api.ads || {};
 	
 	/**
-	* Exports page api
+	* A shortcut for the rendered page
+	* Will always be a instace of class Page
+	*
 	*
 	* @property page
+	* @default object
 	* @type object
 	*/
 	this.page = api.page || {};
@@ -2238,7 +2458,8 @@ Adlayer.prototype.connect = function(){
 
 exports.Adlayer = Adlayer;
 /**
-* @module PageApi
+* @module api
+* @requires events, core, request, spaces
 */
 (function(){
 	var EventEmitter = require('../node_modules/events').events.EventEmitter;
@@ -2250,22 +2471,53 @@ exports.Adlayer = Adlayer;
 	* @class PageApi
 	* @constructor
 	* @extends Page
-	* @extends EventEmitter
+	* @uses EventEmitter
 	*/			
 	var PageApi = function(){
 		Page.apply(this, arguments);
 		EventEmitter.apply(this, arguments);
 		
+		/**
+		* Reference to document object model root
+		*
+		* @property document
+		* type Object
+		*/
 		this.document;
+		/**
+		* Instance os Tracker
+		*
+		* @property tracker
+		* type Object
+		*/
 		this.tracker;
+		/**
+		* Instance os Adserver
+		*
+		* @property tracker
+		* type Object
+		*/
 		this.adserver;
+		/**
+		* Collection of spaces rendered on this page
+		*
+		* @property spacesCollection
+		* type Object
+		*/
 		this.spacesCollection = {};
+		/**
+		* Collection of ads rendered on this page in each respective space
+		*
+		* @property adsCollection
+		* type Object
+		*/
 		this.adsCollection = {};
 	};
 	
 	/**
 	* @method getData
 	* @param {Function} callback
+	* @async
 	*/
 	PageApi.prototype.getData = function(callback){
 		var qs = {
@@ -2316,6 +2568,7 @@ exports.Adlayer = Adlayer;
 
 	/**
 	* @method init
+	* @async
 	* @public 
 	*/
 	PageApi.prototype.init = function(){
@@ -2349,6 +2602,93 @@ exports.Adlayer = Adlayer;
 	
 	exports.PageApi = PageApi;
 })();
+/**
+* This is the inital point for Adlayer Api
+*
+* @module api
+* @main
+* @requires adlayer, config
+
+* @example __Access the configs of API__
+
+	adlayer.config
+	
+---------------------
+	
+* @example __Requesting data from adserver__
+	
+	adlayer.adserver.pages('838jjkamr87d88930048', {}, function(data){
+		console.log(data);
+	});
+	
+	adlayer.adserver.spaces('d88930048838jjkamr87', {}, function(data){
+		console.log(data);
+	});
+	
+	adlayer.adserver.ads('33030d88930048838jjkamr87', {}, function(data){
+		console.log(data);
+	});
+
+* see more at {{#crossLink "Adserver"}}{{/crossLink}}
+
+----------------------	
+
+* @example __Tracking Impressions and clicks__
+
+	adlayer.tracker.track('impression', {});
+
+	adlayer.tracker.track('click', {});
+	
+* see more at {{#crossLink "Tracker"}}{{/crossLink}}
+
+----------------------
+
+* @example __Managing rendered creatives ads__
+
+	var ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];
+	ad.emit('placement');
+	
+----------------------
+
+* @example __Managing rendered spaces__
+
+	var space = adlayer.spaces['jdfndfdjfdsdf0sd0f'];
+	space.close();
+
+----------------------
+
+* @example __Accesing internal classes__
+
+	new adlayer.lib.Adserver();
+
+See more at {{#crossLinkModule "lib"}}{{/crossLinkModule}}	
+	
+----------------------
+* @example __Creating an spaces__
+
+	adlayer.lib.spaces.create({type:'floater'});
+	
+* See more at {{#crossLinkModule "spaces"}}{{/crossLinkModule}}
+	
+----------------------
+
+* @example __Creating an ad__
+	
+	adlayer.lib.ads.create({type:'flash'});
+
+See more at {{#crossLinkModule "ads"}}{{/crossLinkModule}}
+
+----------------------
+
+* @example __Overide default options__
+
+	var adlayer = adlayer || {};
+	adlayer.config = adlayer.config || {};
+	adlayer.config.adsPerSpace = 10;
+	
+----------------------
+*/
+
 (function(window){
 
 	var Adlayer = require('./adlayer').Adlayer;
@@ -2356,32 +2696,80 @@ exports.Adlayer = Adlayer;
 
 	// Defining API
 	var global = global || window;
+	
 	var api = global.adlayer || {};
 
-	// Defining configs
+	// Define config
 	var config = api.config || {};
 
-	// Set Page
-	api.page = api.page || {};
+	/**
+	* A reference for the current rendered page
+	* Also stores references for spaces and ads rendered on the page
+	*
+	* @submodule page
+	*/
+	api.page = api.page || null;
 
-	// Set Config
+	/**
+	* @submodule config
+	*/
 	api.config = config;
 
-	// Set Connections
-	api.connections = api.connections || {};
+	/**
+	* Stores all connections
+	*
+	* @submodule connections
+	*/
+	api.connections = api.connections || null;
+	
+	/**
+	* Handle adserver connections
+	*
+	* @submodule adserver
+	*/
+	api.adserver = api.adserver || null;
+	
+	/**
+	* Handle tracker operations
+	*
+	* @submodule tracker
+	*/
+	api.tracker = api.tracker || null;
+	
+	
+	/**
+	* Stores in a hash all spaces rendered on this page 
+	*
+	* @submodule spaces
+	* @example
+		console.log(window.adlayer.spaces);
+	*/
+	api.spaces = api.spaces || null;
 
-	// Set Spaces
-	api.spaces = api.spaces || {};
+	/**
+	* Stores all placed and rendered ads on this page
+	*
+	* @submodule ads
+	*/
+	api.ads = api.ads || null;
 
-	// Set Ads
-	api.ads = api.ads || {};
 
-
+	
 	// api as an instance of Adlayer
 	api = new Adlayer(api);
+	
+	/**
+	* Shortcut for all internal classes
+	*
+	* @submodule lib
+	*/
+	api.lib = require('*');
 	global.adlayer = api;
 	
 })(this);
+/**
+* @modules widgets
+*/
 (function(window){
 	/**
 	* @method initialization

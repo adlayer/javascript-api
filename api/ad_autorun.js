@@ -1,5 +1,15 @@
+/**
+* @module widgets
+*/
 (function(window){
 	
+	/**
+	* @method getElementsByClass
+	* @param {String} searchClass className to find
+	* @param {Object} node Dom node to look up
+	* @param {String} tag Restrict find for some tag
+	* @private
+	*/
 	function getElementsByClass(searchClass,node,tag) {
 		var classElements = [];
 		if ( node === null )
@@ -20,6 +30,7 @@
 	
 	/**
 	* @method initialization
+	* @async
 	* @private
 	*/
 	(function initialization(){

@@ -32,8 +32,6 @@ var connection = [
 	"./lib/src/connection/connection.js"
 ];
 
-var tracker = ["./lib/src/tracker/tracker.js"];
-
 var dom = [
 	"./lib/src/dom/dom_element.js", 
 	"./lib/src/dom/ad_dom.js",
@@ -63,12 +61,14 @@ var config = [
 ];
 
 var api = [
+	"./api/tracker.js",
 	"./api/adserver.js",
 	"./api/adlayer.js",
 	"./api/api.js"
 ];
 
 var pageApi = [
+	"./api/tracker.js",
 	"./api/adserver.js",
 	"./api/adlayer.js",
 	"./api/page_api.js",
@@ -78,6 +78,7 @@ var pageApi = [
 ];
 
 var adsApi = [
+	"./api/tracker.js",
 	"./api/adserver.js",
 	"./api/adlayer.js",
 	"./api/ad_api.js",
@@ -86,6 +87,7 @@ var adsApi = [
 ];
 
 var spacesApi = [
+	"./api/tracker.js",
 	"./api/adserver.js",
 	"./api/adlayer.js",
 	"./api/spaces_api.js",
@@ -104,19 +106,19 @@ module.exports = function(grunt) {
 			options: {},
 			// Modules to concat
 			api: {
-				src: [head, utils, domain, request, connection, tracker, dom, ads, spaces, config, api, footer],
+				src: [head, utils, domain, request, connection, dom, ads, spaces, config, api, footer],
 				dest: 'dist/api.js'
 			},
 			ads:{
-				src: [head, utils, domain, request, connection, tracker, dom, ads, spaces, config, adsApi, footer],
+				src: [head, utils, domain, request, connection, dom, ads, spaces, config, adsApi, footer],
 				dest: 'dist/ads.js'
 			},
 			spaces: {
-				src: [head, utils, domain, request, connection, tracker, dom, ads, spaces, config, spacesApi, footer],
+				src: [head, utils, domain, request, connection, dom, ads, spaces, config, spacesApi, footer],
 				dest: 'dist/spaces.js'
 			},
 			page: {
-				src: [head, utils, domain, request, connection, tracker, dom, ads, spaces, config, pageApi, footer],
+				src: [head, utils, domain, request, connection, dom, ads, spaces, config, pageApi, footer],
 				dest: 'dist/page.js'
 			}
 		},
@@ -138,10 +140,24 @@ module.exports = function(grunt) {
 					'dist/page.min.js': ['dist/page.js']
 				}
 			}
-		}
+		},
+		yuidoc: {
+		    compile: {
+		      name: '<%= pkg.name %>',
+		      description: '<%= pkg.description %>',
+		      version: '<%= pkg.version %>',
+		      url: '<%= pkg.homepage %>',
+		      options: {
+		        paths: ['api', 'lib/src'],
+		        outdir: 'api_docs'
+		      }
+		    }
+		  }
 	});
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-yuidoc');
 	
 	grunt.registerTask('default', ['concat', 'uglify']);
+	grunt.registerTask('docs', ['yuidoc']);
 }

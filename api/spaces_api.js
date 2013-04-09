@@ -1,5 +1,6 @@
 /**
-* @module PageApi
+* @module api
+* @require events, core, request, spaces
 */
 (function(){
 	var EventEmitter = require('../node_modules/events').events.EventEmitter;
@@ -11,7 +12,7 @@
 	* @class SpaceApi
 	* @constructor
 	* @extends Space
-	* @extends EventEmitter
+	* @uses EventEmitter
 	*/			
 	var SpaceApi = function(){
 		Space.apply(this, arguments);
@@ -51,7 +52,8 @@
 	/**
 	* @method init
 	* @param {Function} callback Function to be called ofter space rendering process
-	* @public 
+	* @async
+	* @public
 	*/
 	SpaceApi.prototype.init = function(callback){
 		var self = this;

@@ -5,10 +5,15 @@ var Tracker = require('../tracker/tracker').Tracker;
 var Adserver = require('./adserver').Adserver;
 
 /**
+* @module api
+*/
+
+/**
 * Abstraction of Adlayer Api
 *
 * @class Adlayer
 * @constructor
+* @extensionfor api
 */
 var Adlayer = function(api){
 	/**
@@ -17,22 +22,27 @@ var Adlayer = function(api){
 	* @property lib
 	* @type object
 	*/
-	this.lib = require('*');
+	this.lib = {}
 	
 	
 	/**
-	* Api configurations
+	* Define or extends configuration for API
+	* You can use this for customize default attributes
 	*
 	* @property config
+	* @default object
 	* @type object
 	*/
 	this.config = config;
 	
 	
 	/**
-	* Exports connections
+	* A collection of all connections (open and closed ones)
+	* Provide total control over adserver and tracker connection and respective request
+	*
 	*
 	* @property connections
+	* @default object
 	* @type object
 	*/
 	this.connections = api.connections || {};
@@ -51,12 +61,25 @@ var Adlayer = function(api){
 	* @property tracker
 	* @type object
 	*/
-	this.tracker = api.tracker || {};;
+	this.tracker = api.tracker || {};
 	
 	/**
-	* List of all ads rendered in the page
+	* Collection of all rendered spaces on the page
+	*
+	*
+	* @property spaces
+	* @default object
+	* @type object
+	*/
+	this.spaces = api.spaces || {};
+	
+	
+	/**
+	* A shortcut for a collection of all ads rendered on the respective spaces
+	*
 	*
 	* @property ads
+	* @default object
 	* @type object
 	* @example 
 		var ad = adlayer.ads['mfkvfmvkdfvdf84848484'];
@@ -65,9 +88,12 @@ var Adlayer = function(api){
 	this.ads = api.ads || {};
 	
 	/**
-	* Exports page api
+	* A shortcut for the rendered page
+	* Will always be a instace of class Page
+	*
 	*
 	* @property page
+	* @default object
 	* @type object
 	*/
 	this.page = api.page || {};

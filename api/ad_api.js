@@ -1,5 +1,6 @@
 /**
-* @module AdApi
+* @module api
+* @requires Events, dom, ads, request, spaces
 */
 (function(){
 	var EventEmitter = require('../node_modules/events').events.EventEmitter;
@@ -11,20 +12,39 @@
 	/**
 	* @class AdApi
 	* @constructor
-	* @extends Ad
-	* @extends EventEmitter
-	*/			
+	* @extends AdDom
+	* @uses EventEmitter
+	*/
 	var AdApi = function(){
 		AdDom.apply(this, arguments);
 		
+		/**
+		* Reference to document object model root
+		*
+		* @property document
+		* type Object
+		*/
 		this.document;
+		/**
+		* Instance os Tracker
+		*
+		* @property tracker
+		* type Object
+		*/
 		this.tracker;
+		/**
+		* Instance os Adserver
+		*
+		* @property tracker
+		* type Object
+		*/
 		this.adserver;
 	};
 	
 	/**
 	* @method getData
 	* @param {Function} callback
+	* @public
 	*/
 	AdApi.prototype.getData = function(callback){
 		this.adserver.ads(this.id, null, callback);
@@ -33,6 +53,9 @@
 	
 	/**
 	* @method init
+	* @param {Object} tracker The instance of tracker to be stored in this.tracker
+	* @param {Function} callback
+	* @async
 	* @public 
 	*/
 	AdApi.prototype.init = function(tracker, callback){
@@ -41,8 +64,14 @@
 		this.getData(function(err, data){
 			if(!err && data){
 				var ad = ads.create(data);
-				ad.tracker = tracker;
-				ad.init({id: self.id}, {});
+				ad.trackerUrl = tracker.connection.getUrl();			
+				ad.setImpression({id: self.id}, self);
+				
+				// Listener for 'LOAD' event
+				ad.on('load', function(){
+					tracker.track(ad.impression);
+				});
+				
 				ad.emit('placement');
 				self.element = ad.element;
 				callback.call(ad);

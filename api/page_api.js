@@ -1,5 +1,6 @@
 /**
-* @module PageApi
+* @module api
+* @requires events, core, request, spaces
 */
 (function(){
 	var EventEmitter = require('../node_modules/events').events.EventEmitter;
@@ -11,22 +12,53 @@
 	* @class PageApi
 	* @constructor
 	* @extends Page
-	* @extends EventEmitter
+	* @uses EventEmitter
 	*/			
 	var PageApi = function(){
 		Page.apply(this, arguments);
 		EventEmitter.apply(this, arguments);
 		
+		/**
+		* Reference to document object model root
+		*
+		* @property document
+		* type Object
+		*/
 		this.document;
+		/**
+		* Instance os Tracker
+		*
+		* @property tracker
+		* type Object
+		*/
 		this.tracker;
+		/**
+		* Instance os Adserver
+		*
+		* @property tracker
+		* type Object
+		*/
 		this.adserver;
+		/**
+		* Collection of spaces rendered on this page
+		*
+		* @property spacesCollection
+		* type Object
+		*/
 		this.spacesCollection = {};
+		/**
+		* Collection of ads rendered on this page in each respective space
+		*
+		* @property adsCollection
+		* type Object
+		*/
 		this.adsCollection = {};
 	};
 	
 	/**
 	* @method getData
 	* @param {Function} callback
+	* @async
 	*/
 	PageApi.prototype.getData = function(callback){
 		var qs = {
@@ -77,6 +109,7 @@
 
 	/**
 	* @method init
+	* @async
 	* @public 
 	*/
 	PageApi.prototype.init = function(){

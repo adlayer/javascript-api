@@ -1,13 +1,26 @@
+/**
+* @module api
+*/
 (function(){
 	/**
+	* High level API to handle with Adlayer Adserver
+	*
 	* @class Adserver
 	* @constructor
 	*/
 	var Adserver = function(connection){
+		/**
+		* The instace of connection to be used as adserver
+		*
+		* @property connection
+		* @type Object
+		*/
 		this.connection = connection;
 	};
-	/*
+	
+	/**
 	* Main method to make http requests
+	*
 	* @method request
 	* @param {String} path path to request in server
 	* @param {Object} query query string to request
@@ -24,7 +37,7 @@
 		var req = request().get(opts, callback);
 		this.connection.requests[sign] = req;
 	};
-	/*
+	/**
 	* Access to 'pages' endpoint
 	* @method pages
 	* @param {String} id
@@ -35,9 +48,9 @@
 	Adserver.prototype.pages = function(id, query, callback){
 		this.request('/pages/' + id, query, callback);
 	};
-	/*
+	/**
 	* Access to 'ads' endpoint
-	* @method pages
+	* @method ads
 	* @param {String} id
 	* @param {Object} query query string to request
 	* @param {Function} callback
@@ -47,9 +60,9 @@
 		this.request('/ads/' + id, query, callback);
 	};
 	
-	/*
+	/**
 	* Access to 'spaces' endpoint
-	* @method pages
+	* @method spaces
 	* @param {String} id
 	* @param {Object} query query string to request
 	* @param {Function} callback
