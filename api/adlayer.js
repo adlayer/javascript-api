@@ -117,7 +117,8 @@ Adlayer.prototype = new EventEmitter();
 * @public
 */
 Adlayer.prototype.markAdAsLoaded = function(id){
-	api.ads[id].emit('load');
+	var ad = this.ads[id];
+	ad.emit('load');
 };
 
 /**
