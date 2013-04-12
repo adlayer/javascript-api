@@ -147,6 +147,7 @@ module.exports = function(grunt) {
 		      description: '<%= pkg.description %>',
 		      version: '<%= pkg.version %>',
 		      url: '<%= pkg.homepage %>',
+		  	  logo: 'http://adlayer.com.br/img/logo.png',
 		      options: {
 		        paths: ['api', 'lib/src'],
 		        outdir: 'api_docs'
