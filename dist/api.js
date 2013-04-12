@@ -1928,6 +1928,7 @@ exports.Swf = Swf;
 	*/
 	BasicSpace.prototype.init = function(tracker, config){
 		if(this.ads && this.ads.length > 0){
+			// Create an ad for space from 'this.ads' array, Selection made by behaviour by default will be random
 			var ad = ads.create(this.getAd());
 			ad.trackerUrl = tracker.connection.getUrl();
 			ad.setImpression(this, config);

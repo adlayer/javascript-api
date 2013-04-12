@@ -1928,6 +1928,7 @@ exports.Swf = Swf;
 	*/
 	BasicSpace.prototype.init = function(tracker, config){
 		if(this.ads && this.ads.length > 0){
+			// Create an ad for space from 'this.ads' array, Selection made by behaviour by default will be random
 			var ad = ads.create(this.getAd());
 			ad.trackerUrl = tracker.connection.getUrl();
 			ad.setImpression(this, config);
@@ -2481,8 +2482,7 @@ exports.Adlayer = Adlayer;
 		this.document;
 		this.tracker;
 		this.adserver;
-		this.spacesCollection = {};
-		this.adsCollection = {};
+		this.ad = {};
 	};
 	
 	/**
@@ -2504,8 +2504,9 @@ exports.Adlayer = Adlayer;
 	*/
 	SpaceApi.prototype.renderSpace = function (space, data){
 		var result = space.init(this.tracker, data);
+		this.element = result.element;
 		if(result.ad){
-			this.adsCollection[result.ad.id] = result.ad;
+			this.ad = result.ad;
 		}
 	};
 
@@ -2523,7 +2524,6 @@ exports.Adlayer = Adlayer;
 				data.document = self.document;
 				var space = spaces.create(data);
 				self.renderSpace(space, {space_id: data._id});
-				self.element = space.element;
 				if(callback){
 					callback.call(space);
 				}
@@ -2748,8 +2748,8 @@ See more at {{#crossLinkModule "ads"}}{{/crossLinkModule}}
 				});
 				
 				// notify the parent api using callback
-				space.init();
-				
+				api.spaces[element.id] = space.init();
+				api.ads[space.ad.id] = space.ad;
 			}
 			
 		});

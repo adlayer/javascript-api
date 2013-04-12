@@ -1928,6 +1928,7 @@ exports.Swf = Swf;
 	*/
 	BasicSpace.prototype.init = function(tracker, config){
 		if(this.ads && this.ads.length > 0){
+			// Create an ad for space from 'this.ads' array, Selection made by behaviour by default will be random
 			var ad = ads.create(this.getAd());
 			ad.trackerUrl = tracker.connection.getUrl();
 			ad.setImpression(this, config);
@@ -2761,10 +2762,10 @@ See more at {{#crossLinkModule "ads"}}{{/crossLinkModule}}
 					adserver: api.adserver,
 					document: document
 				});
+				api.ads[id] = ad;
 
 				ad.init(api.tracker, function(){
 					parent.replaceChild(this.element, document.getElementById(this.id));
-					api.ads[id] = this;
 				});
 			}
 		});

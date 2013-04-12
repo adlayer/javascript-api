@@ -21,8 +21,7 @@
 		this.document;
 		this.tracker;
 		this.adserver;
-		this.spacesCollection = {};
-		this.adsCollection = {};
+		this.ad = {};
 	};
 	
 	/**
@@ -44,8 +43,9 @@
 	*/
 	SpaceApi.prototype.renderSpace = function (space, data){
 		var result = space.init(this.tracker, data);
+		this.element = result.element;
 		if(result.ad){
-			this.adsCollection[result.ad.id] = result.ad;
+			this.ad = result.ad;
 		}
 	};
 
@@ -63,7 +63,6 @@
 				data.document = self.document;
 				var space = spaces.create(data);
 				self.renderSpace(space, {space_id: data._id});
-				self.element = space.element;
 				if(callback){
 					callback.call(space);
 				}

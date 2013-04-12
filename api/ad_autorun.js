@@ -52,10 +52,10 @@
 					adserver: api.adserver,
 					document: document
 				});
+				api.ads[id] = ad;
 
 				ad.init(api.tracker, function(){
 					parent.replaceChild(this.element, document.getElementById(this.id));
-					api.ads[id] = this;
 				});
 			}
 		});
