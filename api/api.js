@@ -4,23 +4,49 @@
 * @module api
 * @main
 * @requires adlayer, config
+* @example
+	window.adlayer || adlayer;
+	
+----------
+## Overview
+The Adlayer Javascript client API provides a library to extend the behaviour of Adlayer integration.
+
+The Adlayer JS API have the following parts:
+
+----------------------
+
+## Configuration
 
 * @example __Access the configs of API__
 
-	adlayer.config
+	adlayer.config;
+
+* @example __Overring default configuration__
+
+Can be useful for create plugins or change options before "api.js" have beeing loaded
+
+	var adlayer = adlayer || {};
+	adlayer.config = adlayer.config || {};
+	adlayer.config.adsPerSpace = 10;
 	
 ---------------------
-	
-* @example __Requesting data from adserver__
+
+## Adserving
+
+* @example __Requesting page data from adserver__
 	
 	adlayer.adserver.pages('838jjkamr87d88930048', {}, function(data){
 		console.log(data);
 	});
 	
+* @example __Requesting spaces data directally from adserver__
+
 	adlayer.adserver.spaces('d88930048838jjkamr87', {}, function(data){
 		console.log(data);
 	});
 	
+* @example __Request ads data using the api__
+
 	adlayer.adserver.ads('33030d88930048838jjkamr87', {}, function(data){
 		console.log(data);
 	});
@@ -29,9 +55,13 @@
 
 ----------------------	
 
-* @example __Tracking Impressions and clicks__
+## Tracking
+
+* @example __Tracking Impressions mannually__
 
 	adlayer.tracker.track('impression', {});
+
+* @example __Tracking clicls__
 
 	adlayer.tracker.track('click', {});
 	
@@ -39,27 +69,39 @@
 
 ----------------------
 
-* @example __Managing rendered creatives ads__
+## Managing Rendered ads
+
+* @example __Emiting an ad placement__
 
 	var ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];
 	ad.emit('placement');
 	
+* @example __Emiting the ad onload event__
+
+	var ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];
+	ad.emit('load');
+	
 ----------------------
 
-* @example __Managing rendered spaces__
+## Handling rendered dom spaces
+
+* @example __Closing spaces__
 
 	var space = adlayer.spaces['jdfndfdjfdsdf0sd0f'];
 	space.close();
 
 ----------------------
 
-* @example __Accesing internal classes__
+## Adlayer API internal Library
+
+* @example __Creating a instance of a Adserver internal Adserver class__
 
 	new adlayer.lib.Adserver();
 
 See more at {{#crossLinkModule "lib"}}{{/crossLinkModule}}	
 	
 ----------------------
+
 * @example __Creating an spaces__
 
 	adlayer.lib.spaces.create({type:'floater'});
@@ -68,19 +110,11 @@ See more at {{#crossLinkModule "lib"}}{{/crossLinkModule}}
 	
 ----------------------
 
-* @example __Creating an ad__
+* @example __Creating ads__
 	
 	adlayer.lib.ads.create({type:'flash'});
 
 See more at {{#crossLinkModule "ads"}}{{/crossLinkModule}}
-
-----------------------
-
-* @example __Overide default options__
-
-	var adlayer = adlayer || {};
-	adlayer.config = adlayer.config || {};
-	adlayer.config.adsPerSpace = 10;
 	
 ----------------------
 */

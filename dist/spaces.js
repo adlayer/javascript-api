@@ -1,15 +1,17 @@
 (function(global){
 
-// Implementation of common.js
-var node_modules = {};
-var module = {};
+// Implementation of common.js 1.1
+if(!module){
+	var node_modules = {};
+	var module = {};
 
-module.exports = {};
-var exports = module.exports;
+	module.exports = {};
+	var exports = module.exports;
 
-var require = function(path){
-	return exports;	
-};
+	var require = function(path){
+		return exports;	
+	};	
+}
 /**
 * @module utils
 * @class Utils
@@ -1451,8 +1453,7 @@ var DomElement = function(){
 		config.type = 'impression';
 		config.ad_id = this.id;
 		
-		config.space_id = space.id;
-		config.space_id || delete config.space_id;
+		config.space_id = space.id || delete config.space_id;
 		
 		config.campaign_id = this.campaign_id;
 		this.impression = config;
@@ -2240,10 +2241,19 @@ exports.config = {
 */
 (function(){
 	/**
-	* High level API to handle with Adlayer Adserver
+	* High level API to handle with Adlayer Adserver.
 	*
+	* This is the offical js client to deal with [Adlayer](http://adlayer.com.br) [Adserver HTTP API](http://github.com/adlayer/adserver-api-docs)
+	*
+	* You have to pass the connection instace with the path to Adserver
 	* @class Adserver
 	* @constructor
+	* @example Creating a instance of Adserver
+	
+		var config = require('config').config;
+		var Connection = require('connection').Connection;
+		var adserver = new Adserver(new Connection(config.url.adserver));
+	*
 	*/
 	var Adserver = function(connection){
 		/**
@@ -2263,6 +2273,12 @@ exports.config = {
 	* @param {Object} query query string to request
 	* @param {Function} callback
 	* @public
+	* @example 
+		adserver.request('ads/:id', {domain: window.location.host}, function(err, data){
+			if(!err){
+			 console.log(data);
+			}
+		});
 	*/
 	Adserver.prototype.request = function(path, query, callback){
 		var sign = this.connection.newId();
@@ -2281,6 +2297,12 @@ exports.config = {
 	* @param {Object} query query string to request
 	* @param {Function} callback
 	* @public
+	* @example 
+		adserver.pages(':id', {domain: window.location.host}, function(err, data){
+			if(!err){
+			 console.log(data);
+			}
+		});
 	*/
 	Adserver.prototype.pages = function(id, query, callback){
 		this.request('/pages/' + id, query, callback);
@@ -2292,6 +2314,12 @@ exports.config = {
 	* @param {Object} query query string to request
 	* @param {Function} callback
 	* @public
+	* @example 
+		adserver.ads(':id', {domain: window.location.host}, function(err, data){
+			if(!err){
+			 console.log(data);
+			}
+		});
 	*/
 	Adserver.prototype.ads = function(id, query, callback){
 		this.request('/ads/' + id, query, callback);
@@ -2304,6 +2332,13 @@ exports.config = {
 	* @param {Object} query query string to request
 	* @param {Function} callback
 	* @public
+	* @example 
+		var adserver = new Adserver(new Connection());
+		adserver.spaces(':id', {domain: window.location.host}, function(err, data){
+			if(!err){
+			 console.log(data);
+			}
+		});
 	*/
 	Adserver.prototype.spaces = function(id, query, callback){
 		this.request('/spaces/' + id, query, callback);
@@ -2373,6 +2408,10 @@ var Adlayer = function(api){
 	*
 	* @property tracker
 	* @type object
+	* @example
+		var adlayer = new Adlayer();
+		var tracker = adlayer.tracker;
+		tracker.track({type:'impressions', campaign_id: 'jdskdkskdsds', 'ad_id': 'kfvodfvfdvdi'});
 	*/
 	this.tracker = api.tracker || {};
 	
@@ -2383,6 +2422,10 @@ var Adlayer = function(api){
 	* @property spaces
 	* @default object
 	* @type object
+	* @example
+		var adlayer = new Adlayer();
+		var space = adlayer.spaces['kdkfsfd0fsf000'];
+		space.close();
 	*/
 	this.spaces = api.spaces || {};
 	
@@ -2394,7 +2437,8 @@ var Adlayer = function(api){
 	* @property ads
 	* @default object
 	* @type object
-	* @example 
+	* @example
+		var adlayer = new Adlayer();
 		var ad = adlayer.ads['mfkvfmvkdfvdf84848484'];
 		ad.emit('load');
 	*/
@@ -2501,13 +2545,16 @@ exports.Adlayer = Adlayer;
 	* @param {Object} space Instance of Space Class to find and render in DOM
 	* @param {Object} data Data of current view to track events
 	* @public
+	* @return this
 	*/
 	SpaceApi.prototype.renderSpace = function (space, data){
 		var result = space.init(this.tracker, data);
 		this.element = result.element;
+		
 		if(result.ad){
 			this.ad = result.ad;
 		}
+		return this;
 	};
 
 	/**
@@ -2523,7 +2570,7 @@ exports.Adlayer = Adlayer;
 			if(!err && data){
 				data.document = self.document;
 				var space = spaces.create(data);
-				self.renderSpace(space, {space_id: data._id});
+				space = self.renderSpace(space, {space_id: data._id});
 				if(callback){
 					callback.call(space);
 				}
@@ -2540,23 +2587,49 @@ exports.Adlayer = Adlayer;
 * @module api
 * @main
 * @requires adlayer, config
+* @example
+	window.adlayer || adlayer;
+	
+----------
+## Overview
+The Adlayer Javascript client API provides a library to extend the behaviour of Adlayer integration.
+
+The Adlayer JS API have the following parts:
+
+----------------------
+
+## Configuration
 
 * @example __Access the configs of API__
 
-	adlayer.config
+	adlayer.config;
+
+* @example __Overring default configuration__
+
+Can be useful for create plugins or change options before "api.js" have beeing loaded
+
+	var adlayer = adlayer || {};
+	adlayer.config = adlayer.config || {};
+	adlayer.config.adsPerSpace = 10;
 	
 ---------------------
-	
-* @example __Requesting data from adserver__
+
+## Adserving
+
+* @example __Requesting page data from adserver__
 	
 	adlayer.adserver.pages('838jjkamr87d88930048', {}, function(data){
 		console.log(data);
 	});
 	
+* @example __Requesting spaces data directally from adserver__
+
 	adlayer.adserver.spaces('d88930048838jjkamr87', {}, function(data){
 		console.log(data);
 	});
 	
+* @example __Request ads data using the api__
+
 	adlayer.adserver.ads('33030d88930048838jjkamr87', {}, function(data){
 		console.log(data);
 	});
@@ -2565,9 +2638,13 @@ exports.Adlayer = Adlayer;
 
 ----------------------	
 
-* @example __Tracking Impressions and clicks__
+## Tracking
+
+* @example __Tracking Impressions mannually__
 
 	adlayer.tracker.track('impression', {});
+
+* @example __Tracking clicls__
 
 	adlayer.tracker.track('click', {});
 	
@@ -2575,27 +2652,39 @@ exports.Adlayer = Adlayer;
 
 ----------------------
 
-* @example __Managing rendered creatives ads__
+## Managing Rendered ads
+
+* @example __Emiting an ad placement__
 
 	var ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];
 	ad.emit('placement');
 	
+* @example __Emiting the ad onload event__
+
+	var ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];
+	ad.emit('load');
+	
 ----------------------
 
-* @example __Managing rendered spaces__
+## Handling rendered dom spaces
+
+* @example __Closing spaces__
 
 	var space = adlayer.spaces['jdfndfdjfdsdf0sd0f'];
 	space.close();
 
 ----------------------
 
-* @example __Accesing internal classes__
+## Adlayer API internal Library
+
+* @example __Creating a instance of a Adserver internal Adserver class__
 
 	new adlayer.lib.Adserver();
 
 See more at {{#crossLinkModule "lib"}}{{/crossLinkModule}}	
 	
 ----------------------
+
 * @example __Creating an spaces__
 
 	adlayer.lib.spaces.create({type:'floater'});
@@ -2604,19 +2693,11 @@ See more at {{#crossLinkModule "lib"}}{{/crossLinkModule}}
 	
 ----------------------
 
-* @example __Creating an ad__
+* @example __Creating ads__
 	
 	adlayer.lib.ads.create({type:'flash'});
 
 See more at {{#crossLinkModule "ads"}}{{/crossLinkModule}}
-
-----------------------
-
-* @example __Overide default options__
-
-	var adlayer = adlayer || {};
-	adlayer.config = adlayer.config || {};
-	adlayer.config.adsPerSpace = 10;
 	
 ----------------------
 */
@@ -2748,8 +2829,9 @@ See more at {{#crossLinkModule "ads"}}{{/crossLinkModule}}
 				});
 				
 				// notify the parent api using callback
-				api.spaces[element.id] = space.init();
-				api.ads[space.ad.id] = space.ad;
+				api.spaces[element.id] = space.init(function(){
+					api.ads[this.ad.id] = this.ad;
+				});	
 			}
 			
 		});

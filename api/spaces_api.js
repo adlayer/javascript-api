@@ -40,13 +40,16 @@
 	* @param {Object} space Instance of Space Class to find and render in DOM
 	* @param {Object} data Data of current view to track events
 	* @public
+	* @return this
 	*/
 	SpaceApi.prototype.renderSpace = function (space, data){
 		var result = space.init(this.tracker, data);
 		this.element = result.element;
+		
 		if(result.ad){
 			this.ad = result.ad;
 		}
+		return this;
 	};
 
 	/**
@@ -62,7 +65,7 @@
 			if(!err && data){
 				data.document = self.document;
 				var space = spaces.create(data);
-				self.renderSpace(space, {space_id: data._id});
+				space = self.renderSpace(space, {space_id: data._id});
 				if(callback){
 					callback.call(space);
 				}

@@ -60,6 +60,10 @@ var Adlayer = function(api){
 	*
 	* @property tracker
 	* @type object
+	* @example
+		var adlayer = new Adlayer();
+		var tracker = adlayer.tracker;
+		tracker.track({type:'impressions', campaign_id: 'jdskdkskdsds', 'ad_id': 'kfvodfvfdvdi'});
 	*/
 	this.tracker = api.tracker || {};
 	
@@ -70,6 +74,10 @@ var Adlayer = function(api){
 	* @property spaces
 	* @default object
 	* @type object
+	* @example
+		var adlayer = new Adlayer();
+		var space = adlayer.spaces['kdkfsfd0fsf000'];
+		space.close();
 	*/
 	this.spaces = api.spaces || {};
 	
@@ -81,7 +89,8 @@ var Adlayer = function(api){
 	* @property ads
 	* @default object
 	* @type object
-	* @example 
+	* @example
+		var adlayer = new Adlayer();
 		var ad = adlayer.ads['mfkvfmvkdfvdf84848484'];
 		ad.emit('load');
 	*/
