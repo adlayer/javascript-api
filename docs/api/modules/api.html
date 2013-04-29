@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>api - adlayer-js-api</title>
+    <link rel="stylesheet" href="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;3.8.0&#x2F;build&#x2F;cssgrids&#x2F;cssgrids-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/vendor/prettify/prettify-min.css">
+    <link rel="stylesheet" href="..&#x2F;assets/css/main.css" id="site_styles">
+    <link rel="shortcut icon" type="image/png" href="..&#x2F;assets/favicon.png">
+    <script src="http:&#x2F;&#x2F;yui.yahooapis.com&#x2F;combo?3.8.0&#x2F;build&#x2F;yui&#x2F;yui-min.js"></script>
+</head>
+<body class="yui3-skin-sam">
+
+<div id="doc">
+    <div id="hd" class="yui3-g header">
+        <div class="yui3-u-3-4">
+            
+                <h1><img src="http:&#x2F;&#x2F;adlayer.com.br&#x2F;img&#x2F;logo.png" title="adlayer-js-api"></h1>
+            
+        </div>
+        <div class="yui3-u-1-4 version">
+            <em>API Docs for: 1.5.3</em>
+        </div>
+    </div>
+    <div id="bd" class="yui3-g">
+
+        <div class="yui3-u-1-4">
+            <div id="docs-sidebar" class="sidebar apidocs">
+                <div id="api-list">
+    <h2 class="off-left">APIs</h2>
+    <div id="api-tabview" class="tabview">
+        <ul class="tabs">
+            <li><a href="#api-classes">Classes</a></li>
+            <li><a href="#api-modules">Modules</a></li>
+        </ul>
+
+        <div id="api-tabview-filter">
+            <input type="search" id="api-filter" placeholder="Type to filter APIs">
+        </div>
+
+        <div id="api-tabview-panel">
+            <ul id="api-classes" class="apis classes">
+            
+                <li><a href="..&#x2F;classes/Ad.html">Ad</a></li>
+            
+                <li><a href="..&#x2F;classes/AdApi.html">AdApi</a></li>
+            
+                <li><a href="..&#x2F;classes/AdDom.html">AdDom</a></li>
+            
+                <li><a href="..&#x2F;classes/Adlayer.html">Adlayer</a></li>
+            
+                <li><a href="..&#x2F;classes/Adserver.html">Adserver</a></li>
+            
+                <li><a href="..&#x2F;classes/BasicSpace.html">BasicSpace</a></li>
+            
+                <li><a href="..&#x2F;classes/Connection.html">Connection</a></li>
+            
+                <li><a href="..&#x2F;classes/Core.html">Core</a></li>
+            
+                <li><a href="..&#x2F;classes/DomElement.html">DomElement</a></li>
+            
+                <li><a href="..&#x2F;classes/EmbedAd.html">EmbedAd</a></li>
+            
+                <li><a href="..&#x2F;classes/Event.html">Event</a></li>
+            
+                <li><a href="..&#x2F;classes/ExpandableSpace.html">ExpandableSpace</a></li>
+            
+                <li><a href="..&#x2F;classes/FlashAd.html">FlashAd</a></li>
+            
+                <li><a href="..&#x2F;classes/FloaterSpace.html">FloaterSpace</a></li>
+            
+                <li><a href="..&#x2F;classes/Http.html">Http</a></li>
+            
+                <li><a href="..&#x2F;classes/HttpRequest.html">HttpRequest</a></li>
+            
+                <li><a href="..&#x2F;classes/ImgAd.html">ImgAd</a></li>
+            
+                <li><a href="..&#x2F;classes/ImgRequest.html">ImgRequest</a></li>
+            
+                <li><a href="..&#x2F;classes/ISpaceBehaviour.html">ISpaceBehaviour</a></li>
+            
+                <li><a href="..&#x2F;classes/JsonpRequest.html">JsonpRequest</a></li>
+            
+                <li><a href="..&#x2F;classes/ObjectAd.html">ObjectAd</a></li>
+            
+                <li><a href="..&#x2F;classes/Page.html">Page</a></li>
+            
+                <li><a href="..&#x2F;classes/PageApi.html">PageApi</a></li>
+            
+                <li><a href="..&#x2F;classes/Param.html">Param</a></li>
+            
+                <li><a href="..&#x2F;classes/RandomBehaviour.html">RandomBehaviour</a></li>
+            
+                <li><a href="..&#x2F;classes/Site.html">Site</a></li>
+            
+                <li><a href="..&#x2F;classes/Space.html">Space</a></li>
+            
+                <li><a href="..&#x2F;classes/SpaceApi.html">SpaceApi</a></li>
+            
+                <li><a href="..&#x2F;classes/SpaceDom.html">SpaceDom</a></li>
+            
+                <li><a href="..&#x2F;classes/StaticSpace.html">StaticSpace</a></li>
+            
+                <li><a href="..&#x2F;classes/Swf.html">Swf</a></li>
+            
+                <li><a href="..&#x2F;classes/Tracker.html">Tracker</a></li>
+            
+                <li><a href="..&#x2F;classes/Utils.html">Utils</a></li>
+            
+            </ul>
+
+            <ul id="api-modules" class="apis modules">
+            
+                <li><a href="..&#x2F;modules/ads.html">ads</a></li>
+            
+                <li><a href="..&#x2F;modules/adserver.html">adserver</a></li>
+            
+                <li><a href="..&#x2F;modules/api.html">api</a></li>
+            
+                <li><a href="..&#x2F;modules/config.html">config</a></li>
+            
+                <li><a href="..&#x2F;modules/connections.html">connections</a></li>
+            
+                <li><a href="..&#x2F;modules/core.html">core</a></li>
+            
+                <li><a href="..&#x2F;modules/dom.html">dom</a></li>
+            
+                <li><a href="..&#x2F;modules/lib.html">lib</a></li>
+            
+                <li><a href="..&#x2F;modules/page.html">page</a></li>
+            
+                <li><a href="..&#x2F;modules/request.html">request</a></li>
+            
+                <li><a href="..&#x2F;modules/spaces.html">spaces</a></li>
+            
+                <li><a href="..&#x2F;modules/spaces-spaces.html">spaces-spaces</a></li>
+            
+                <li><a href="..&#x2F;modules/tracker.html">tracker</a></li>
+            
+                <li><a href="..&#x2F;modules/utils.html">utils</a></li>
+            
+                <li><a href="..&#x2F;modules/widgets.html">widgets</a></li>
+            
+            </ul>
+        </div>
+    </div>
+</div>
+
+            </div>
+        </div>
+        <div class="yui3-u-3-4">
+                <div id="api-options">
+        Show:
+        <label for="api-show-inherited">
+            <input type="checkbox" id="api-show-inherited" checked>
+            Inherited
+        </label>
+
+        <label for="api-show-protected">
+            <input type="checkbox" id="api-show-protected">
+            Protected
+        </label>
+
+        <label for="api-show-private">
+            <input type="checkbox" id="api-show-private">
+            Private
+        </label>
+        <label for="api-show-deprecated">
+            <input type="checkbox" id="api-show-deprecated">
+            Deprecated
+        </label>
+
+    </div>
+
+
+            <div class="apidocs">
+                <div id="docs-main">
+                    <div class="content">
+                        <h1>api Module</h1>
+<div class="box clearfix meta">
+    
+
+    
+        <div class="uses">
+            Requires
+            <ul class="inline commas">
+                
+                    <li>Events</li>
+                
+                    <li><a href="../modules/dom.html">dom</a></li>
+                
+                    <li><a href="../modules/ads.html">ads</a></li>
+                
+                    <li><a href="../modules/request.html">request</a></li>
+                
+                    <li><a href="../modules/spaces.html">spaces</a></li>
+                
+            </ul>
+        </div>
+    
+
+    
+        <div class="foundat">
+            Defined in: <a href="..&#x2F;files&#x2F;api_tracker.js.html#l8"><code>api&#x2F;tracker.js:8</code></a>
+        </div>
+    
+
+    
+</div>
+
+
+
+<div class="box intro">
+    
+</div>
+
+
+    <div class="example">
+        <h4>Example:</h4>
+        <div class="example-content">
+            <pre class="code prettyprint"><code>window.adlayer || adlayer;
+</code></pre>
+
+<hr />
+
+<h2>Overview</h2>
+
+<p>The Adlayer Javascript client API provides a library to extend the behaviour of Adlayer integration.</p>
+
+<p>The Adlayer JS API have the following parts:</p>
+
+<hr />
+
+<h2>Configuration</h2><p><strong>Access the configs of API</strong></p>
+
+<pre class="code prettyprint"><code>adlayer.config;
+</code></pre><p><strong>Overring default configuration</strong></p>
+
+<p>Can be useful for create plugins or change options before "api.js" have beeing loaded</p>
+
+<pre class="code prettyprint"><code>var adlayer = adlayer || {};
+adlayer.config = adlayer.config || {};
+adlayer.config.adsPerSpace = 10;
+</code></pre>
+
+<hr />
+
+<h2>Adserving</h2><p><strong>Requesting page data from adserver</strong></p>
+
+<pre class="code prettyprint"><code>adlayer.adserver.pages('838jjkamr87d88930048', {}, function(data){
+    console.log(data);
+});
+</code></pre><p><strong>Requesting spaces data directally from adserver</strong></p>
+
+<pre class="code prettyprint"><code>adlayer.adserver.spaces('d88930048838jjkamr87', {}, function(data){
+    console.log(data);
+});
+</code></pre><p><strong>Request ads data using the api</strong></p>
+
+<pre class="code prettyprint"><code>adlayer.adserver.ads('33030d88930048838jjkamr87', {}, function(data){
+    console.log(data);
+});
+</code></pre>
+
+<p>see more at <a href="../classes/Adserver.html" class="crosslink">Adserver</a></p>
+
+<hr />
+
+<h2>Tracking</h2><p><strong>Tracking Impressions mannually</strong></p>
+
+<pre class="code prettyprint"><code>adlayer.tracker.track('impression', {});
+</code></pre><p><strong>Tracking clicls</strong></p>
+
+<pre class="code prettyprint"><code>adlayer.tracker.track('click', {});
+</code></pre>
+
+<p>see more at <a href="../classes/Tracker.html" class="crosslink">Tracker</a></p>
+
+<hr />
+
+<h2>Managing Rendered ads</h2><p><strong>Emiting an ad placement</strong></p>
+
+<pre class="code prettyprint"><code>var ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];
+ad.emit('placement');
+</code></pre><p><strong>Emiting the ad onload event</strong></p>
+
+<pre class="code prettyprint"><code>var ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];
+ad.emit('load');
+</code></pre>
+
+<hr />
+
+<h2>Handling rendered dom spaces</h2><p><strong>Closing spaces</strong></p>
+
+<pre class="code prettyprint"><code>var space = adlayer.spaces['jdfndfdjfdsdf0sd0f'];
+space.close();
+</code></pre>
+
+<hr />
+
+<h2>Adlayer API internal Library</h2><p><strong>Creating a instance of a Adserver internal Adserver class</strong></p>
+
+<pre class="code prettyprint"><code>new adlayer.lib.Adserver();
+</code></pre>
+
+<p>See more at <a href="../modules/lib.html">lib</a>    </p>
+
+<hr /><p><strong>Creating an spaces</strong></p>
+
+<pre class="code prettyprint"><code>adlayer.lib.spaces.create({type:'floater'});
+</code></pre>
+
+<p>See more at <a href="../modules/spaces.html">spaces</a></p>
+
+<hr /><p><strong>Creating ads</strong></p>
+
+<pre class="code prettyprint"><code>adlayer.lib.ads.create({type:'flash'});
+</code></pre>
+
+<p>See more at <a href="../modules/ads.html">ads</a></p>
+
+<hr />
+        </div>
+    </div>
+
+
+<div class="yui3-g">
+    <div class="yui3-u-1-2">
+        
+            <p>This module provides the following classes:</p>
+
+            <ul class="module-classes">
+            
+                <li class="module-class">
+                    <a href="..&#x2F;classes/AdApi.html">
+                        AdApi
+                    </a>
+                </li>
+            
+                <li class="module-class">
+                    <a href="..&#x2F;classes/Adlayer.html">
+                        Adlayer
+                    </a>
+                </li>
+            
+                <li class="module-class">
+                    <a href="..&#x2F;classes/Adserver.html">
+                        Adserver
+                    </a>
+                </li>
+            
+                <li class="module-class">
+                    <a href="..&#x2F;classes/PageApi.html">
+                        PageApi
+                    </a>
+                </li>
+            
+                <li class="module-class">
+                    <a href="..&#x2F;classes/SpaceApi.html">
+                        SpaceApi
+                    </a>
+                </li>
+            
+                <li class="module-class">
+                    <a href="..&#x2F;classes/Tracker.html">
+                        Tracker
+                    </a>
+                </li>
+            
+            </ul>
+        
+    </div>
+
+    <div class="yui3-u-1-2">
+        
+            <p>This module is a rollup of the following modules:</p>
+
+            <ul class="module-submodules">
+            
+                <li class="module-submodule">
+                    <a href="..&#x2F;modules/ads.html">
+                        ads
+                    </a>
+
+                    <div class="module-submodule-description">
+                        
+                    </div>
+                </li>
+            
+                <li class="module-submodule">
+                    <a href="..&#x2F;modules/adserver.html">
+                        adserver
+                    </a>
+
+                    <div class="module-submodule-description">
+                        Handle adserver connections
+                    </div>
+                </li>
+            
+                <li class="module-submodule">
+                    <a href="..&#x2F;modules/config.html">
+                        config
+                    </a>
+
+                    <div class="module-submodule-description">
+                        All configuration for adlayer api
+                    </div>
+                </li>
+            
+                <li class="module-submodule">
+                    <a href="..&#x2F;modules/connections.html">
+                        connections
+                    </a>
+
+                    <div class="module-submodule-description">
+                        
+                    </div>
+                </li>
+            
+                <li class="module-submodule">
+                    <a href="..&#x2F;modules/lib.html">
+                        lib
+                    </a>
+
+                    <div class="module-submodule-description">
+                        Shortcut for all internal classes
+                    </div>
+                </li>
+            
+                <li class="module-submodule">
+                    <a href="..&#x2F;modules/page.html">
+                        page
+                    </a>
+
+                    <div class="module-submodule-description">
+                        A reference for the current rendered page
+Also stores references for spaces and ads rendered on the page
+                    </div>
+                </li>
+            
+                <li class="module-submodule">
+                    <a href="..&#x2F;modules/spaces.html">
+                        spaces
+                    </a>
+
+                    <div class="module-submodule-description">
+                        
+                    </div>
+                </li>
+            
+                <li class="module-submodule">
+                    <a href="..&#x2F;modules/tracker.html">
+                        tracker
+                    </a>
+
+                    <div class="module-submodule-description">
+                        Handle tracker operations
+                    </div>
+                </li>
+            
+            </ul>
+        
+    </div>
+</div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="..&#x2F;assets/vendor/prettify/prettify-min.js"></script>
+<script>prettyPrint();</script>
+<script src="..&#x2F;assets/js/yui-prettify.js"></script>
+<script src="..&#x2F;assets/../api.js"></script>
+<script src="..&#x2F;assets/js/api-filter.js"></script>
+<script src="..&#x2F;assets/js/api-list.js"></script>
+<script src="..&#x2F;assets/js/api-search.js"></script>
+<script src="..&#x2F;assets/js/apidocs.js"></script>
+</body>
+</html>

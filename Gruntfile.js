@@ -150,7 +150,7 @@ module.exports = function(grunt) {
 		  	  logo: 'http://adlayer.com.br/img/logo.png',
 		      options: {
 		        paths: ['api', 'lib/src'],
-		        outdir: 'api_docs'
+		        outdir: 'docs/api'
 		      }
 		    }
 		  }

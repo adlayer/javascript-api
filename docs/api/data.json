@@ -1,0 +1,3626 @@
+{
+    "project": {
+        "name": "adlayer-js-api",
+        "description": "Adlayer javascript api",
+        "version": "1.5.3",
+        "url": "",
+        "logo": "http://adlayer.com.br/img/logo.png"
+    },
+    "files": {
+        "api/ad_api.js": {
+            "name": "api/ad_api.js",
+            "modules": {},
+            "classes": {
+                "AdApi": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "api/ad_autorun.js": {
+            "name": "api/ad_autorun.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "api/adlayer.js": {
+            "name": "api/adlayer.js",
+            "modules": {},
+            "classes": {
+                "Adlayer": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "api/adserver.js": {
+            "name": "api/adserver.js",
+            "modules": {},
+            "classes": {
+                "Adserver": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "api/api.js": {
+            "name": "api/api.js",
+            "modules": {
+                "page": 1,
+                "config": 1,
+                "adserver": 1,
+                "tracker": 1,
+                "lib": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "api/config.js": {
+            "name": "api/config.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "api/page_api.js": {
+            "name": "api/page_api.js",
+            "modules": {},
+            "classes": {
+                "PageApi": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "api/page_autorun.js": {
+            "name": "api/page_autorun.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "api/spaces_api.js": {
+            "name": "api/spaces_api.js",
+            "modules": {},
+            "classes": {
+                "SpaceApi": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "api/spaces_autorun.js": {
+            "name": "api/spaces_autorun.js",
+            "modules": {
+                "widgets": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "api/tracker.js": {
+            "name": "api/tracker.js",
+            "modules": {
+                "api": 1
+            },
+            "classes": {
+                "Tracker": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/ads/ads.js": {
+            "name": "lib/src/ads/ads.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/ads/embed_ad.js": {
+            "name": "lib/src/ads/embed_ad.js",
+            "modules": {
+                "ads": 1
+            },
+            "classes": {
+                "EmbedAd": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/ads/flash_ad.js": {
+            "name": "lib/src/ads/flash_ad.js",
+            "modules": {},
+            "classes": {
+                "FlashAd": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/ads/img_ad.js": {
+            "name": "lib/src/ads/img_ad.js",
+            "modules": {},
+            "classes": {
+                "ImgAd": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/ads/object_ad.js": {
+            "name": "lib/src/ads/object_ad.js",
+            "modules": {},
+            "classes": {
+                "ObjectAd": 1,
+                "Param": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/ads/swf.js": {
+            "name": "lib/src/ads/swf.js",
+            "modules": {},
+            "classes": {
+                "Swf": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/connection/connection.js": {
+            "name": "lib/src/connection/connection.js",
+            "modules": {
+                "connections": 1
+            },
+            "classes": {
+                "Connection": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/dom/ad_dom.js": {
+            "name": "lib/src/dom/ad_dom.js",
+            "modules": {
+                "dom": 1
+            },
+            "classes": {
+                "AdDom": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/dom/dom_element.js": {
+            "name": "lib/src/dom/dom_element.js",
+            "modules": {},
+            "classes": {
+                "DomElement": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/dom/space_dom.js": {
+            "name": "lib/src/dom/space_dom.js",
+            "modules": {},
+            "classes": {
+                "SpaceDom": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/domain/ad.js": {
+            "name": "lib/src/domain/ad.js",
+            "modules": {
+                "core": 1
+            },
+            "classes": {
+                "Ad": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/domain/core.js": {
+            "name": "lib/src/domain/core.js",
+            "modules": {},
+            "classes": {
+                "Core": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/domain/event.js": {
+            "name": "lib/src/domain/event.js",
+            "modules": {},
+            "classes": {
+                "Event": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/domain/page.js": {
+            "name": "lib/src/domain/page.js",
+            "modules": {},
+            "classes": {
+                "Page": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/domain/site.js": {
+            "name": "lib/src/domain/site.js",
+            "modules": {},
+            "classes": {
+                "Site": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/domain/space.js": {
+            "name": "lib/src/domain/space.js",
+            "modules": {},
+            "classes": {
+                "ISpaceBehaviour": 1,
+                "RandomBehaviour": 1,
+                "Space": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/request/http.js": {
+            "name": "lib/src/request/http.js",
+            "modules": {
+                "request": 1
+            },
+            "classes": {
+                "Http": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/request/http_request.js": {
+            "name": "lib/src/request/http_request.js",
+            "modules": {},
+            "classes": {
+                "HttpRequest": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/request/img_request.js": {
+            "name": "lib/src/request/img_request.js",
+            "modules": {},
+            "classes": {
+                "ImgRequest": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/request/jsonp_request.js": {
+            "name": "lib/src/request/jsonp_request.js",
+            "modules": {},
+            "classes": {
+                "JsonpRequest": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/request/request.js": {
+            "name": "lib/src/request/request.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/spaces/basic_space.js": {
+            "name": "lib/src/spaces/basic_space.js",
+            "modules": {},
+            "classes": {
+                "BasicSpace": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/spaces/expandable_space.js": {
+            "name": "lib/src/spaces/expandable_space.js",
+            "modules": {},
+            "classes": {
+                "ExpandableSpace": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/spaces/floater_space.js": {
+            "name": "lib/src/spaces/floater_space.js",
+            "modules": {},
+            "classes": {
+                "FloaterSpace": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/spaces/spaces.js": {
+            "name": "lib/src/spaces/spaces.js",
+            "modules": {
+                "spaces-spaces": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/spaces/static_space.js": {
+            "name": "lib/src/spaces/static_space.js",
+            "modules": {
+                "spaces": 1
+            },
+            "classes": {
+                "StaticSpace": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/utils/contentloaded.js": {
+            "name": "lib/src/utils/contentloaded.js",
+            "modules": {
+                "utils": 1
+            },
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/utils/copy.js": {
+            "name": "lib/src/utils/copy.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/utils/loadscript.js": {
+            "name": "lib/src/utils/loadscript.js",
+            "modules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {}
+        },
+        "lib/src/utils/merge.js": {
+            "name": "lib/src/utils/merge.js",
+            "modules": {},
+            "classes": {
+                "Utils": 1
+            },
+            "fors": {},
+            "namespaces": {}
+        }
+    },
+    "modules": {
+        "api": {
+            "name": "api",
+            "submodules": {
+                "page": 1,
+                "config": 1,
+                "connections": 1,
+                "adserver": 1,
+                "tracker": 1,
+                "spaces": 1,
+                "ads": 1,
+                "lib": 1
+            },
+            "classes": {
+                "AdApi": 1,
+                "Adlayer": 1,
+                "Adserver": 1,
+                "PageApi": 1,
+                "SpaceApi": 1,
+                "Tracker": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "api/tracker.js",
+            "line": 8,
+            "requires": [
+                "Events",
+                "dom",
+                "ads",
+                "request",
+                "spaces"
+            ],
+            "itemtype": "main",
+            "example": [
+                "\n\twindow.adlayer || adlayer;\n\t\n----------\n## Overview\nThe Adlayer Javascript client API provides a library to extend the behaviour of Adlayer integration.\n\nThe Adlayer JS API have the following parts:\n\n----------------------\n\n## Configuration",
+                " __Access the configs of API__\n\n\tadlayer.config;",
+                " __Overring default configuration__\n\nCan be useful for create plugins or change options before \"api.js\" have beeing loaded\n\n\tvar adlayer = adlayer || {};\n\tadlayer.config = adlayer.config || {};\n\tadlayer.config.adsPerSpace = 10;\n\t\n---------------------\n\n## Adserving",
+                " __Requesting page data from adserver__\n\t\n\tadlayer.adserver.pages('838jjkamr87d88930048', {}, function(data){\n\t\tconsole.log(data);\n\t});",
+                " __Requesting spaces data directally from adserver__\n\n\tadlayer.adserver.spaces('d88930048838jjkamr87', {}, function(data){\n\t\tconsole.log(data);\n\t});",
+                " __Request ads data using the api__\n\n\tadlayer.adserver.ads('33030d88930048838jjkamr87', {}, function(data){\n\t\tconsole.log(data);\n\t});\n\nsee more at {{#crossLink \"Adserver\"}}{{/crossLink}}\n\n----------------------\t\n\n## Tracking",
+                " __Tracking Impressions mannually__\n\n\tadlayer.tracker.track('impression', {});",
+                " __Tracking clicls__\n\n\tadlayer.tracker.track('click', {});\n\t\nsee more at {{#crossLink \"Tracker\"}}{{/crossLink}}\n\n----------------------\n\n## Managing Rendered ads",
+                " __Emiting an ad placement__\n\n\tvar ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];\n\tad.emit('placement');",
+                " __Emiting the ad onload event__\n\n\tvar ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];\n\tad.emit('load');\n\t\n----------------------\n\n## Handling rendered dom spaces",
+                " __Closing spaces__\n\n\tvar space = adlayer.spaces['jdfndfdjfdsdf0sd0f'];\n\tspace.close();\n\n----------------------\n\n## Adlayer API internal Library",
+                " __Creating a instance of a Adserver internal Adserver class__\n\n\tnew adlayer.lib.Adserver();\n\nSee more at {{#crossLinkModule \"lib\"}}{{/crossLinkModule}}\t\n\t\n----------------------",
+                " __Creating an spaces__\n\n\tadlayer.lib.spaces.create({type:'floater'});\n\t\nSee more at {{#crossLinkModule \"spaces\"}}{{/crossLinkModule}}\n\t\n----------------------",
+                " __Creating ads__\n\t\n\tadlayer.lib.ads.create({type:'flash'});\n\nSee more at {{#crossLinkModule \"ads\"}}{{/crossLinkModule}}\n\t\n----------------------"
+            ],
+            "require": "events, core, request, spaces"
+        },
+        "widgets": {
+            "name": "widgets",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "api/spaces_autorun.js",
+            "line": 1
+        },
+        "page": {
+            "name": "page",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "api",
+            "namespace": "",
+            "file": "api/api.js",
+            "line": 135,
+            "description": "A reference for the current rendered page\nAlso stores references for spaces and ads rendered on the page"
+        },
+        "config": {
+            "name": "config",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "api",
+            "namespace": "",
+            "file": "api/api.js",
+            "line": 143,
+            "description": "All configuration for adlayer api"
+        },
+        "connections": {
+            "name": "connections",
+            "submodules": {},
+            "classes": {
+                "Connection": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "api",
+            "namespace": "",
+            "file": "lib/src/connection/connection.js",
+            "line": 6,
+            "tag": "module",
+            "requires": [
+                "request"
+            ]
+        },
+        "adserver": {
+            "name": "adserver",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "api",
+            "namespace": "",
+            "file": "api/api.js",
+            "line": 155,
+            "description": "Handle adserver connections"
+        },
+        "tracker": {
+            "name": "tracker",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "api",
+            "namespace": "",
+            "file": "api/api.js",
+            "line": 162,
+            "description": "Handle tracker operations"
+        },
+        "spaces": {
+            "name": "spaces",
+            "submodules": {
+                "spaces-spaces": 1
+            },
+            "classes": {
+                "BasicSpace": 1,
+                "ExpandableSpace": 1,
+                "FloaterSpace": 1,
+                "StaticSpace": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "api",
+            "namespace": "",
+            "file": "lib/src/spaces/static_space.js",
+            "line": 7,
+            "example": [
+                "\n\t\tconsole.log(window.adlayer.spaces);"
+            ],
+            "tag": "module",
+            "requires": [
+                "dom",
+                "ads"
+            ]
+        },
+        "ads": {
+            "name": "ads",
+            "submodules": {},
+            "classes": {
+                "EmbedAd": 1,
+                "FlashAd": 1,
+                "ImgAd": 1,
+                "ObjectAd": 1,
+                "Param": 1,
+                "Swf": 1
+            },
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "api",
+            "namespace": "",
+            "file": "lib/src/ads/swf.js",
+            "line": 6,
+            "tag": "module",
+            "itemtype": "main",
+            "example": [
+                "\n\tvar ads = require('./src/ads/ads').ads;\n\tads.create({type: 'flash'});"
+            ],
+            "requires": [
+                "dom"
+            ]
+        },
+        "lib": {
+            "name": "lib",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "api",
+            "namespace": "",
+            "file": "api/api.js",
+            "line": 191,
+            "description": "Shortcut for all internal classes"
+        },
+        "dom": {
+            "name": "dom",
+            "submodules": {},
+            "classes": {
+                "AdDom": 1,
+                "DomElement": 1,
+                "SpaceDom": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "lib/src/dom/space_dom.js",
+            "line": 11,
+            "requires": [
+                "core",
+                "events"
+            ]
+        },
+        "core": {
+            "name": "core",
+            "submodules": {},
+            "classes": {
+                "Ad": 1,
+                "Core": 1,
+                "Event": 1,
+                "Page": 1,
+                "Site": 1,
+                "ISpaceBehaviour": 1,
+                "RandomBehaviour": 1,
+                "Space": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "lib/src/domain/space.js",
+            "line": 39,
+            "requires": [
+                "events"
+            ]
+        },
+        "request": {
+            "name": "request",
+            "submodules": {},
+            "classes": {
+                "Http": 1,
+                "HttpRequest": 1,
+                "ImgRequest": 1,
+                "JsonpRequest": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "lib/src/request/jsonp_request.js",
+            "line": 5,
+            "requires": [
+                "core",
+                "utils"
+            ]
+        },
+        "spaces-spaces": {
+            "name": "spaces-spaces",
+            "submodules": {},
+            "classes": {},
+            "fors": {},
+            "is_submodule": 1,
+            "namespaces": {},
+            "module": "spaces",
+            "namespace": "",
+            "file": "lib/src/spaces/spaces.js",
+            "line": 1,
+            "description": "Handle all suported advertising spaces (Floater, Expandable and Static)",
+            "tag": "main",
+            "itemtype": "main",
+            "example": [
+                "\n\tspaces.spaces.create({type:'floater'});"
+            ]
+        },
+        "utils": {
+            "name": "utils",
+            "submodules": {},
+            "classes": {
+                "Utils": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "lib/src/utils/merge.js",
+            "line": 1,
+            "static": 1
+        }
+    },
+    "classes": {
+        "AdApi": {
+            "name": "AdApi",
+            "shortname": "AdApi",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "api",
+            "namespace": "",
+            "file": "api/ad_api.js",
+            "line": 12,
+            "is_constructor": 1,
+            "extends": "AdDom",
+            "uses": [
+                "EventEmitter"
+            ]
+        },
+        "Adlayer": {
+            "name": "Adlayer",
+            "shortname": "Adlayer",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [
+                "api"
+            ],
+            "module": "api",
+            "namespace": "",
+            "file": "api/adlayer.js",
+            "line": 11,
+            "description": "Abstraction of Adlayer Api",
+            "is_constructor": 1
+        },
+        "Adserver": {
+            "name": "Adserver",
+            "shortname": "Adserver",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "api",
+            "namespace": "",
+            "file": "api/adserver.js",
+            "line": 5,
+            "description": "High level API to handle with Adlayer Adserver.\n\nThis is the offical js client to deal with [Adlayer](http://adlayer.com.br) [Adserver HTTP API](http://github.com/adlayer/adserver-api-docs)\n\nYou have to pass the connection instace with the path to Adserver",
+            "is_constructor": 1,
+            "example": [
+                " Creating a instance of Adserver\n\t\n\t\tvar config = require('config').config;\n\t\tvar Connection = require('connection').Connection;\n\t\tvar adserver = new Adserver(new Connection(config.url.adserver));\n"
+            ]
+        },
+        "PageApi": {
+            "name": "PageApi",
+            "shortname": "PageApi",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "api",
+            "namespace": "",
+            "file": "api/page_api.js",
+            "line": 11,
+            "is_constructor": 1,
+            "extends": "Page",
+            "uses": [
+                "EventEmitter"
+            ]
+        },
+        "SpaceApi": {
+            "name": "SpaceApi",
+            "shortname": "SpaceApi",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "api",
+            "namespace": "",
+            "file": "api/spaces_api.js",
+            "line": 11,
+            "is_constructor": 1,
+            "extends": "Space",
+            "uses": [
+                "EventEmitter"
+            ]
+        },
+        "Tracker": {
+            "name": "Tracker",
+            "shortname": "Tracker",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "api",
+            "namespace": "",
+            "file": "api/tracker.js",
+            "line": 8,
+            "description": "High level API to handle with Adlayer Tracker server",
+            "is_constructor": 1
+        },
+        "EmbedAd": {
+            "name": "EmbedAd",
+            "shortname": "EmbedAd",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ads",
+            "namespace": "",
+            "file": "lib/src/ads/embed_ad.js",
+            "line": 9,
+            "description": "Create embedable ads",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "attributes",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "extends": "AdDom",
+            "uses": [
+                "Swf"
+            ]
+        },
+        "FlashAd": {
+            "name": "FlashAd",
+            "shortname": "FlashAd",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ads",
+            "namespace": "",
+            "file": "lib/src/ads/flash_ad.js",
+            "line": 7,
+            "is_constructor": 1
+        },
+        "ImgAd": {
+            "name": "ImgAd",
+            "shortname": "ImgAd",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ads",
+            "namespace": "",
+            "file": "lib/src/ads/img_ad.js",
+            "line": 7,
+            "extends": "AdDom"
+        },
+        "ObjectAd": {
+            "name": "ObjectAd",
+            "shortname": "ObjectAd",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ads",
+            "namespace": "",
+            "file": "lib/src/ads/object_ad.js",
+            "line": 9,
+            "description": "Create embedable ads",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "attributes",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "extends": "AdDom",
+            "uses": [
+                "Swf"
+            ]
+        },
+        "Param": {
+            "name": "Param",
+            "shortname": "Param",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "ads",
+            "namespace": "",
+            "file": "lib/src/ads/object_ad.js",
+            "line": 46,
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "name",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "value",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "HTMLElement"
+            }
+        },
+        "Swf": {
+            "name": "Swf",
+            "shortname": "Swf",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [
+                "EmbedAd",
+                "ObjectAd"
+            ],
+            "module": "ads",
+            "namespace": "",
+            "file": "lib/src/ads/swf.js",
+            "line": 6,
+            "is_constructor": 1
+        },
+        "Connection": {
+            "name": "Connection",
+            "shortname": "Connection",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "connections",
+            "namespace": "",
+            "file": "lib/src/connection/connection.js",
+            "line": 6,
+            "is_constructor": 1,
+            "extends": "Http"
+        },
+        "AdDom": {
+            "name": "AdDom",
+            "shortname": "AdDom",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "dom",
+            "namespace": "",
+            "file": "lib/src/dom/ad_dom.js",
+            "line": 13,
+            "description": "Base for any type of Dom ads.",
+            "is_constructor": 1,
+            "extends": "DomElement",
+            "uses": [
+                "Ad"
+            ]
+        },
+        "DomElement": {
+            "name": "DomElement",
+            "shortname": "DomElement",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "dom",
+            "namespace": "",
+            "file": "lib/src/dom/dom_element.js",
+            "line": 5,
+            "description": "Abstract class for dom/html elements",
+            "link": "https://developer.mozilla.org/en/DOM/element"
+        },
+        "SpaceDom": {
+            "name": "SpaceDom",
+            "shortname": "SpaceDom",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [
+                "BasicSpace"
+            ],
+            "module": "dom",
+            "namespace": "",
+            "file": "lib/src/dom/space_dom.js",
+            "line": 11,
+            "description": "Space dom",
+            "extends": "Space",
+            "uses": [
+                "Spaces"
+            ]
+        },
+        "Ad": {
+            "name": "Ad",
+            "shortname": "Ad",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [
+                "AdDom"
+            ],
+            "module": "core",
+            "namespace": "",
+            "file": "lib/src/domain/ad.js",
+            "line": 6,
+            "description": "Abstract class for ads",
+            "is_constructor": 1,
+            "extends": "Core",
+            "uses": [
+                "EventEmiiter"
+            ]
+        },
+        "Core": {
+            "name": "Core",
+            "shortname": "Core",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "core",
+            "namespace": "",
+            "file": "lib/src/domain/core.js",
+            "line": 5,
+            "description": "Core class",
+            "is_constructor": 1,
+            "requires": [
+                "merge"
+            ]
+        },
+        "Event": {
+            "name": "Event",
+            "shortname": "Event",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "core",
+            "namespace": "",
+            "file": "lib/src/domain/event.js",
+            "line": 5,
+            "description": "Create any event",
+            "is_constructor": 1,
+            "extends": "Core",
+            "params": [
+                {
+                    "name": "attributes",
+                    "description": "",
+                    "type": "Object"
+                }
+            ]
+        },
+        "Page": {
+            "name": "Page",
+            "shortname": "Page",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "core",
+            "namespace": "",
+            "file": "lib/src/domain/page.js",
+            "line": 5,
+            "description": "Abstract class for page",
+            "is_constructor": 1,
+            "extends": "Core",
+            "params": [
+                {
+                    "name": "attributes",
+                    "description": "",
+                    "type": "Object"
+                }
+            ]
+        },
+        "Site": {
+            "name": "Site",
+            "shortname": "Site",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "core",
+            "namespace": "",
+            "file": "lib/src/domain/site.js",
+            "line": 5,
+            "description": "Abstract class for site",
+            "is_constructor": 1,
+            "extends": "Core"
+        },
+        "ISpaceBehaviour": {
+            "name": "ISpaceBehaviour",
+            "shortname": "ISpaceBehaviour",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "core",
+            "namespace": "",
+            "file": "lib/src/domain/space.js",
+            "line": 5,
+            "description": "Interface for space behaviour",
+            "interface": "ISpaceBehaviour",
+            "is_constructor": 1
+        },
+        "RandomBehaviour": {
+            "name": "RandomBehaviour",
+            "shortname": "RandomBehaviour",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "core",
+            "namespace": "",
+            "file": "lib/src/domain/space.js",
+            "line": 17,
+            "description": "Random behaviour for spaces",
+            "is_constructor": 1
+        },
+        "Space": {
+            "name": "Space",
+            "shortname": "Space",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "core",
+            "namespace": "",
+            "file": "lib/src/domain/space.js",
+            "line": 39,
+            "description": "Abstract class for spaces",
+            "is_constructor": 1,
+            "extends": "Core",
+            "params": [
+                {
+                    "name": "attributes",
+                    "description": "",
+                    "type": "Object"
+                }
+            ]
+        },
+        "Http": {
+            "name": "Http",
+            "shortname": "Http",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "request",
+            "namespace": "",
+            "file": "lib/src/request/http.js",
+            "line": 6,
+            "description": "Abstract class to http requests, connections and responses",
+            "is_constructor": 1
+        },
+        "HttpRequest": {
+            "name": "HttpRequest",
+            "shortname": "HttpRequest",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "request",
+            "namespace": "",
+            "file": "lib/src/request/http_request.js",
+            "line": 5,
+            "description": "Abstract class to make http requests",
+            "is_constructor": 1,
+            "params": [
+                {
+                    "name": "attributes",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ]
+        },
+        "ImgRequest": {
+            "name": "ImgRequest",
+            "shortname": "ImgRequest",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "request",
+            "namespace": "",
+            "file": "lib/src/request/img_request.js",
+            "line": 5,
+            "description": "Loads an img",
+            "is_constructor": 1,
+            "extends": "HttpRequest",
+            "params": [
+                {
+                    "name": "Attributes",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "example": [
+                " new ImgRequest({document:document, url}, callback)"
+            ]
+        },
+        "JsonpRequest": {
+            "name": "JsonpRequest",
+            "shortname": "JsonpRequest",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "request",
+            "namespace": "",
+            "file": "lib/src/request/jsonp_request.js",
+            "line": 5,
+            "description": "Make an http request expeting for jsonp return",
+            "is_constructor": 1,
+            "extends": "HttpRequest",
+            "params": [
+                {
+                    "name": "Attributes",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "example": [
+                " new JsonpRequest({document:document, url}, callback).queryCallback('root.global.callback')"
+            ]
+        },
+        "BasicSpace": {
+            "name": "BasicSpace",
+            "shortname": "BasicSpace",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "spaces",
+            "namespace": "",
+            "file": "lib/src/spaces/basic_space.js",
+            "line": 12,
+            "description": "Basic Space",
+            "extends": "SpaceDom",
+            "uses": [
+                "SpaceDom"
+            ]
+        },
+        "ExpandableSpace": {
+            "name": "ExpandableSpace",
+            "shortname": "ExpandableSpace",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "spaces",
+            "namespace": "",
+            "file": "lib/src/spaces/expandable_space.js",
+            "line": 7,
+            "description": "Represents the type Expander space",
+            "extends": "BasicSpace"
+        },
+        "FloaterSpace": {
+            "name": "FloaterSpace",
+            "shortname": "FloaterSpace",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "spaces",
+            "namespace": "",
+            "file": "lib/src/spaces/floater_space.js",
+            "line": 7,
+            "description": "Represents the type Floater",
+            "extends": "BasicSpace"
+        },
+        "StaticSpace": {
+            "name": "StaticSpace",
+            "shortname": "StaticSpace",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "spaces",
+            "namespace": "",
+            "file": "lib/src/spaces/static_space.js",
+            "line": 7,
+            "description": "Represents the type Static",
+            "extends": "BasicSpace"
+        },
+        "Utils": {
+            "name": "Utils",
+            "shortname": "Utils",
+            "classitems": [],
+            "plugins": [],
+            "extensions": [],
+            "plugin_for": [],
+            "extension_for": [],
+            "module": "utils",
+            "namespace": "",
+            "file": "lib/src/utils/merge.js",
+            "line": 1
+        }
+    },
+    "classitems": [
+        {
+            "file": "api/ad_api.js",
+            "line": 21,
+            "description": "Reference to document object model root",
+            "itemtype": "property",
+            "name": "document\ntype Object",
+            "class": "AdApi",
+            "module": "api"
+        },
+        {
+            "file": "api/ad_api.js",
+            "line": 28,
+            "description": "Instance os Tracker",
+            "itemtype": "property",
+            "name": "tracker\ntype Object",
+            "class": "AdApi",
+            "module": "api"
+        },
+        {
+            "file": "api/ad_api.js",
+            "line": 35,
+            "description": "Instance os Adserver",
+            "itemtype": "property",
+            "name": "tracker\ntype Object",
+            "class": "AdApi",
+            "module": "api"
+        },
+        {
+            "file": "api/ad_api.js",
+            "line": 44,
+            "itemtype": "method",
+            "name": "getData",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "class": "AdApi",
+            "module": "api"
+        },
+        {
+            "file": "api/ad_api.js",
+            "line": 54,
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "tracker",
+                    "description": "The instance of tracker to be stored in this.tracker",
+                    "type": "Object"
+                },
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "async": 1,
+            "access": "public",
+            "tagname": "",
+            "class": "AdApi",
+            "module": "api"
+        },
+        {
+            "file": "api/ad_autorun.js",
+            "line": 6,
+            "itemtype": "method",
+            "name": "getElementsByClass",
+            "params": [
+                {
+                    "name": "searchClass",
+                    "description": "className to find",
+                    "type": "String"
+                },
+                {
+                    "name": "node",
+                    "description": "Dom node to look up",
+                    "type": "Object"
+                },
+                {
+                    "name": "tag",
+                    "description": "Restrict find for some tag",
+                    "type": "String"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "Adlayer",
+            "module": "widgets"
+        },
+        {
+            "file": "api/ad_autorun.js",
+            "line": 31,
+            "itemtype": "method",
+            "name": "initialization",
+            "async": 1,
+            "access": "private",
+            "tagname": "",
+            "class": "Adlayer",
+            "module": "widgets"
+        },
+        {
+            "file": "api/adlayer.js",
+            "line": 19,
+            "description": "A shortcut for Adlayer library",
+            "itemtype": "property",
+            "name": "lib",
+            "type": "object",
+            "class": "Adlayer",
+            "module": "api"
+        },
+        {
+            "file": "api/adlayer.js",
+            "line": 28,
+            "description": "Define or extends configuration for API\nYou can use this for customize default attributes",
+            "itemtype": "property",
+            "name": "config",
+            "default": "object",
+            "type": "object",
+            "class": "Adlayer",
+            "module": "api"
+        },
+        {
+            "file": "api/adlayer.js",
+            "line": 39,
+            "description": "A collection of all connections (open and closed ones)\nProvide total control over adserver and tracker connection and respective request",
+            "itemtype": "property",
+            "name": "connections",
+            "default": "object",
+            "type": "object",
+            "class": "Adlayer",
+            "module": "api"
+        },
+        {
+            "file": "api/adlayer.js",
+            "line": 50,
+            "description": "Exports adserver",
+            "itemtype": "property",
+            "name": "adserver",
+            "type": "object",
+            "class": "Adlayer",
+            "module": "api"
+        },
+        {
+            "file": "api/adlayer.js",
+            "line": 58,
+            "description": "Exports tracker",
+            "itemtype": "property",
+            "name": "tracker",
+            "type": "object",
+            "example": [
+                "\n\t\tvar adlayer = new Adlayer();\n\t\tvar tracker = adlayer.tracker;\n\t\ttracker.track({type:'impressions', campaign_id: 'jdskdkskdsds', 'ad_id': 'kfvodfvfdvdi'});"
+            ],
+            "class": "Adlayer",
+            "module": "api"
+        },
+        {
+            "file": "api/adlayer.js",
+            "line": 70,
+            "description": "Collection of all rendered spaces on the page",
+            "itemtype": "property",
+            "name": "spaces",
+            "default": "object",
+            "type": "object",
+            "example": [
+                "\n\t\tvar adlayer = new Adlayer();\n\t\tvar space = adlayer.spaces['kdkfsfd0fsf000'];\n\t\tspace.close();"
+            ],
+            "class": "Adlayer",
+            "module": "api"
+        },
+        {
+            "file": "api/adlayer.js",
+            "line": 85,
+            "description": "A shortcut for a collection of all ads rendered on the respective spaces",
+            "itemtype": "property",
+            "name": "ads",
+            "default": "object",
+            "type": "object",
+            "example": [
+                "\n\t\tvar adlayer = new Adlayer();\n\t\tvar ad = adlayer.ads['mfkvfmvkdfvdf84848484'];\n\t\tad.emit('load');"
+            ],
+            "class": "Adlayer",
+            "module": "api"
+        },
+        {
+            "file": "api/adlayer.js",
+            "line": 99,
+            "description": "A shortcut for the rendered page\nWill always be a instace of class Page",
+            "itemtype": "property",
+            "name": "page",
+            "default": "object",
+            "type": "object",
+            "class": "Adlayer",
+            "module": "api"
+        },
+        {
+            "file": "api/adlayer.js",
+            "line": 121,
+            "description": "Shortcut for adlayer.ads[id].emit, used by flash preloaders",
+            "itemtype": "method",
+            "name": "markAdAsLoaded",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "class": "Adlayer",
+            "module": "api"
+        },
+        {
+            "file": "api/adlayer.js",
+            "line": 133,
+            "description": "Start or restart all connections based on config.urls",
+            "itemtype": "method",
+            "name": "connect",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "class": "Adlayer",
+            "module": "api"
+        },
+        {
+            "file": "api/adserver.js",
+            "line": 21,
+            "description": "The instace of connection to be used as adserver",
+            "itemtype": "property",
+            "name": "connection",
+            "type": "Object",
+            "class": "Adserver",
+            "module": "api"
+        },
+        {
+            "file": "api/adserver.js",
+            "line": 30,
+            "description": "Main method to make http requests",
+            "itemtype": "method",
+            "name": "request",
+            "params": [
+                {
+                    "name": "path",
+                    "description": "path to request in server",
+                    "type": "String"
+                },
+                {
+                    "name": "query",
+                    "description": "query string to request",
+                    "type": "Object"
+                },
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "example": [
+                " \n\t\tadserver.request('ads/:id', {domain: window.location.host}, function(err, data){\n\t\t\tif(!err){\n\t\t\t console.log(data);\n\t\t\t}\n\t\t});"
+            ],
+            "class": "Adserver",
+            "module": "api"
+        },
+        {
+            "file": "api/adserver.js",
+            "line": 55,
+            "description": "Access to 'pages' endpoint",
+            "itemtype": "method",
+            "name": "pages",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "query",
+                    "description": "query string to request",
+                    "type": "Object"
+                },
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "example": [
+                " \n\t\tadserver.pages(':id', {domain: window.location.host}, function(err, data){\n\t\t\tif(!err){\n\t\t\t console.log(data);\n\t\t\t}\n\t\t});"
+            ],
+            "class": "Adserver",
+            "module": "api"
+        },
+        {
+            "file": "api/adserver.js",
+            "line": 72,
+            "description": "Access to 'ads' endpoint",
+            "itemtype": "method",
+            "name": "ads",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "query",
+                    "description": "query string to request",
+                    "type": "Object"
+                },
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "example": [
+                " \n\t\tadserver.ads(':id', {domain: window.location.host}, function(err, data){\n\t\t\tif(!err){\n\t\t\t console.log(data);\n\t\t\t}\n\t\t});"
+            ],
+            "class": "Adserver",
+            "module": "api"
+        },
+        {
+            "file": "api/adserver.js",
+            "line": 90,
+            "description": "Access to 'spaces' endpoint",
+            "itemtype": "method",
+            "name": "spaces",
+            "params": [
+                {
+                    "name": "id",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "query",
+                    "description": "query string to request",
+                    "type": "Object"
+                },
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "example": [
+                " \n\t\tvar adserver = new Adserver(new Connection());\n\t\tadserver.spaces(':id', {domain: window.location.host}, function(err, data){\n\t\t\tif(!err){\n\t\t\t console.log(data);\n\t\t\t}\n\t\t});"
+            ],
+            "class": "Adserver",
+            "module": "api"
+        },
+        {
+            "file": "api/config.js",
+            "line": 8,
+            "description": "Adserver and tracker connection options",
+            "itemtype": "attribute",
+            "name": "url",
+            "class": "PageApi",
+            "module": "api",
+            "submodule": "config"
+        },
+        {
+            "file": "api/config.js",
+            "line": 21,
+            "description": "Number of ads per spaces download for every request",
+            "itemtype": "attribute",
+            "name": "adsPerSpace",
+            "class": "PageApi",
+            "module": "api",
+            "submodule": "config"
+        },
+        {
+            "file": "api/config.js",
+            "line": 27,
+            "description": "Page specfic configurations",
+            "itemtype": "attribute",
+            "name": "page",
+            "class": "PageApi",
+            "module": "api",
+            "submodule": "config"
+        },
+        {
+            "file": "api/page_api.js",
+            "line": 21,
+            "description": "Reference to document object model root",
+            "itemtype": "property",
+            "name": "document\ntype Object",
+            "class": "PageApi",
+            "module": "api"
+        },
+        {
+            "file": "api/page_api.js",
+            "line": 28,
+            "description": "Instance os Tracker",
+            "itemtype": "property",
+            "name": "tracker\ntype Object",
+            "class": "PageApi",
+            "module": "api"
+        },
+        {
+            "file": "api/page_api.js",
+            "line": 35,
+            "description": "Instance os Adserver",
+            "itemtype": "property",
+            "name": "tracker\ntype Object",
+            "class": "PageApi",
+            "module": "api"
+        },
+        {
+            "file": "api/page_api.js",
+            "line": 42,
+            "description": "Collection of spaces rendered on this page",
+            "itemtype": "property",
+            "name": "spacesCollection\ntype Object",
+            "class": "PageApi",
+            "module": "api"
+        },
+        {
+            "file": "api/page_api.js",
+            "line": 49,
+            "description": "Collection of ads rendered on this page in each respective space",
+            "itemtype": "property",
+            "name": "adsCollection\ntype Object",
+            "class": "PageApi",
+            "module": "api"
+        },
+        {
+            "file": "api/page_api.js",
+            "line": 58,
+            "itemtype": "method",
+            "name": "getData",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "async": 1,
+            "class": "PageApi",
+            "module": "api"
+        },
+        {
+            "file": "api/page_api.js",
+            "line": 72,
+            "itemtype": "method",
+            "name": "scanSpaces",
+            "params": [
+                {
+                    "name": "collection",
+                    "description": "",
+                    "type": "Function"
+                },
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "PageApi",
+            "module": "api"
+        },
+        {
+            "file": "api/page_api.js",
+            "line": 97,
+            "itemtype": "method",
+            "name": "renderSpace",
+            "params": [
+                {
+                    "name": "space",
+                    "description": "Instance of Space Class to find and render in DOM",
+                    "type": "Object"
+                },
+                {
+                    "name": "data",
+                    "description": "Data of current view to track events",
+                    "type": "Object"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "class": "PageApi",
+            "module": "api"
+        },
+        {
+            "file": "api/page_api.js",
+            "line": 110,
+            "itemtype": "method",
+            "name": "init",
+            "async": 1,
+            "access": "public",
+            "tagname": "",
+            "class": "PageApi",
+            "module": "api"
+        },
+        {
+            "file": "api/page_autorun.js",
+            "line": 1,
+            "modules": "widgets",
+            "class": "SpaceApi",
+            "module": "api"
+        },
+        {
+            "file": "api/page_autorun.js",
+            "line": 5,
+            "itemtype": "method",
+            "name": "initialization",
+            "access": "private",
+            "tagname": "",
+            "class": "SpaceApi",
+            "module": "api"
+        },
+        {
+            "file": "api/spaces_api.js",
+            "line": 27,
+            "itemtype": "method",
+            "name": "getData",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "class": "SpaceApi",
+            "module": "api"
+        },
+        {
+            "file": "api/spaces_api.js",
+            "line": 38,
+            "itemtype": "method",
+            "name": "renderSpace",
+            "params": [
+                {
+                    "name": "space",
+                    "description": "Instance of Space Class to find and render in DOM",
+                    "type": "Object"
+                },
+                {
+                    "name": "data",
+                    "description": "Data of current view to track events",
+                    "type": "Object"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "this"
+            },
+            "class": "SpaceApi",
+            "module": "api"
+        },
+        {
+            "file": "api/spaces_api.js",
+            "line": 55,
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "callback",
+                    "description": "Function to be called ofter space rendering process",
+                    "type": "Function"
+                }
+            ],
+            "async": 1,
+            "access": "public",
+            "tagname": "",
+            "class": "SpaceApi",
+            "module": "api"
+        },
+        {
+            "file": "api/spaces_autorun.js",
+            "line": 24,
+            "itemtype": "method",
+            "name": "initialization",
+            "access": "private",
+            "tagname": "",
+            "class": "Tracker",
+            "module": "widgets"
+        },
+        {
+            "file": "api/tracker.js",
+            "line": 15,
+            "itemtype": "property",
+            "name": "connection",
+            "type": "Object",
+            "access": "public",
+            "tagname": "",
+            "class": "Tracker",
+            "module": "api"
+        },
+        {
+            "file": "api/tracker.js",
+            "line": 22,
+            "itemtype": "method",
+            "name": "track",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "All data to track in an event",
+                    "type": "Object"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Undefined"
+            },
+            "class": "Tracker",
+            "module": "api"
+        },
+        {
+            "file": "lib/src/ads/ads.js",
+            "line": 17,
+            "itemtype": "method",
+            "name": "create",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "Config to create the ad",
+                    "type": "Object"
+                }
+            ],
+            "class": "EmbedAd",
+            "module": "ads"
+        },
+        {
+            "file": "lib/src/ads/flash_ad.js",
+            "line": 12,
+            "itemtype": "method",
+            "name": "__construct",
+            "access": "private",
+            "tagname": "",
+            "class": "FlashAd",
+            "module": "ads"
+        },
+        {
+            "file": "lib/src/ads/object_ad.js",
+            "line": 24,
+            "itemtype": "property",
+            "name": "CLASSID",
+            "type": "string",
+            "final": 1,
+            "access": "private",
+            "tagname": "",
+            "class": "ObjectAd",
+            "module": "ads"
+        },
+        {
+            "file": "lib/src/ads/object_ad.js",
+            "line": 31,
+            "itemtype": "property",
+            "name": "CODEBASE",
+            "type": "string",
+            "final": 1,
+            "access": "private",
+            "tagname": "",
+            "class": "ObjectAd",
+            "module": "ads"
+        },
+        {
+            "file": "lib/src/ads/object_ad.js",
+            "line": 38,
+            "itemtype": "property",
+            "name": "PLUGINSPAGE",
+            "type": "string",
+            "final": 1,
+            "access": "private",
+            "tagname": "",
+            "class": "ObjectAd",
+            "module": "ads"
+        },
+        {
+            "file": "lib/src/ads/object_ad.js",
+            "line": 54,
+            "itemtype": "property",
+            "name": "name",
+            "type": "string",
+            "class": "Param",
+            "module": "ads"
+        },
+        {
+            "file": "lib/src/ads/object_ad.js",
+            "line": 59,
+            "itemtype": "property",
+            "name": "value",
+            "type": "string",
+            "class": "Param",
+            "module": "ads"
+        },
+        {
+            "file": "lib/src/ads/object_ad.js",
+            "line": 64,
+            "itemtype": "property",
+            "name": "element",
+            "type": "HTMLElement",
+            "class": "Param",
+            "module": "ads"
+        },
+        {
+            "file": "lib/src/ads/swf.js",
+            "line": 12,
+            "description": "Alignment of html content.",
+            "itemtype": "property",
+            "name": "align",
+            "type": "string",
+            "class": "Swf",
+            "module": "ads"
+        },
+        {
+            "file": "lib/src/ads/swf.js",
+            "line": 18,
+            "description": "Control right click menu options (true, false).",
+            "itemtype": "property",
+            "name": "menu",
+            "type": "boolean",
+            "class": "Swf",
+            "module": "ads"
+        },
+        {
+            "file": "lib/src/ads/swf.js",
+            "line": 24,
+            "itemtype": "property",
+            "name": "quality",
+            "type": "string",
+            "class": "Swf",
+            "module": "ads"
+        },
+        {
+            "file": "lib/src/ads/swf.js",
+            "line": 29,
+            "itemtype": "property",
+            "name": "scale",
+            "type": "string",
+            "class": "Swf",
+            "module": "ads"
+        },
+        {
+            "file": "lib/src/ads/swf.js",
+            "line": 34,
+            "itemtype": "property",
+            "name": "wmode",
+            "type": "string",
+            "class": "Swf",
+            "module": "ads"
+        },
+        {
+            "file": "lib/src/ads/swf.js",
+            "line": 39,
+            "itemtype": "property",
+            "name": "type",
+            "type": "string",
+            "class": "Swf",
+            "module": "ads"
+        },
+        {
+            "file": "lib/src/ads/swf.js",
+            "line": 44,
+            "itemtype": "property",
+            "name": "allowScriptAccess",
+            "type": "string",
+            "class": "Swf",
+            "module": "ads"
+        },
+        {
+            "file": "lib/src/ads/swf.js",
+            "line": 51,
+            "itemtype": "method",
+            "name": "getSrc",
+            "return": {
+                "description": "src Will return the preloder url if defined",
+                "type": "String"
+            },
+            "class": "Swf",
+            "module": "ads"
+        },
+        {
+            "file": "lib/src/connection/connection.js",
+            "line": 15,
+            "description": "Index of requests",
+            "itemtype": "property",
+            "name": "_index",
+            "type": "number",
+            "access": "protected",
+            "tagname": "",
+            "class": "Connection",
+            "module": "connections"
+        },
+        {
+            "file": "lib/src/connection/connection.js",
+            "line": 22,
+            "description": "Connection name",
+            "itemtype": "property",
+            "name": "name",
+            "type": "string",
+            "class": "Connection",
+            "module": "connections"
+        },
+        {
+            "file": "lib/src/connection/connection.js",
+            "line": 28,
+            "description": "Requests storage",
+            "itemtype": "property",
+            "name": "requests",
+            "type": "object",
+            "class": "Connection",
+            "module": "connections"
+        },
+        {
+            "file": "lib/src/connection/connection.js",
+            "line": 49,
+            "itemtype": "method",
+            "name": "id",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "return current uuid",
+                "type": "String"
+            },
+            "class": "Connection",
+            "module": "connections"
+        },
+        {
+            "file": "lib/src/connection/connection.js",
+            "line": 58,
+            "itemtype": "method",
+            "name": "newId",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "Increment the index and return a new id",
+                "type": "String"
+            },
+            "class": "Connection",
+            "module": "connections"
+        },
+        {
+            "file": "lib/src/connection/connection.js",
+            "line": 68,
+            "itemtype": "method",
+            "name": "next",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "req",
+                    "description": "A Request instance",
+                    "type": "Object"
+                }
+            ],
+            "class": "Connection",
+            "module": "connections"
+        },
+        {
+            "file": "lib/src/connection/connection.js",
+            "line": 77,
+            "itemtype": "method",
+            "name": "getCallbackPath",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "path of callback",
+                "type": "String"
+            },
+            "class": "Connection",
+            "module": "connections"
+        },
+        {
+            "file": "lib/src/connection/connection.js",
+            "line": 85,
+            "itemtype": "method",
+            "name": "request",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Connection",
+            "module": "connections"
+        },
+        {
+            "file": "lib/src/connection/connection.js",
+            "line": 91,
+            "itemtype": "method",
+            "name": "get",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "Connection",
+            "module": "connections"
+        },
+        {
+            "file": "lib/src/dom/ad_dom.js",
+            "line": 24,
+            "description": "Url base of tracker",
+            "itemtype": "property",
+            "name": "trackerUrl",
+            "type": "string",
+            "access": "public",
+            "tagname": "",
+            "class": "AdDom",
+            "module": "dom"
+        },
+        {
+            "file": "lib/src/dom/ad_dom.js",
+            "line": 32,
+            "description": "Information about the ad impression",
+            "itemtype": "property",
+            "name": "impression",
+            "type": "string",
+            "access": "public",
+            "tagname": "",
+            "class": "AdDom",
+            "module": "dom"
+        },
+        {
+            "file": "lib/src/dom/ad_dom.js",
+            "line": 44,
+            "itemtype": "method",
+            "name": "getSpaceId",
+            "return": {
+                "description": "return the id of the first parent div",
+                "type": "String"
+            },
+            "class": "AdDom",
+            "module": "dom"
+        },
+        {
+            "file": "lib/src/dom/ad_dom.js",
+            "line": 53,
+            "itemtype": "method",
+            "name": "setImpression",
+            "params": [
+                {
+                    "name": "space",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "config",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "example": [
+                "\n\t\tvar config = {\n\t\t\ttype: 'impression',\n\t\t\t\n\t\t\tsite_id: config.site_id,\n\t\t\tdomain: config.domain,\n\t\t\tpage_url: config.page_url,\n\t\t\tpage_id: config.page_id,\n\t\t\t\n\t\t\tad_id: ad.id,\n\t\t\tcampaign_id: ad.campaign_id,\n\t\t\tspace_id: space.id\n\t\t}\n\t\tnew AdDom(space, config);"
+            ],
+            "class": "AdDom",
+            "module": "dom"
+        },
+        {
+            "file": "lib/src/dom/ad_dom.js",
+            "line": 83,
+            "itemtype": "method",
+            "name": "getClickTag",
+            "params": [
+                {
+                    "name": "config",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "the full url to track this link",
+                "type": "String"
+            },
+            "example": [
+                " http://tracker.adlayerapp.com/click/10?&campaign_id=1235&link=http://www.adlayer.com.br"
+            ],
+            "class": "AdDom",
+            "module": "dom"
+        },
+        {
+            "file": "lib/src/dom/dom_element.js",
+            "line": 12,
+            "description": "Id attribute of object",
+            "itemtype": "property",
+            "name": "id",
+            "type": "string",
+            "class": "DomElement",
+            "module": "dom"
+        },
+        {
+            "file": "lib/src/dom/dom_element.js",
+            "line": 18,
+            "description": "Dom element itself",
+            "itemtype": "property",
+            "name": "element",
+            "type": "object",
+            "class": "DomElement",
+            "module": "dom"
+        },
+        {
+            "file": "lib/src/dom/dom_element.js",
+            "line": 26,
+            "itemtype": "method",
+            "name": "create",
+            "params": [
+                {
+                    "name": "tagName",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "document",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "static": 1,
+            "return": {
+                "description": "element",
+                "type": "Object"
+            },
+            "class": "DomElement",
+            "module": "dom"
+        },
+        {
+            "file": "lib/src/dom/dom_element.js",
+            "line": 36,
+            "itemtype": "method",
+            "name": "create",
+            "params": [
+                {
+                    "name": "tagName",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "document",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "this - Chainable method",
+                "type": "Object"
+            },
+            "class": "DomElement",
+            "module": "dom"
+        },
+        {
+            "file": "lib/src/dom/dom_element.js",
+            "line": 50,
+            "itemtype": "method",
+            "name": "setAttributes",
+            "params": [
+                {
+                    "name": "attributes",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "this - Chainable method",
+                "type": "Object"
+            },
+            "class": "DomElement",
+            "module": "dom"
+        },
+        {
+            "file": "lib/src/dom/dom_element.js",
+            "line": 61,
+            "itemtype": "method",
+            "name": "append",
+            "params": [
+                {
+                    "name": "child",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "this - Chainable method",
+                "type": "Object"
+            },
+            "class": "DomElement",
+            "module": "dom"
+        },
+        {
+            "file": "lib/src/dom/dom_element.js",
+            "line": 71,
+            "itemtype": "method",
+            "name": "findParentTag",
+            "params": [
+                {
+                    "name": "tag",
+                    "description": "UPPERCASE tag name",
+                    "type": "String"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "parentElement",
+                "type": "Object"
+            },
+            "class": "DomElement",
+            "module": "dom"
+        },
+        {
+            "file": "lib/src/dom/dom_element.js",
+            "line": 87,
+            "itemtype": "method",
+            "name": "addDomEventListener",
+            "params": [
+                {
+                    "name": "type",
+                    "description": "Event name like 'click', 'load', 'mouseover'",
+                    "type": "String"
+                },
+                {
+                    "name": "eventListener",
+                    "description": "Callback for event trigger",
+                    "type": "Function"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "return this to allow chainability",
+                "type": "Object"
+            },
+            "class": "DomElement",
+            "module": "dom"
+        },
+        {
+            "file": "lib/src/dom/space_dom.js",
+            "line": 22,
+            "description": "Hash of all placements during this pageview on this space",
+            "itemtype": "property",
+            "name": "placements",
+            "type": "object",
+            "class": "SpaceDom",
+            "module": "dom"
+        },
+        {
+            "file": "lib/src/dom/space_dom.js",
+            "line": 29,
+            "description": "The current rendered ad",
+            "itemtype": "property",
+            "name": "ad",
+            "type": "object",
+            "class": "SpaceDom",
+            "module": "dom"
+        },
+        {
+            "file": "lib/src/dom/space_dom.js",
+            "line": 39,
+            "description": "Append the ad.element as a child and emit the ad event 'placement'",
+            "itemtype": "method",
+            "name": "placeAd",
+            "params": [
+                {
+                    "name": "DomElement",
+                    "description": "Ad to append in element",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "return this to chain methods",
+                "type": "Object"
+            },
+            "class": "SpaceDom",
+            "module": "dom"
+        },
+        {
+            "file": "lib/src/dom/space_dom.js",
+            "line": 53,
+            "itemtype": "method",
+            "name": "getElement",
+            "return": {
+                "description": "return the DomElement",
+                "type": "Object"
+            },
+            "class": "SpaceDom",
+            "module": "dom"
+        },
+        {
+            "file": "lib/src/domain/ad.js",
+            "line": 19,
+            "itemtype": "event",
+            "name": "load",
+            "class": "Ad",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/ad.js",
+            "line": 23,
+            "itemtype": "event",
+            "name": "placement",
+            "class": "Ad",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/ad.js",
+            "line": 29,
+            "description": "Id of ad",
+            "itemtype": "property",
+            "name": "id",
+            "type": "string",
+            "class": "Ad",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/ad.js",
+            "line": 35,
+            "description": "Name of ad creative",
+            "itemtype": "property",
+            "name": "name",
+            "type": "string",
+            "class": "Ad",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/ad.js",
+            "line": 41,
+            "description": "Id to campaign that belongs to",
+            "itemtype": "property",
+            "name": "campaign_id",
+            "type": "string",
+            "class": "Ad",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/ad.js",
+            "line": 47,
+            "description": "Ad type",
+            "itemtype": "property",
+            "name": "type",
+            "type": "string",
+            "class": "Ad",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/ad.js",
+            "line": 53,
+            "description": "file Path to ad file",
+            "itemtype": "property",
+            "name": "file",
+            "type": "string",
+            "class": "Ad",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/ad.js",
+            "line": 59,
+            "description": "link destiny link",
+            "itemtype": "property",
+            "name": "link",
+            "type": "string",
+            "class": "Ad",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/ad.js",
+            "line": 65,
+            "description": "status Ad status",
+            "itemtype": "property",
+            "name": "status",
+            "type": "boolean",
+            "class": "Ad",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/ad.js",
+            "line": 71,
+            "description": "Alternative Ad is another instance of Ad with graceful degradation",
+            "itemtype": "property",
+            "name": "alternative",
+            "type": "object",
+            "class": "Ad",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/ad.js",
+            "line": 79,
+            "itemtype": "method",
+            "name": "__construct",
+            "access": "private",
+            "tagname": "",
+            "return": {
+                "description": "return this to allow chain pattern",
+                "type": "Object"
+            },
+            "class": "Ad",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/core.js",
+            "line": 16,
+            "itemtype": "method",
+            "name": "extend",
+            "params": [
+                {
+                    "name": "attributes",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "return this to allow chain pattern",
+                "type": "Object"
+            },
+            "class": "Core",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 17,
+            "description": "Instance of current date",
+            "itemtype": "property",
+            "name": "date",
+            "type": "date",
+            "access": "private",
+            "tagname": "",
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 25,
+            "description": "Event type",
+            "itemtype": "property",
+            "name": "type",
+            "type": "string",
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 31,
+            "description": "Campaign Id",
+            "itemtype": "property",
+            "name": "campaign_id",
+            "type": "string",
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 37,
+            "itemtype": "property",
+            "name": "ad_id",
+            "type": "string",
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 42,
+            "itemtype": "property",
+            "name": "space_id",
+            "type": "string",
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 47,
+            "itemtype": "property",
+            "name": "site_id Site id",
+            "type": "String",
+            "access": "public",
+            "tagname": "",
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 52,
+            "itemtype": "property",
+            "name": "page_url Url of the current page",
+            "type": "String",
+            "access": "public",
+            "tagname": "",
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 59,
+            "itemtype": "property",
+            "name": "date Date ISO 8601 format",
+            "type": "String",
+            "access": "public",
+            "tagname": "",
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 64,
+            "itemtype": "property",
+            "name": "time Time of event",
+            "type": "String",
+            "access": "public",
+            "tagname": "",
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 69,
+            "itemtype": "property",
+            "name": "hour",
+            "type": "String",
+            "description": "First part of a time iso",
+            "access": "public",
+            "tagname": "",
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 77,
+            "itemtype": "property",
+            "name": "ip Visitor ip",
+            "type": "String",
+            "access": "public",
+            "tagname": "",
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 82,
+            "itemtype": "property",
+            "name": "browser User agent or browser",
+            "type": "String",
+            "access": "public",
+            "tagname": "",
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 88,
+            "itemtype": "method",
+            "name": "getFullDate",
+            "return": {
+                "description": "Even if date is not converted to string return ISOString",
+                "type": "String"
+            },
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 110,
+            "description": "Required List of all required attributes",
+            "itemtype": "property",
+            "name": "required",
+            "type": "{Array}",
+            "static": 1,
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 122,
+            "itemtype": "method",
+            "name": "track",
+            "static": 1,
+            "return": {
+                "description": "return the result of method save",
+                "type": "Object"
+            },
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 131,
+            "itemtype": "method",
+            "name": "getDate",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "The second part of a fulldate splited in T character",
+                "type": "String"
+            },
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 141,
+            "itemtype": "method",
+            "name": "getTime",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "he second part of a fulldate splited in T character",
+                "type": "String"
+            },
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 150,
+            "itemtype": "method",
+            "name": "getHour",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "String of hour or false",
+                "type": "String || Boolean"
+            },
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 161,
+            "itemtype": "method",
+            "name": "validate",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "true for all attributes and false if any is missing",
+                "type": "Boolean"
+            },
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 176,
+            "itemtype": "method",
+            "name": "toQuery",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "convert object to network string",
+                "type": "String"
+            },
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/event.js",
+            "line": 185,
+            "itemtype": "method",
+            "name": "save",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "convert object to network string",
+                "type": "Error"
+            },
+            "class": "Event",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/page.js",
+            "line": 16,
+            "description": "id unique page id",
+            "itemtype": "property",
+            "name": "id",
+            "type": "string",
+            "class": "Page",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/page.js",
+            "line": 22,
+            "description": "page name",
+            "itemtype": "property",
+            "name": "name",
+            "type": "string",
+            "class": "Page",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/page.js",
+            "line": 28,
+            "description": "Collection of page spaces",
+            "itemtype": "property",
+            "name": "spaces",
+            "type": "array",
+            "class": "Page",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/page.js",
+            "line": 34,
+            "description": "Collection of page spaces",
+            "itemtype": "property",
+            "name": "status",
+            "type": "boolean",
+            "class": "Page",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/page.js",
+            "line": 50,
+            "itemtype": "method",
+            "name": "getActiveContent",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "the instance itself to improve chainability",
+                "type": "Page"
+            },
+            "require": "Javascript 1.6\n__Warning:__ Don't use this in browser, because it can not work in old browsers",
+            "todo": [
+                ": should be readonly not modify the object just return filtered value"
+            ],
+            "class": "Page",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/site.js",
+            "line": 15,
+            "description": "Unique site id",
+            "itemtype": "property",
+            "name": "id",
+            "type": "string",
+            "class": "Site",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/site.js",
+            "line": 21,
+            "description": "Name of site",
+            "itemtype": "property",
+            "name": "name",
+            "type": "string",
+            "class": "Site",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/site.js",
+            "line": 27,
+            "description": "true for active and  false for inactive",
+            "itemtype": "property",
+            "name": "status",
+            "type": "boolean",
+            "default": "true",
+            "class": "Site",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/site.js",
+            "line": 34,
+            "description": "Collection of all allowed domains",
+            "itemtype": "property",
+            "name": "domains",
+            "type": "array",
+            "class": "Site",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/site.js",
+            "line": 41,
+            "itemtype": "method",
+            "name": "__construct",
+            "access": "private",
+            "tagname": "",
+            "return": {
+                "description": "return this to allow chain pattern",
+                "type": "Object"
+            },
+            "class": "Site",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/site.js",
+            "line": 51,
+            "description": "Find for exact domain or subdomain",
+            "itemtype": "method",
+            "name": "hasDomain",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "entry",
+                    "description": "- Domain string",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "- True when found a domain and false for not",
+                "type": "Boolean"
+            },
+            "class": "Site",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/space.js",
+            "line": 24,
+            "itemtype": "method",
+            "name": "getAd",
+            "params": [
+                {
+                    "name": "context",
+                    "description": "Expect space 'this' as argument",
+                    "type": "Space"
+                }
+            ],
+            "return": {
+                "description": "Ad",
+                "type": "Object"
+            },
+            "class": "RandomBehaviour",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/space.js",
+            "line": 50,
+            "description": "Unique space id",
+            "itemtype": "property",
+            "name": "id",
+            "type": "string",
+            "class": "Space",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/space.js",
+            "line": 56,
+            "description": "Type of space",
+            "itemtype": "property",
+            "name": "type",
+            "type": "string",
+            "class": "Space",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/space.js",
+            "line": 62,
+            "description": "true for active and false for inactive",
+            "itemtype": "property",
+            "name": "status",
+            "type": "boolean",
+            "class": "Space",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/space.js",
+            "line": 68,
+            "description": "Collection of ads linked to space",
+            "itemtype": "property",
+            "name": "ads",
+            "type": "array",
+            "class": "Space",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/space.js",
+            "line": 75,
+            "description": "behaviour a part of strategy pattern",
+            "itemtype": "property",
+            "name": "behaviour",
+            "type": "SpaceBehaviour",
+            "class": "Space",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/space.js",
+            "line": 82,
+            "itemtype": "method",
+            "name": "setBehaviour",
+            "params": [
+                {
+                    "name": "behaviour",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "Ad",
+                "type": "Object"
+            },
+            "class": "Space",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/domain/space.js",
+            "line": 93,
+            "itemtype": "method",
+            "name": "getAd",
+            "return": {
+                "description": "Ad",
+                "type": "Object"
+            },
+            "class": "Space",
+            "module": "core"
+        },
+        {
+            "file": "lib/src/request/http.js",
+            "line": 17,
+            "itemtype": "property",
+            "name": "host",
+            "type": "string",
+            "class": "Http",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/request/http.js",
+            "line": 22,
+            "itemtype": "property",
+            "name": "protocol",
+            "type": "string",
+            "default": "'http'",
+            "class": "Http",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/request/http.js",
+            "line": 28,
+            "itemtype": "property",
+            "name": "port",
+            "type": "number",
+            "default": "80",
+            "class": "Http",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/request/http.js",
+            "line": 34,
+            "itemtype": "property",
+            "name": "path",
+            "type": "string",
+            "default": "'/'",
+            "class": "Http",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/request/http.js",
+            "line": 40,
+            "itemtype": "property",
+            "name": "qs",
+            "type": "object",
+            "class": "Http",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/request/http.js",
+            "line": 45,
+            "itemtype": "property",
+            "name": "query",
+            "type": "string",
+            "class": "Http",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/request/http.js",
+            "line": 50,
+            "itemtype": "property",
+            "name": "url",
+            "type": "string",
+            "class": "Http",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/request/http.js",
+            "line": 56,
+            "itemtype": "method",
+            "name": "isEmptyObject",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "Object to verify\nreturn {Boolean}",
+                    "type": "Object"
+                }
+            ],
+            "class": "Http",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/request/http.js",
+            "line": 68,
+            "itemtype": "method",
+            "name": "getUrl",
+            "return": {
+                "description": "full url",
+                "type": "String"
+            },
+            "class": "Http",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/request/http_request.js",
+            "line": 17,
+            "itemtype": "property",
+            "name": "callback",
+            "type": "function",
+            "class": "HttpRequest",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/request/http_request.js",
+            "line": 23,
+            "itemtype": "method",
+            "name": "__construct",
+            "access": "private",
+            "tagname": "",
+            "return": {
+                "description": "return this to allow chain pattern",
+                "type": "Object"
+            },
+            "class": "HttpRequest",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/request/img_request.js",
+            "line": 20,
+            "itemtype": "method",
+            "name": "send",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "this to chain",
+                "type": "Object"
+            },
+            "class": "ImgRequest",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/request/img_request.js",
+            "line": 41,
+            "itemtype": "property",
+            "name": "document",
+            "type": "object",
+            "static": 1,
+            "class": "ImgRequest",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/request/img_request.js",
+            "line": 48,
+            "itemtype": "method",
+            "name": "make",
+            "static": 1,
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "document",
+                "type": "DOMObject"
+            },
+            "class": "ImgRequest",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/request/jsonp_request.js",
+            "line": 19,
+            "itemtype": "method",
+            "name": "queryCallback",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "string",
+                    "description": "to call in jsonpresult",
+                    "type": "String"
+                }
+            ],
+            "return": {
+                "description": "this to chain",
+                "type": "Object"
+            },
+            "class": "JsonpRequest",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/request/jsonp_request.js",
+            "line": 30,
+            "itemtype": "method",
+            "name": "validate",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Boolean"
+            },
+            "class": "JsonpRequest",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/request/jsonp_request.js",
+            "line": 39,
+            "itemtype": "method",
+            "name": "send",
+            "access": "public",
+            "tagname": "",
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "return": {
+                "description": "this to chain",
+                "type": "Object"
+            },
+            "class": "JsonpRequest",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/request/jsonp_request.js",
+            "line": 60,
+            "itemtype": "property",
+            "name": "document",
+            "type": "object",
+            "static": 1,
+            "class": "JsonpRequest",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/request/jsonp_request.js",
+            "line": 67,
+            "itemtype": "method",
+            "name": "make",
+            "static": 1,
+            "params": [
+                {
+                    "name": "options",
+                    "description": "",
+                    "type": "Object"
+                },
+                {
+                    "name": "callback",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "return": {
+                "description": "this to chain",
+                "type": "Object"
+            },
+            "example": [
+                " JsonpRequest.make(options, callback).expose(root)"
+            ],
+            "class": "JsonpRequest",
+            "module": "request"
+        },
+        {
+            "file": "lib/src/spaces/basic_space.js",
+            "line": 26,
+            "description": "When there are ads fetched for this space, select some Ad \nfrom the fecthed collection using some configurable behaviour (Random by default).\n\nCreate and initalize the seleted as an AdDom instance,\nregister the 'Load' event, in order to track the impression when the file is fully loaded.\nPlace the ad on the DomSpace, which will automatically trigger the 'Ad Placement' event.",
+            "itemtype": "method",
+            "name": "init",
+            "params": [
+                {
+                    "name": "tracker",
+                    "description": "A instance of Tracker",
+                    "type": "Object"
+                },
+                {
+                    "name": "config",
+                    "description": "Data to tracked",
+                    "type": "Object"
+                }
+            ],
+            "access": "public",
+            "tagname": "",
+            "class": "BasicSpace",
+            "module": "spaces"
+        },
+        {
+            "file": "lib/src/spaces/expandable_space.js",
+            "line": 16,
+            "itemtype": "event",
+            "name": "expandEvent",
+            "example": [
+                " \n\t\t\tvar space = new ExpandableSpace();\n\t\t\tspace.addDomEventListener(space.exapandEvent)"
+            ],
+            "class": "ExpandableSpace",
+            "module": "spaces"
+        },
+        {
+            "file": "lib/src/spaces/expandable_space.js",
+            "line": 24,
+            "itemtype": "event",
+            "name": "retreatEvent",
+            "example": [
+                " \n\t\t\tvar space = new ExpandableSpace();\n\t\t\tspace.addDomEventListener(space.retreatEvent)"
+            ],
+            "class": "ExpandableSpace",
+            "module": "spaces"
+        },
+        {
+            "file": "lib/src/spaces/expandable_space.js",
+            "line": 32,
+            "description": "Get or create the element\nSet the element id and sizes",
+            "itemtype": "method",
+            "name": "__construct",
+            "params": [
+                {
+                    "name": "self",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "access": "private",
+            "tagname": "",
+            "class": "ExpandableSpace",
+            "module": "spaces"
+        },
+        {
+            "file": "lib/src/spaces/expandable_space.js",
+            "line": 62,
+            "itemtype": "method",
+            "name": "clip",
+            "params": [
+                {
+                    "name": "width",
+                    "description": "",
+                    "type": "Number"
+                },
+                {
+                    "name": "height",
+                    "description": "",
+                    "type": "Number"
+                }
+            ],
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "ExpandableSpace",
+            "module": "spaces"
+        },
+        {
+            "file": "lib/src/spaces/expandable_space.js",
+            "line": 73,
+            "itemtype": "method",
+            "name": "expand",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "ExpandableSpace",
+            "module": "spaces"
+        },
+        {
+            "file": "lib/src/spaces/expandable_space.js",
+            "line": 88,
+            "itemtype": "method",
+            "name": "retract",
+            "access": "public",
+            "tagname": "",
+            "return": {
+                "description": "",
+                "type": "Object"
+            },
+            "class": "ExpandableSpace",
+            "module": "spaces"
+        },
+        {
+            "file": "lib/src/spaces/floater_space.js",
+            "line": 14,
+            "itemtype": "method",
+            "name": "close",
+            "access": "public",
+            "tagname": "",
+            "class": "FloaterSpace",
+            "module": "spaces"
+        },
+        {
+            "file": "lib/src/spaces/spaces.js",
+            "line": 17,
+            "itemtype": "method",
+            "name": "create",
+            "params": [
+                {
+                    "name": "data",
+                    "description": "Config to create the Space",
+                    "type": "Object"
+                }
+            ],
+            "class": "StaticSpace",
+            "module": "spaces",
+            "submodule": "spaces-spaces"
+        },
+        {
+            "file": "lib/src/utils/copy.js",
+            "line": 7,
+            "description": "Prototype pattern Object.create() in old browsers",
+            "itemtype": "method",
+            "name": "copy",
+            "params": [
+                {
+                    "name": "obj",
+                    "description": "",
+                    "type": "Object"
+                }
+            ],
+            "class": "Utils",
+            "module": "utils"
+        },
+        {
+            "file": "lib/src/utils/loadscript.js",
+            "line": 7,
+            "itemtype": "method",
+            "name": "loadScript",
+            "params": [
+                {
+                    "name": "url",
+                    "description": "",
+                    "type": "String"
+                },
+                {
+                    "name": "sucess",
+                    "description": "",
+                    "type": "Function"
+                },
+                {
+                    "name": "error",
+                    "description": "",
+                    "type": "Function"
+                }
+            ],
+            "async": 1,
+            "return": {
+                "description": "",
+                "type": "Element"
+            },
+            "class": "Utils",
+            "module": "utils"
+        },
+        {
+            "file": "lib/src/utils/merge.js",
+            "line": 7,
+            "description": "Util method for extend/merge objects",
+            "itemtype": "method",
+            "name": "merge",
+            "class": "Utils",
+            "module": "utils"
+        }
+    ],
+    "warnings": [
+        {
+            "message": "unknown tag: modules",
+            "line": " api/page_autorun.js:1"
+        },
+        {
+            "message": "unknown tag: require",
+            "line": " api/spaces_api.js:1"
+        },
+        {
+            "message": "replacing incorrect tag: returns with return",
+            "line": " api/tracker.js:22"
+        },
+        {
+            "message": "unknown tag: link",
+            "line": " lib/src/dom/dom_element.js:5"
+        },
+        {
+            "message": "unknown tag: require",
+            "line": " lib/src/domain/page.js:50"
+        },
+        {
+            "message": "unknown tag: interface",
+            "line": " lib/src/domain/space.js:5"
+        },
+        {
+            "message": "Missing item type",
+            "line": " api/page_autorun.js:1"
+        }
+    ]
+}
