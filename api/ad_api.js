@@ -64,8 +64,9 @@
 		this.getData(function(err, data){
 			if(!err && data){
 				var ad = ads.create(data);
-				ad.trackerUrl = tracker.connection.getUrl();			
-				ad.setImpression({id: self.id}, self);
+				ad.trackerUrl = tracker.connection.getUrl();
+				
+				ad.setImpression(null, data);
 				
 				// Listener for 'LOAD' event
 				ad.on('load', function(){

@@ -1453,7 +1453,9 @@ var DomElement = function(){
 		config.type = 'impression';
 		config.ad_id = this.id;
 		
-		config.space_id = space.id || delete config.space_id;
+		if(space){
+			config.space_id = space.id || delete config.space_id;
+		}
 		
 		config.campaign_id = this.campaign_id;
 		this.impression = config;

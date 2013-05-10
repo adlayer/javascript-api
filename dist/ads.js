@@ -1453,7 +1453,9 @@ var DomElement = function(){
 		config.type = 'impression';
 		config.ad_id = this.id;
 		
-		config.space_id = space.id || delete config.space_id;
+		if(space){
+			config.space_id = space.id || delete config.space_id;
+		}
 		
 		config.campaign_id = this.campaign_id;
 		this.impression = config;
@@ -2569,8 +2571,9 @@ exports.Adlayer = Adlayer;
 		this.getData(function(err, data){
 			if(!err && data){
 				var ad = ads.create(data);
-				ad.trackerUrl = tracker.connection.getUrl();			
-				ad.setImpression({id: self.id}, self);
+				ad.trackerUrl = tracker.connection.getUrl();
+				
+				ad.setImpression(null, data);
 				
 				// Listener for 'LOAD' event
 				ad.on('load', function(){
@@ -2840,9 +2843,9 @@ See more at {{#crossLinkModule "ads"}}{{/crossLinkModule}}
 					adserver: api.adserver,
 					document: document
 				});
-				api.ads[id] = ad;
 
 				ad.init(api.tracker, function(){
+					api.ads[this.id] = this;
 					parent.replaceChild(this.element, document.getElementById(this.id));
 				});
 			}
