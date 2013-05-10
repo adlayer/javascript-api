@@ -81,8 +81,8 @@ var adsApi = [
 	"./api/tracker.js",
 	"./api/adserver.js",
 	"./api/adlayer.js",
-	"./api/ad_api.js",
 	"./api/api.js",
+	"./api/ad_api.js",
 	"./api/ad_autorun.js"
 ];
 
@@ -90,8 +90,8 @@ var spacesApi = [
 	"./api/tracker.js",
 	"./api/adserver.js",
 	"./api/adlayer.js",
-	"./api/spaces_api.js",
 	"./api/api.js",
+	"./api/spaces_api.js",
 	"./api/spaces_autorun.js"
 ];
 
