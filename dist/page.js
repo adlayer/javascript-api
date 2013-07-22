@@ -2659,11 +2659,9 @@ exports.Adlayer = Adlayer;
 * @example
 	window.adlayer || adlayer;
 	
-----------
+----------------------
 ## Overview
-The Adlayer Javascript client API provides a library to extend the behaviour of Adlayer integration.
-
-The Adlayer JS API have the following parts:
+The Adlayer Javascript API provides a library to create customizable integrations with our adserving
 
 ----------------------
 

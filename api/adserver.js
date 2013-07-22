@@ -1,5 +1,5 @@
 /**
-* @module api
+* @module adserver
 */
 (function(){
 	/**

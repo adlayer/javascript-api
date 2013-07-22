@@ -58,8 +58,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "adserver",
-            "name": "adserver",
-            "description": "Handle adserver connections"
+            "name": "adserver"
         },
         {
             "displayName": "api",
@@ -107,8 +106,7 @@ YUI.add("yuidoc-meta", function(Y) {
         },
         {
             "displayName": "tracker",
-            "name": "tracker",
-            "description": "Handle tracker operations"
+            "name": "tracker"
         },
         {
             "displayName": "utils",

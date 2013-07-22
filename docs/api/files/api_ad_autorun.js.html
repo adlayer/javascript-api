@@ -234,9 +234,9 @@
 					adserver: api.adserver,
 					document: document
 				});
-				api.ads[id] = ad;
 
 				ad.init(api.tracker, function(){
+					api.ads[this.id] = this;
 					parent.replaceChild(this.element, document.getElementById(this.id));
 				});
 			}

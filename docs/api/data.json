@@ -34,7 +34,9 @@
         },
         "api/adserver.js": {
             "name": "api/adserver.js",
-            "modules": {},
+            "modules": {
+                "adserver": 1
+            },
             "classes": {
                 "Adserver": 1
             },
@@ -46,8 +48,6 @@
             "modules": {
                 "page": 1,
                 "config": 1,
-                "adserver": 1,
-                "tracker": 1,
                 "lib": 1
             },
             "classes": {},
@@ -63,7 +63,9 @@
         },
         "api/page_api.js": {
             "name": "api/page_api.js",
-            "modules": {},
+            "modules": {
+                "api": 1
+            },
             "classes": {
                 "PageApi": 1
             },
@@ -98,7 +100,7 @@
         "api/tracker.js": {
             "name": "api/tracker.js",
             "modules": {
-                "api": 1
+                "tracker": 1
             },
             "classes": {
                 "Tracker": 1
@@ -388,28 +390,19 @@
         "api": {
             "name": "api",
             "submodules": {
-                "page": 1,
-                "config": 1,
-                "connections": 1,
-                "adserver": 1,
-                "tracker": 1,
-                "spaces": 1,
-                "ads": 1,
-                "lib": 1
+                "config": 1
             },
             "classes": {
                 "AdApi": 1,
                 "Adlayer": 1,
-                "Adserver": 1,
                 "PageApi": 1,
-                "SpaceApi": 1,
-                "Tracker": 1
+                "SpaceApi": 1
             },
             "fors": {},
             "namespaces": {},
             "tag": "module",
-            "file": "api/tracker.js",
-            "line": 8,
+            "file": "api/spaces_api.js",
+            "line": 11,
             "requires": [
                 "Events",
                 "dom",
@@ -419,17 +412,17 @@
             ],
             "itemtype": "main",
             "example": [
-                "\n\twindow.adlayer || adlayer;\n\t\n----------\n## Overview\nThe Adlayer Javascript client API provides a library to extend the behaviour of Adlayer integration.\n\nThe Adlayer JS API have the following parts:\n\n----------------------\n\n## Configuration",
+                "\n\n# Adlayer Javascript Api\nThe Adlayer Javascript API provides a library to create customizable integrations with our adserving.\n\n----------------------\n\n## Installation\n\nAdd the following tag inside the tag ```head``` of your html document:\n```<script src=\"http://api.adlayerjavascriptsdk.com/api.min.js\" type=\"text/javascript\"></script>```\n\nTo get the uncompressed and commented file use ``` http://api.adlayerjavascriptsdk.com/api.js ```\n\n----------------------\n\n## Configuration\nYou can check and change configuration of the library execution code.",
                 " __Access the configs of API__\n\n\tadlayer.config;",
-                " __Overring default configuration__\n\nCan be useful for create plugins or change options before \"api.js\" have beeing loaded\n\n\tvar adlayer = adlayer || {};\n\tadlayer.config = adlayer.config || {};\n\tadlayer.config.adsPerSpace = 10;\n\t\n---------------------\n\n## Adserving",
+                " __Overring default configuration__\n\nCan be useful for create plugins or change options before \"api.js\" have beeing loaded\n\n\tvar adlayer = adlayer || {};\n\tadlayer.config = adlayer.config || {};\n\tadlayer.config.adsPerSpace = 10;\n\t\n---------------------\n\n## Adserving\n\nIn order to comunicate with Adlayer Ad server API, you can use the methods of ```adlayer.adserver``` namespace",
                 " __Requesting page data from adserver__\n\t\n\tadlayer.adserver.pages('838jjkamr87d88930048', {}, function(data){\n\t\tconsole.log(data);\n\t});",
                 " __Requesting spaces data directally from adserver__\n\n\tadlayer.adserver.spaces('d88930048838jjkamr87', {}, function(data){\n\t\tconsole.log(data);\n\t});",
                 " __Request ads data using the api__\n\n\tadlayer.adserver.ads('33030d88930048838jjkamr87', {}, function(data){\n\t\tconsole.log(data);\n\t});\n\nsee more at {{#crossLink \"Adserver\"}}{{/crossLink}}\n\n----------------------\t\n\n## Tracking",
                 " __Tracking Impressions mannually__\n\n\tadlayer.tracker.track('impression', {});",
-                " __Tracking clicls__\n\n\tadlayer.tracker.track('click', {});\n\t\nsee more at {{#crossLink \"Tracker\"}}{{/crossLink}}\n\n----------------------\n\n## Managing Rendered ads",
-                " __Emiting an ad placement__\n\n\tvar ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];\n\tad.emit('placement');",
-                " __Emiting the ad onload event__\n\n\tvar ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];\n\tad.emit('load');\n\t\n----------------------\n\n## Handling rendered dom spaces",
-                " __Closing spaces__\n\n\tvar space = adlayer.spaces['jdfndfdjfdsdf0sd0f'];\n\tspace.close();\n\n----------------------\n\n## Adlayer API internal Library",
+                " __Tracking clicls__\n\n\tadlayer.tracker.track('click', {});\n\t\nsee more at {{#crossLink \"Tracker\"}}{{/crossLink}}\n\n----------------------\n\n## Managing Rendered ads\nAfter the rendering process all placed ads can be accessed and managed.\n\nTo access the rendered ads you shuold use ```adlayer.ads```, this namespace is a collection of all displayed ads that can be handle by the UUID.",
+                " __Emiting an ad placement__\n\n\tvar ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];\n\tad.emit('placement');\n\nAds are by default an EventEmitter and every time an and are inserted into a space it will be called \"placement\", \nso when a placement occours the placament event should dispatched.",
+                " __Emiting the ad onload event__\n\n\tvar ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];\n\tad.emit('load');\n\t\nAdlayer consider as an impressions just when the ad file is completelly loaded, and our library are programed to comunicate with our servers\nand register a new impressions when the event ```load``` is triggered.\n\nTo view all Ads methods and events checkout Ads library API\n\n----------------------\n\n## Manipulating rendered DOM Spaces\nSo as in ads all spaces present in the DOM and already rendered by our library (not necessarily with an ad placement) can be accessed by UUID.",
+                " __Closing spaces__\n\n\tvar space = adlayer.spaces['jdfndfdjfdsdf0sd0f'];\n\tspace.close();\n\nTo view all Spaces methods and events checkout Spaces library API\n\n----------------------\n\n## Adlayer API internal Library\nAdlayer Javascript API is bult based on Adlayer Javascript Library, \nthis library is embbed in every release of our API or widgets and completally accessible via ```adlayer.lib```.",
                 " __Creating a instance of a Adserver internal Adserver class__\n\n\tnew adlayer.lib.Adserver();\n\nSee more at {{#crossLinkModule \"lib\"}}{{/crossLinkModule}}\t\n\t\n----------------------",
                 " __Creating an spaces__\n\n\tadlayer.lib.spaces.create({type:'floater'});\n\t\nSee more at {{#crossLinkModule \"spaces\"}}{{/crossLinkModule}}\n\t\n----------------------",
                 " __Creating ads__\n\t\n\tadlayer.lib.ads.create({type:'flash'});\n\nSee more at {{#crossLinkModule \"ads\"}}{{/crossLinkModule}}\n\t\n----------------------"
@@ -446,6 +439,26 @@
             "file": "api/spaces_autorun.js",
             "line": 1
         },
+        "adserver": {
+            "name": "adserver",
+            "submodules": {
+                "page": 1,
+                "connections": 1,
+                "tracker": 1,
+                "spaces": 1,
+                "ads": 1,
+                "lib": 1
+            },
+            "classes": {
+                "Adserver": 1
+            },
+            "fors": {},
+            "namespaces": {},
+            "tag": "module",
+            "file": "api/adserver.js",
+            "line": 5,
+            "module": "adserver"
+        },
         "page": {
             "name": "page",
             "submodules": {},
@@ -453,10 +466,10 @@
             "fors": {},
             "is_submodule": 1,
             "namespaces": {},
-            "module": "api",
+            "module": "adserver",
             "namespace": "",
             "file": "api/api.js",
-            "line": 135,
+            "line": 14,
             "description": "A reference for the current rendered page\nAlso stores references for spaces and ads rendered on the page"
         },
         "config": {
@@ -469,7 +482,7 @@
             "module": "api",
             "namespace": "",
             "file": "api/api.js",
-            "line": 143,
+            "line": 22,
             "description": "All configuration for adlayer api"
         },
         "connections": {
@@ -481,7 +494,7 @@
             "fors": {},
             "is_submodule": 1,
             "namespaces": {},
-            "module": "api",
+            "module": "adserver",
             "namespace": "",
             "file": "lib/src/connection/connection.js",
             "line": 6,
@@ -490,31 +503,24 @@
                 "request"
             ]
         },
-        "adserver": {
-            "name": "adserver",
-            "submodules": {},
-            "classes": {},
-            "fors": {},
-            "is_submodule": 1,
-            "namespaces": {},
-            "module": "api",
-            "namespace": "",
-            "file": "api/api.js",
-            "line": 155,
-            "description": "Handle adserver connections"
-        },
         "tracker": {
             "name": "tracker",
             "submodules": {},
-            "classes": {},
+            "classes": {
+                "Tracker": 1
+            },
             "fors": {},
             "is_submodule": 1,
             "namespaces": {},
-            "module": "api",
+            "module": "adserver",
             "namespace": "",
-            "file": "api/api.js",
-            "line": 162,
-            "description": "Handle tracker operations"
+            "file": "api/tracker.js",
+            "line": 8,
+            "tag": "module",
+            "requires": [
+                "utils",
+                "core"
+            ]
         },
         "spaces": {
             "name": "spaces",
@@ -530,7 +536,7 @@
             "fors": {},
             "is_submodule": 1,
             "namespaces": {},
-            "module": "api",
+            "module": "adserver",
             "namespace": "",
             "file": "lib/src/spaces/static_space.js",
             "line": 7,
@@ -557,7 +563,7 @@
             "fors": {},
             "is_submodule": 1,
             "namespaces": {},
-            "module": "api",
+            "module": "adserver",
             "namespace": "",
             "file": "lib/src/ads/swf.js",
             "line": 6,
@@ -577,10 +583,10 @@
             "fors": {},
             "is_submodule": 1,
             "namespaces": {},
-            "module": "api",
+            "module": "adserver",
             "namespace": "",
             "file": "api/api.js",
-            "line": 191,
+            "line": 70,
             "description": "Shortcut for all internal classes"
         },
         "dom": {
@@ -700,14 +706,19 @@
             "plugins": [],
             "extensions": [],
             "plugin_for": [],
-            "extension_for": [
-                "api"
-            ],
+            "extension_for": [],
             "module": "api",
             "namespace": "",
             "file": "api/adlayer.js",
-            "line": 11,
+            "line": 153,
             "description": "Abstraction of Adlayer Api",
+            "uses": [
+                "config",
+                "connection",
+                "eventemitter",
+                "tracker",
+                "adserver"
+            ],
             "is_constructor": 1
         },
         "Adserver": {
@@ -718,7 +729,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "api",
+            "module": "adserver",
             "namespace": "",
             "file": "api/adserver.js",
             "line": 5,
@@ -772,7 +783,7 @@
             "extensions": [],
             "plugin_for": [],
             "extension_for": [],
-            "module": "api",
+            "module": "tracker",
             "namespace": "",
             "file": "api/tracker.js",
             "line": 8,
@@ -1418,7 +1429,7 @@
         },
         {
             "file": "api/adlayer.js",
-            "line": 19,
+            "line": 161,
             "description": "A shortcut for Adlayer library",
             "itemtype": "property",
             "name": "lib",
@@ -1428,7 +1439,7 @@
         },
         {
             "file": "api/adlayer.js",
-            "line": 28,
+            "line": 170,
             "description": "Define or extends configuration for API\nYou can use this for customize default attributes",
             "itemtype": "property",
             "name": "config",
@@ -1439,7 +1450,7 @@
         },
         {
             "file": "api/adlayer.js",
-            "line": 39,
+            "line": 181,
             "description": "A collection of all connections (open and closed ones)\nProvide total control over adserver and tracker connection and respective request",
             "itemtype": "property",
             "name": "connections",
@@ -1450,7 +1461,7 @@
         },
         {
             "file": "api/adlayer.js",
-            "line": 50,
+            "line": 192,
             "description": "Exports adserver",
             "itemtype": "property",
             "name": "adserver",
@@ -1460,7 +1471,7 @@
         },
         {
             "file": "api/adlayer.js",
-            "line": 58,
+            "line": 200,
             "description": "Exports tracker",
             "itemtype": "property",
             "name": "tracker",
@@ -1473,7 +1484,7 @@
         },
         {
             "file": "api/adlayer.js",
-            "line": 70,
+            "line": 212,
             "description": "Collection of all rendered spaces on the page",
             "itemtype": "property",
             "name": "spaces",
@@ -1487,7 +1498,7 @@
         },
         {
             "file": "api/adlayer.js",
-            "line": 85,
+            "line": 227,
             "description": "A shortcut for a collection of all ads rendered on the respective spaces",
             "itemtype": "property",
             "name": "ads",
@@ -1501,7 +1512,7 @@
         },
         {
             "file": "api/adlayer.js",
-            "line": 99,
+            "line": 241,
             "description": "A shortcut for the rendered page\nWill always be a instace of class Page",
             "itemtype": "property",
             "name": "page",
@@ -1512,7 +1523,7 @@
         },
         {
             "file": "api/adlayer.js",
-            "line": 121,
+            "line": 263,
             "description": "Shortcut for adlayer.ads[id].emit, used by flash preloaders",
             "itemtype": "method",
             "name": "markAdAsLoaded",
@@ -1530,7 +1541,7 @@
         },
         {
             "file": "api/adlayer.js",
-            "line": 133,
+            "line": 275,
             "description": "Start or restart all connections based on config.urls",
             "itemtype": "method",
             "name": "connect",
@@ -1554,7 +1565,7 @@
             "name": "connection",
             "type": "Object",
             "class": "Adserver",
-            "module": "api"
+            "module": "adserver"
         },
         {
             "file": "api/adserver.js",
@@ -1585,7 +1596,7 @@
                 " \n\t\tadserver.request('ads/:id', {domain: window.location.host}, function(err, data){\n\t\t\tif(!err){\n\t\t\t console.log(data);\n\t\t\t}\n\t\t});"
             ],
             "class": "Adserver",
-            "module": "api"
+            "module": "adserver"
         },
         {
             "file": "api/adserver.js",
@@ -1616,7 +1627,7 @@
                 " \n\t\tadserver.pages(':id', {domain: window.location.host}, function(err, data){\n\t\t\tif(!err){\n\t\t\t console.log(data);\n\t\t\t}\n\t\t});"
             ],
             "class": "Adserver",
-            "module": "api"
+            "module": "adserver"
         },
         {
             "file": "api/adserver.js",
@@ -1647,7 +1658,7 @@
                 " \n\t\tadserver.ads(':id', {domain: window.location.host}, function(err, data){\n\t\t\tif(!err){\n\t\t\t console.log(data);\n\t\t\t}\n\t\t});"
             ],
             "class": "Adserver",
-            "module": "api"
+            "module": "adserver"
         },
         {
             "file": "api/adserver.js",
@@ -1678,7 +1689,7 @@
                 " \n\t\tvar adserver = new Adserver(new Connection());\n\t\tadserver.spaces(':id', {domain: window.location.host}, function(err, data){\n\t\t\tif(!err){\n\t\t\t console.log(data);\n\t\t\t}\n\t\t});"
             ],
             "class": "Adserver",
-            "module": "api"
+            "module": "adserver"
         },
         {
             "file": "api/config.js",
@@ -1918,7 +1929,7 @@
             "access": "public",
             "tagname": "",
             "class": "Tracker",
-            "module": "api"
+            "module": "tracker"
         },
         {
             "file": "api/tracker.js",
@@ -1939,7 +1950,7 @@
                 "type": "Undefined"
             },
             "class": "Tracker",
-            "module": "api"
+            "module": "tracker"
         },
         {
             "file": "lib/src/ads/ads.js",
@@ -2286,7 +2297,7 @@
         },
         {
             "file": "lib/src/dom/ad_dom.js",
-            "line": 83,
+            "line": 85,
             "itemtype": "method",
             "name": "getClickTag",
             "params": [

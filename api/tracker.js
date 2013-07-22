@@ -1,5 +1,5 @@
 /**
-* @module api
+* @module tracker
 * @requires utils, core
 */
 (function(){

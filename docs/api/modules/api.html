@@ -201,7 +201,7 @@
 
     
         <div class="foundat">
-            Defined in: <a href="..&#x2F;files&#x2F;api_tracker.js.html#l8"><code>api&#x2F;tracker.js:8</code></a>
+            Defined in: <a href="..&#x2F;files&#x2F;api_spaces_api.js.html#l11"><code>api&#x2F;spaces_api.js:11</code></a>
         </div>
     
 
@@ -218,20 +218,24 @@
     <div class="example">
         <h4>Example:</h4>
         <div class="example-content">
-            <pre class="code prettyprint"><code>window.adlayer || adlayer;
-</code></pre>
+            <h1>Adlayer Javascript Api</h1>
+
+<p>The Adlayer Javascript API provides a library to create customizable integrations with our adserving.</p>
 
 <hr />
 
-<h2>Overview</h2>
+<h2>Installation</h2>
 
-<p>The Adlayer Javascript client API provides a library to extend the behaviour of Adlayer integration.</p>
+<p>Add the following tag inside the tag <code>head</code> of your html document:
+<code>&lt;script src="http://api.adlayerjavascriptsdk.com/api.min.js" type="text/javascript"&gt;&lt;/script&gt;</code></p>
 
-<p>The Adlayer JS API have the following parts:</p>
+<p>To get the uncompressed and commented file use <code>http://api.adlayerjavascriptsdk.com/api.js</code></p>
 
 <hr />
 
-<h2>Configuration</h2><p><strong>Access the configs of API</strong></p>
+<h2>Configuration</h2>
+
+<p>You can check and change configuration of the library execution code.</p><p><strong>Access the configs of API</strong></p>
 
 <pre class="code prettyprint"><code>adlayer.config;
 </code></pre><p><strong>Overring default configuration</strong></p>
@@ -245,7 +249,9 @@ adlayer.config.adsPerSpace = 10;
 
 <hr />
 
-<h2>Adserving</h2><p><strong>Requesting page data from adserver</strong></p>
+<h2>Adserving</h2>
+
+<p>In order to comunicate with Adlayer Ad server API, you can use the methods of <code>adlayer.adserver</code> namespace</p><p><strong>Requesting page data from adserver</strong></p>
 
 <pre class="code prettyprint"><code>adlayer.adserver.pages('838jjkamr87d88930048', {}, function(data){
     console.log(data);
@@ -278,27 +284,46 @@ adlayer.config.adsPerSpace = 10;
 
 <hr />
 
-<h2>Managing Rendered ads</h2><p><strong>Emiting an ad placement</strong></p>
+<h2>Managing Rendered ads</h2>
+
+<p>After the rendering process all placed ads can be accessed and managed.</p>
+
+<p>To access the rendered ads you shuold use <code>adlayer.ads</code>, this namespace is a collection of all displayed ads that can be handle by the UUID.</p><p><strong>Emiting an ad placement</strong></p>
 
 <pre class="code prettyprint"><code>var ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];
 ad.emit('placement');
-</code></pre><p><strong>Emiting the ad onload event</strong></p>
+</code></pre>
+
+<p>Ads are by default an EventEmitter and every time an and are inserted into a space it will be called "placement", 
+so when a placement occours the placament event should dispatched.</p><p><strong>Emiting the ad onload event</strong></p>
 
 <pre class="code prettyprint"><code>var ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];
 ad.emit('load');
 </code></pre>
 
+<p>Adlayer consider as an impressions just when the ad file is completelly loaded, and our library are programed to comunicate with our servers
+and register a new impressions when the event <code>load</code> is triggered.</p>
+
+<p>To view all Ads methods and events checkout Ads library API</p>
+
 <hr />
 
-<h2>Handling rendered dom spaces</h2><p><strong>Closing spaces</strong></p>
+<h2>Manipulating rendered DOM Spaces</h2>
+
+<p>So as in ads all spaces present in the DOM and already rendered by our library (not necessarily with an ad placement) can be accessed by UUID.</p><p><strong>Closing spaces</strong></p>
 
 <pre class="code prettyprint"><code>var space = adlayer.spaces['jdfndfdjfdsdf0sd0f'];
 space.close();
 </code></pre>
 
+<p>To view all Spaces methods and events checkout Spaces library API</p>
+
 <hr />
 
-<h2>Adlayer API internal Library</h2><p><strong>Creating a instance of a Adserver internal Adserver class</strong></p>
+<h2>Adlayer API internal Library</h2>
+
+<p>Adlayer Javascript API is bult based on Adlayer Javascript Library, 
+this library is embbed in every release of our API or widgets and completally accessible via <code>adlayer.lib</code>.</p><p><strong>Creating a instance of a Adserver internal Adserver class</strong></p>
 
 <pre class="code prettyprint"><code>new adlayer.lib.Adserver();
 </code></pre>
@@ -344,12 +369,6 @@ space.close();
                 </li>
             
                 <li class="module-class">
-                    <a href="..&#x2F;classes/Adserver.html">
-                        Adserver
-                    </a>
-                </li>
-            
-                <li class="module-class">
                     <a href="..&#x2F;classes/PageApi.html">
                         PageApi
                     </a>
@@ -358,12 +377,6 @@ space.close();
                 <li class="module-class">
                     <a href="..&#x2F;classes/SpaceApi.html">
                         SpaceApi
-                    </a>
-                </li>
-            
-                <li class="module-class">
-                    <a href="..&#x2F;classes/Tracker.html">
-                        Tracker
                     </a>
                 </li>
             
@@ -378,83 +391,12 @@ space.close();
             <ul class="module-submodules">
             
                 <li class="module-submodule">
-                    <a href="..&#x2F;modules/ads.html">
-                        ads
-                    </a>
-
-                    <div class="module-submodule-description">
-                        
-                    </div>
-                </li>
-            
-                <li class="module-submodule">
-                    <a href="..&#x2F;modules/adserver.html">
-                        adserver
-                    </a>
-
-                    <div class="module-submodule-description">
-                        Handle adserver connections
-                    </div>
-                </li>
-            
-                <li class="module-submodule">
                     <a href="..&#x2F;modules/config.html">
                         config
                     </a>
 
                     <div class="module-submodule-description">
                         All configuration for adlayer api
-                    </div>
-                </li>
-            
-                <li class="module-submodule">
-                    <a href="..&#x2F;modules/connections.html">
-                        connections
-                    </a>
-
-                    <div class="module-submodule-description">
-                        
-                    </div>
-                </li>
-            
-                <li class="module-submodule">
-                    <a href="..&#x2F;modules/lib.html">
-                        lib
-                    </a>
-
-                    <div class="module-submodule-description">
-                        Shortcut for all internal classes
-                    </div>
-                </li>
-            
-                <li class="module-submodule">
-                    <a href="..&#x2F;modules/page.html">
-                        page
-                    </a>
-
-                    <div class="module-submodule-description">
-                        A reference for the current rendered page
-Also stores references for spaces and ads rendered on the page
-                    </div>
-                </li>
-            
-                <li class="module-submodule">
-                    <a href="..&#x2F;modules/spaces.html">
-                        spaces
-                    </a>
-
-                    <div class="module-submodule-description">
-                        
-                    </div>
-                </li>
-            
-                <li class="module-submodule">
-                    <a href="..&#x2F;modules/tracker.html">
-                        tracker
-                    </a>
-
-                    <div class="module-submodule-description">
-                        Handle tracker operations
                     </div>
                 </li>
             
