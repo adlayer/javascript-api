@@ -1,5 +1,6 @@
 # Adlayer Spaces Widget
-Adlayer Spaces Widget é uma maneira de embedar espaços publicitários de sua conta Adlayer.
+O Adlayer Spaces Widget é o metodo de integração mais indicado para o caso mais comum de gestão de espaços publicitários. Também conhecido como "espaços globais", os espaços publicitários integrados desta forma, normalmente estão presentes em todas as páginas do website.
+Cada espaços no Adlayer pode receber um numero indeterminado de peças publicitárias e por padrão apenas uma peça publicitária é mostrada por vez (pageview).
 
 ## Estrutura
 Este widget possui duas partes:

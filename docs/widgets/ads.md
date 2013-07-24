@@ -1,5 +1,10 @@
 # Adlayer Ads Widget
-Adlayer Ads Widget é uma maneira de embedar peças de sua conta Adlayer.
+Através do Adlayer Ads Widget é possível inserir uma peça publicitária em um website e obter relatórios dela em apenas 1 minuto.
+Alguns anunciante podem desejar utilizar deste método de integração para monitorar suas campanhas em sites de terceiros (Thirdy-party adserving).
+Caso o arquivo da peça gráfica ou link de destino seja alterado a peça embedada será atomaticamente atualizado, não necessitando uma re-integração da peça no veículo destinado.
+
+Embora a integração via "peça embedável" (Adlayer Ads Widget) seja um método rápido de visualizar uma peça em páginas da web, esta solução não é recomendada para publishers que pretendem gerenciar mais de uma peça ou espaço publicitário.
+
 
 ## Estrutura
 Este widget possui duas partes:

@@ -1,5 +1,7 @@
 # Adlayer Page Widget
-Adlayer Page Widget é uma maneira automatizada e fácil de integrar o Adlayer em seus sites.
+Este método é indicado para a integração de um ou mais espaços publicitários presentes apenas em uma página ou sessão específica do site.
+A "integração de página" possível através do Adlayer Page Widget permite maior segmentação das peças, permite uma gestão organizada do inventário e habilita maior discriminação dos dados visualizados no relatório de uma campanha.
+Este método possui as mesmas características de uma integração de espaço global com as vantagens de segmentação e organização de inventário.
 
 ## Estrutura
 Este widget possui duas partes:
