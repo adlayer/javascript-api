@@ -281,11 +281,16 @@ Adlayer.prototype.markAdAsLoaded = function(id){
 */
 Adlayer.prototype.connect = function(){
 	var config = this.config;
-	this.connections.adserver = new Connection(config.url.adserver);
-	this.connections.adserver.name = 'adserver';
 	
-	this.connections.tracker = new Connection(config.url.tracker);
-	this.connections.tracker.name = 'tracker';
+	if(!this.connections.adserver){
+		this.connections.adserver = new Connection(config.url.adserver);
+		this.connections.adserver.name = 'adserver';
+	}
+	
+	if(!this.connections.tracker){
+		this.connections.tracker = new Connection(config.url.tracker);
+		this.connections.tracker.name = 'tracker';
+	}
 	
 	// Set adserver
 	this.adserver = new Adserver();

@@ -13,7 +13,7 @@
 		var document = global.document;
 		var config = api.config;
 		var contentloaded = require('../lib/src/utils/contentloaded').contentloaded;
-			
+
 		if(document) {
 		
 			var scriptTag = document.getElementById(config.page.scriptTagId);

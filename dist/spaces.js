@@ -2191,7 +2191,7 @@ exports.config = {
 	}
 };
 /**
-* @module api
+* @module tracker
 * @requires utils, core
 */
 (function(){
@@ -2239,7 +2239,7 @@ exports.config = {
 	exports.Tracker = Tracker;
 })();
 /**
-* @module api
+* @module adserver
 */
 (function(){
 	/**
@@ -2348,6 +2348,152 @@ exports.config = {
 	
 	exports.Adserver = Adserver;
 })();
+/**
+* This is the inital point for Adlayer Api
+*
+* @module api
+* @main
+* @requires adlayer, config
+* @example
+
+# Adlayer Javascript Api
+The Adlayer Javascript API provides a library to create customizable integrations with our adserving.
+
+----------------------
+
+## Installation
+
+Add the following tag inside the tag ```head``` of your html document:
+```<script src="http://api.adlayerjavascriptsdk.com/api.min.js" type="text/javascript"></script>```
+
+To get the uncompressed and commented file use ``` http://api.adlayerjavascriptsdk.com/api.js ```
+
+----------------------
+
+## Configuration
+You can check and change configuration of the library execution code.
+
+* @example __Access the configs of API__
+
+	adlayer.config;
+
+* @example __Overring default configuration__
+
+Can be useful for create plugins or change options before "api.js" have beeing loaded
+
+	var adlayer = adlayer || {};
+	adlayer.config = adlayer.config || {};
+	adlayer.config.adsPerSpace = 10;
+	
+---------------------
+
+## Adserving
+
+In order to comunicate with Adlayer Ad server API, you can use the methods of ```adlayer.adserver``` namespace
+
+* @example __Requesting page data from adserver__
+	
+	adlayer.adserver.pages('838jjkamr87d88930048', {}, function(data){
+		console.log(data);
+	});
+	
+* @example __Requesting spaces data directally from adserver__
+
+	adlayer.adserver.spaces('d88930048838jjkamr87', {}, function(data){
+		console.log(data);
+	});
+	
+* @example __Request ads data using the api__
+
+	adlayer.adserver.ads('33030d88930048838jjkamr87', {}, function(data){
+		console.log(data);
+	});
+
+* see more at {{#crossLink "Adserver"}}{{/crossLink}}
+
+----------------------	
+
+## Tracking
+
+
+* @example __Tracking Impressions mannually__
+
+	adlayer.tracker.track('impression', {});
+
+* @example __Tracking clicls__
+
+	adlayer.tracker.track('click', {});
+	
+* see more at {{#crossLink "Tracker"}}{{/crossLink}}
+
+----------------------
+
+## Managing Rendered ads
+After the rendering process all placed ads can be accessed and managed.
+
+To access the rendered ads you shuold use ```adlayer.ads```, this namespace is a collection of all displayed ads that can be handle by the UUID.
+
+* @example __Emiting an ad placement__
+
+	var ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];
+	ad.emit('placement');
+
+* Ads are by default an EventEmitter and every time an and are inserted into a space it will be called "placement", 
+so when a placement occours the placament event should dispatched.
+	
+* @example __Emiting the ad onload event__
+
+	var ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];
+	ad.emit('load');
+	
+* Adlayer consider as an impressions just when the ad file is completelly loaded, and our library are programed to comunicate with our servers
+and register a new impressions when the event ```load``` is triggered.
+
+* To view all Ads methods and events checkout Ads library API
+
+----------------------
+
+## Manipulating rendered DOM Spaces
+So as in ads all spaces present in the DOM and already rendered by our library (not necessarily with an ad placement) can be accessed by UUID.
+
+* @example __Closing spaces__
+
+	var space = adlayer.spaces['jdfndfdjfdsdf0sd0f'];
+	space.close();
+
+* To view all Spaces methods and events checkout Spaces library API
+
+----------------------
+
+## Adlayer API internal Library
+Adlayer Javascript API is bult based on Adlayer Javascript Library, 
+this library is embbed in every release of our API or widgets and completally accessible via ```adlayer.lib```.
+
+* @example __Creating a instance of a Adserver internal Adserver class__
+
+	new adlayer.lib.Adserver();
+
+See more at {{#crossLinkModule "lib"}}{{/crossLinkModule}}	
+	
+----------------------
+
+* @example __Creating an spaces__
+
+	adlayer.lib.spaces.create({type:'floater'});
+	
+* See more at {{#crossLinkModule "spaces"}}{{/crossLinkModule}}
+	
+----------------------
+
+* @example __Creating ads__
+	
+	adlayer.lib.ads.create({type:'flash'});
+
+See more at {{#crossLinkModule "ads"}}{{/crossLinkModule}}
+	
+----------------------
+*/
+
 var config = require('./config').config;
 var Connection = require('../lib/connection/connection').Connection;
 var EventEmitter = require('../lib/node_modules/events').events.EventEmitter;
@@ -2355,15 +2501,11 @@ var Tracker = require('../tracker/tracker').Tracker;
 var Adserver = require('./adserver').Adserver;
 
 /**
-* @module api
-*/
-
-/**
 * Abstraction of Adlayer Api
 *
 * @class Adlayer
+* @uses config, connection, eventemitter, tracker, adserver
 * @constructor
-* @extensionfor api
 */
 var Adlayer = function(api){
 	/**
@@ -2489,11 +2631,16 @@ Adlayer.prototype.markAdAsLoaded = function(id){
 */
 Adlayer.prototype.connect = function(){
 	var config = this.config;
-	this.connections.adserver = new Connection(config.url.adserver);
-	this.connections.adserver.name = 'adserver';
 	
-	this.connections.tracker = new Connection(config.url.tracker);
-	this.connections.tracker.name = 'tracker';
+	if(!this.connections.adserver){
+		this.connections.adserver = new Connection(config.url.adserver);
+		this.connections.adserver.name = 'adserver';
+	}
+	
+	if(!this.connections.tracker){
+		this.connections.tracker = new Connection(config.url.tracker);
+		this.connections.tracker.name = 'tracker';
+	}
 	
 	// Set adserver
 	this.adserver = new Adserver();
@@ -2505,125 +2652,6 @@ Adlayer.prototype.connect = function(){
 };
 
 exports.Adlayer = Adlayer;
-/**
-* This is the inital point for Adlayer Api
-*
-* @module api
-* @main
-* @requires adlayer, config
-* @example
-	window.adlayer || adlayer;
-	
-----------------------
-## Overview
-The Adlayer Javascript API provides a library to create customizable integrations with our adserving
-
-----------------------
-
-## Configuration
-
-* @example __Access the configs of API__
-
-	adlayer.config;
-
-* @example __Overring default configuration__
-
-Can be useful for create plugins or change options before "api.js" have beeing loaded
-
-	var adlayer = adlayer || {};
-	adlayer.config = adlayer.config || {};
-	adlayer.config.adsPerSpace = 10;
-	
----------------------
-
-## Adserving
-
-* @example __Requesting page data from adserver__
-	
-	adlayer.adserver.pages('838jjkamr87d88930048', {}, function(data){
-		console.log(data);
-	});
-	
-* @example __Requesting spaces data directally from adserver__
-
-	adlayer.adserver.spaces('d88930048838jjkamr87', {}, function(data){
-		console.log(data);
-	});
-	
-* @example __Request ads data using the api__
-
-	adlayer.adserver.ads('33030d88930048838jjkamr87', {}, function(data){
-		console.log(data);
-	});
-
-* see more at {{#crossLink "Adserver"}}{{/crossLink}}
-
-----------------------	
-
-## Tracking
-
-* @example __Tracking Impressions mannually__
-
-	adlayer.tracker.track('impression', {});
-
-* @example __Tracking clicls__
-
-	adlayer.tracker.track('click', {});
-	
-* see more at {{#crossLink "Tracker"}}{{/crossLink}}
-
-----------------------
-
-## Managing Rendered ads
-
-* @example __Emiting an ad placement__
-
-	var ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];
-	ad.emit('placement');
-	
-* @example __Emiting the ad onload event__
-
-	var ad = adlayer.ads['kdfsdf0df0sdfsfdsjf'];
-	ad.emit('load');
-	
-----------------------
-
-## Handling rendered dom spaces
-
-* @example __Closing spaces__
-
-	var space = adlayer.spaces['jdfndfdjfdsdf0sd0f'];
-	space.close();
-
-----------------------
-
-## Adlayer API internal Library
-
-* @example __Creating a instance of a Adserver internal Adserver class__
-
-	new adlayer.lib.Adserver();
-
-See more at {{#crossLinkModule "lib"}}{{/crossLinkModule}}	
-	
-----------------------
-
-* @example __Creating an spaces__
-
-	adlayer.lib.spaces.create({type:'floater'});
-	
-* See more at {{#crossLinkModule "spaces"}}{{/crossLinkModule}}
-	
-----------------------
-
-* @example __Creating ads__
-	
-	adlayer.lib.ads.create({type:'flash'});
-
-See more at {{#crossLinkModule "ads"}}{{/crossLinkModule}}
-	
-----------------------
-*/
-
 (function(window){
 
 	var Adlayer = require('./adlayer').Adlayer;
@@ -2655,7 +2683,7 @@ See more at {{#crossLinkModule "ads"}}{{/crossLinkModule}}
 	*
 	* @submodule connections
 	*/
-	api.connections = api.connections || null;
+	api.connections = api.connections;
 	
 	/**
 	* Handle adserver connections
@@ -2691,15 +2719,15 @@ See more at {{#crossLinkModule "ads"}}{{/crossLinkModule}}
 
 	
 	// api as an instance of Adlayer
-	api = new Adlayer(api);
+	var instance = new Adlayer(api);
 	
 	/**
 	* Shortcut for all internal classes
 	*
 	* @submodule lib
 	*/
-	api.lib = require('*');
-	global.adlayer = api;
+	instance.lib = require('*');
+	global.adlayer = instance;
 	
 })(this);
 /**

@@ -29,7 +29,7 @@
 	*
 	* @submodule connections
 	*/
-	api.connections = api.connections || null;
+	api.connections = api.connections;
 	
 	/**
 	* Handle adserver connections
@@ -65,14 +65,14 @@
 
 	
 	// api as an instance of Adlayer
-	api = new Adlayer(api);
+	var instance = new Adlayer(api);
 	
 	/**
 	* Shortcut for all internal classes
 	*
 	* @submodule lib
 	*/
-	api.lib = require('*');
-	global.adlayer = api;
+	instance.lib = require('*');
+	global.adlayer = instance;
 	
 })(this);
