@@ -2,6 +2,8 @@
 * @module adserver
 */
 (function(){
+	var merge = require('../lib/src/utils/merge').merge;
+	
 	/**
 	* High level API to handle with Adlayer Adserver.
 	*
@@ -54,7 +56,10 @@
 		var opts = copy(this.connection);
 		opts.host = opts.host;
 		opts.path = path;
-		opts.qs = query || {};
+		
+		opts.qs = this.targeting || {};
+		opts.qs = merge(opts.qs, query);
+		
 		opts.qs.callback = 'adlayer.connections.' + opts.name + '.requests.' + sign + '.callback';
 		var req = request().get(opts, callback);
 		this.connection.requests[sign] = req;
