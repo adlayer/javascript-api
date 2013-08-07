@@ -179,6 +179,17 @@ var Adlayer = function(api){
 	
 	
 	/**
+	* A collection of all user profile data
+	* Allows directed messages ads
+	*
+	*
+	* @property targeting
+	* @default object
+	* @type object
+	*/
+	this.targeting = api.targeting;
+	
+	/**
 	* A collection of all connections (open and closed ones)
 	* Provide total control over adserver and tracker connection and respective request
 	*
@@ -295,6 +306,8 @@ Adlayer.prototype.connect = function(){
 	// Set adserver
 	this.adserver = new Adserver();
 	this.adserver.connection = this.connections.adserver;
+	this.adserver.targeting = this.targeting;
+	
 
 	// Set tracker	
 	this.tracker = new Tracker();

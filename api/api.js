@@ -23,6 +23,13 @@
 	* @submodule config
 	*/
 	api.config = config;
+	
+	/**
+	* Stores user profile
+	*
+	* @submodule targeting
+	*/
+	api.targeting = api.targeting;
 
 	/**
 	* Stores all connections

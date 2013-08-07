@@ -2257,7 +2257,7 @@ exports.config = {
 		var adserver = new Adserver(new Connection(config.url.adserver));
 	*
 	*/
-	var Adserver = function(connection){
+	var Adserver = function(connection, targeting){
 		/**
 		* The instace of connection to be used as adserver
 		*
@@ -2265,6 +2265,13 @@ exports.config = {
 		* @type Object
 		*/
 		this.connection = connection;
+		/**
+		* List of user profile data
+		*
+		* @property targeting
+		* @type Object
+		*/
+		this.targeting = targeting;
 	};
 	
 	/**
@@ -2529,6 +2536,17 @@ var Adlayer = function(api){
 	
 	
 	/**
+	* A collection of all user profile data
+	* Allows directed messages ads
+	*
+	*
+	* @property targeting
+	* @default object
+	* @type object
+	*/
+	this.targeting = api.targeting;
+	
+	/**
 	* A collection of all connections (open and closed ones)
 	* Provide total control over adserver and tracker connection and respective request
 	*
@@ -2645,6 +2663,8 @@ Adlayer.prototype.connect = function(){
 	// Set adserver
 	this.adserver = new Adserver();
 	this.adserver.connection = this.connections.adserver;
+	this.adserver.targeting = this.targeting;
+	
 
 	// Set tracker	
 	this.tracker = new Tracker();
@@ -2677,6 +2697,13 @@ exports.Adlayer = Adlayer;
 	* @submodule config
 	*/
 	api.config = config;
+	
+	/**
+	* Stores user profile
+	*
+	* @submodule targeting
+	*/
+	api.targeting = api.targeting;
 
 	/**
 	* Stores all connections

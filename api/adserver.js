@@ -17,7 +17,7 @@
 		var adserver = new Adserver(new Connection(config.url.adserver));
 	*
 	*/
-	var Adserver = function(connection){
+	var Adserver = function(connection, targeting){
 		/**
 		* The instace of connection to be used as adserver
 		*
@@ -25,6 +25,13 @@
 		* @type Object
 		*/
 		this.connection = connection;
+		/**
+		* List of user profile data
+		*
+		* @property targeting
+		* @type Object
+		*/
+		this.targeting = targeting;
 	};
 	
 	/**
