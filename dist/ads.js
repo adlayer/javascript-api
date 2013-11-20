@@ -2188,7 +2188,13 @@ exports.config = {
 	*/
 	page: {
 		scriptTagId: 'adlayerScript'
-	}
+	},
+	/**
+	* Loaded widgets list
+	*
+	* @attribute widgets
+	*/
+	widgets: {}
 };
 /**
 * @module tracker
@@ -2885,8 +2891,16 @@ exports.Adlayer = Adlayer;
 	(function initialization(){
 		var api = window.adlayer;
 		var AdApi = api.lib.AdApi;
+		var config = api.config;
 		var contentloaded = require('../lib/src/utils/contentloaded').contentloaded;
 		
+		// Exit when the widget is already loaded
+		if(config.widgets.ads){
+			return false;
+		} else {
+			config.widgets.ads	= true;
+		}
+
 		contentloaded(global, function(){
 			var document = global.document;
 			var placeholders = getElementsByClass('adlayer_ad_placeholder', document);
@@ -2901,11 +2915,16 @@ exports.Adlayer = Adlayer;
 					adserver: api.adserver,
 					document: document
 				});
-
-				ad.init(api.tracker, function(){
-					api.ads[this.id] = this;
-					parent.replaceChild(this.element, document.getElementById(this.id));
-				});
+				
+				(function(placeholder, parent){
+					ad.init(api.tracker, function(){
+//						var old = parent.removeChild(placeholder);
+						api.ads[this.id] = this;
+//						parent.insertBefore(this.element, reference);
+						parent.replaceChild(this.element, placeholder);
+					});
+				})(placeholder, parent);
+				
 			}
 		});
 	})();

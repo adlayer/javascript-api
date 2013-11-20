@@ -2188,7 +2188,13 @@ exports.config = {
 	*/
 	page: {
 		scriptTagId: 'adlayerScript'
-	}
+	},
+	/**
+	* Loaded widgets list
+	*
+	* @attribute widgets
+	*/
+	widgets: {}
 };
 /**
 * @module tracker
