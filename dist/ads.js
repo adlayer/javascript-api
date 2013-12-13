@@ -2836,6 +2836,13 @@ exports.Adlayer = Adlayer;
 				var ad = ads.create(data);
 				ad.trackerUrl = tracker.connection.getUrl();
 				
+				delete data.src;
+				delete data.height;
+				delete data.status;
+				delete data.width;
+				delete data.link;
+				delete data.type;
+				
 				ad.setImpression(null, data);
 				
 				// Listener for 'LOAD' event
