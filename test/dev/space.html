@@ -1,28 +1,69 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!doctype html>
+<html lang="pt-BR">
 
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-	<title>space</title>
-	<script type="text/javascript">
-		var adlayer = adlayer || {};
-		adlayer.config = {
-			url: {
-				adserver: {
-					host: 'dev.jocasta.adlayerapp.com'
-				},
-				tracker: {
-					host: 'dev.tracker.adlayerapp.com'
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />		<title>Adlayer - Login</title>
+		<script type="text/javascript">
+			setTimeout(function(){
+				//window.location.reload();
+			},2000);
+			var adlayer = adlayer || {};
+			adlayer.config = {
+				url: {
+					adserver: {
+						host: 'dev.jocasta.adlayerapp.com'
+					},
+					tracker: {
+						host: 'dev.tracker.adlayerapp.com'
+					},
+					preloader: {
+						url: 'http://localhost/xframe/main.swf'
+					}
 				}
 			}
-		}
-	  </script>
-<script type="text/javascript" src="../../dist/spaces.js" async="true" language="javascript"></script>
+		  </script>
+		<script type="text/javascript" src="../../dist/spaces.js" async="true" language="javascript"></script>
+	</head>
 
-</head>
+	<body>
 
-<body>
-	<div id="5c659223469fc3bc283d555afb0b68e9" class="adlayer_space adlayer_space_global"></div>
-</body>
+		<header class="container">
+			<div class="row">
+			
+
+
+
+
+				<nav class="eightcol last">
+					<a href="/about" id="why">Por que Adlayer?</a>					<a href="/ad-server" id="solutions">Soluções</a>					<a href="/price" id="plans">Planos e Preços</a>					<a href="/signin" id="login">login</a>					<a href="/signup" id="register"><strong>Cadastro</strong></a>				</nav>
+
+			</div>
+		</header>
+<div id="5c659223469fc3bc283d555afb0b68e9" class="adlayer_space adlayer_space_global"></div>
+
+
+
+		
+
+
+<div class="container" id="main">
+	<div class="row">
+		<div id="intro" class="tencol">
+			<h2>Acesse sua conta</h2>
+			<h3>Faça login no seu domínio Adlayer</h3>
+		</div>
+	</div>
+	<div class="row">
+		<form action="http://adlayertest.adlayerapp.com/login" id="signin" class="fivecol" method="post" accept-charset="utf-8"><div style="display:none;"><input type="hidden" name="_method" value="POST"/></div>				<fieldset id="domain">
+			<label for="account">.adlayerapp.com</label><input name="data[User][subdomain]" id="account" value="Nome da conta" class="text" type="text"/>		</fieldset>
+		<label for="UserEmail">E-mail</label><input name="data[User][email]" class="text" type="email" id="UserEmail"/><label for="UserPassword">Password</label><input name="data[User][password]" class="text" type="password" id="UserPassword"/>		<div class="submit"><input  id="joinSubmit" class="button cta" type="submit" value="Logar"/></div></form>	</div>
+</div>
+		<footer class="row">
+			<nav class="twelvecol">
+				<a href="http://twitter.com/adlayer" title="Twitter">Twitter</a>				<a href="http://facebook.com/adlayer" title="Facebook">Facebook</a>				<a href="http://github.com/adlayer" title="GitHub">GitHub</a>
+				<a href="http://blog.adlayer.org" title="Adlayer Blog">Blog</a>				<a href="http://manuals.adlayerapp.com" title="Ajuda">Ajuda</a>				<a href="/open-display-tech" title="Email de Contato">Desenvolvedores</a>				<a href="mailto:contato@adlayer.org" title="Open Display Tech">Contato</a>			</nav>
+		</footer>
+
+	</body>
+
 </html>

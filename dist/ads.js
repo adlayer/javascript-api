@@ -1619,7 +1619,8 @@ var Swf = function(){
 		}
 		
 		var url = this.preloader + '?' + queryString.stringify({
-			src: this.src, 
+			src: this.src,
+			link: this.link, 
 			callback: this.callback, 
 			value: this.id
 		});
@@ -1880,7 +1881,8 @@ exports.Swf = Swf;
 				
 				switch(data.type){
 					case 'flash':
-						data.preloader = 'http://xframe.adlayerjavascriptsdk.com.s3.amazonaws.com/as3.swf';
+						data.preloader = 'http://xframe.adlayerjavascriptsdk.com/main.swf';
+						//data.preloader = 'http://localhost/xframe/main.swf';
 						data.callback = 'adlayer.markAdAsLoaded';
 						return new FlashAd(data);
 					case 'image':
