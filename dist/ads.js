@@ -2902,7 +2902,7 @@ exports.Adlayer = Adlayer;
 		var AdApi = api.lib.AdApi;
 		var config = api.config;
 		var contentloaded = require('../lib/src/utils/contentloaded').contentloaded;
-		
+
 		// Exit when the widget is already loaded
 		if(config.widgets.ads){
 			return false;
@@ -2925,14 +2925,16 @@ exports.Adlayer = Adlayer;
 					document: document
 				});
 				
-				(function(placeholder, parent){
+				(function(placeholder, parent, ad){
 					ad.init(api.tracker, function(){
 //						var old = parent.removeChild(placeholder);
 						api.ads[this.id] = this;
 //						parent.insertBefore(this.element, reference);
-						parent.replaceChild(this.element, placeholder);
+						if(document.getElementById(ad.id) === placeholder){
+							parent.replaceChild(this.element, placeholder);	
+						}
 					});
-				})(placeholder, parent);
+				})(placeholder, parent, ad);
 				
 			}
 		});
