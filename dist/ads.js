@@ -1812,6 +1812,10 @@ exports.Swf = Swf;
 				});
 				
 				self.append(img);
+				self.element.onclick = function(){
+					window.open(self.element.href);
+					return false;
+				}
 			}
 			
 			self.element.style.height = self.height + 'px';
@@ -2902,14 +2906,11 @@ exports.Adlayer = Adlayer;
 		var AdApi = api.lib.AdApi;
 		var config = api.config;
 		var contentloaded = require('../lib/src/utils/contentloaded').contentloaded;
-
-		// Exit when the widget is already loaded
 		if(config.widgets.ads){
 			return false;
 		} else {
 			config.widgets.ads	= true;
 		}
-
 		contentloaded(global, function(){
 			var document = global.document;
 			var placeholders = getElementsByClass('adlayer_ad_placeholder', document);
@@ -2924,7 +2925,7 @@ exports.Adlayer = Adlayer;
 					adserver: api.adserver,
 					document: document
 				});
-				
+			
 				(function(placeholder, parent, ad){
 					ad.init(api.tracker, function(){
 //						var old = parent.removeChild(placeholder);
