@@ -1832,6 +1832,44 @@ exports.Swf = Swf;
 /**
 * @module ads
 */
+
+(function(){
+	var AdDom = require('../dom/ad_dom').AdDom;
+	/**
+	* @class ImgAd
+	* @extends AdDom
+	*/
+	var HtmlAd = function(){
+		AdDom.apply(this, arguments);
+		
+		var __construct = (function(self){
+			// Default create the image
+			self.create('iframe');
+			self.element.src = self.src;
+			var iframe = self.element;
+			
+			// Set id in the image or in the link wrapper
+			self.element.id = self.id;
+			self.addDomEventListener('load', function(){
+				self.emit('load');
+			});
+			
+			self.element.style.height = self.height + 'px';
+			self.element.style.width = self.width + 'px';
+			self.element.setAttribute('height', self.height);
+			self.element.setAttribute('width', self.width);
+			self.element.setAttribute('frameborder', '0');
+			self.element.setAttribute('scrolling', 'no');
+						
+			return self.element;
+		})(this);
+	};
+	HtmlAd.prototype = new AdDom();
+	exports.HtmlAd = HtmlAd;
+})();
+/**
+* @module ads
+*/
 (function(){
 	var Embed = require('./embed_ad.js').EmbedAd;
 	var ObjectAd = require('./object_ad.js').ObjectAd;
@@ -1870,7 +1908,7 @@ exports.Swf = Swf;
 	exports.ads = (function(){
 		var FlashAd = require('./flash_ad.js').EmbedAd;
 		var Img = require('./img_ad.js').ImgAd;
-		
+		var HtmlAd = require('./html_ad.js').HtmlAd;
 		return {
 			/**
 			* @method create
@@ -1891,6 +1929,8 @@ exports.Swf = Swf;
 						return new FlashAd(data);
 					case 'image':
 						return new Img(data);
+					case 'html':
+						return new HtmlAd(data);
 				}
 			}
 		};

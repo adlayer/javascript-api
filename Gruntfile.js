@@ -43,6 +43,7 @@ var ads = [
 	"./lib/src/ads/embed_ad.js",
 	"./lib/src/ads/object_ad.js",
 	"./lib/src/ads/img_ad.js",
+	"./lib/src/ads/html_ad.js",
 	"./lib/src/ads/flash_ad.js",
 	"./lib/src/ads/ads.js"
 ];
