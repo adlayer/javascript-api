@@ -48,6 +48,7 @@
 		
 		if(result.ad){
 			this.ad = result.ad;
+			this.ads = result.ads;
 		}
 		return this;
 	};

@@ -2,7 +2,7 @@
 
 	var Adlayer = require('./adlayer').Adlayer;
 	var defaultConfig = require('../config/config').config;
-
+	
 	// Defining API
 	var global = global || window;
 	
@@ -22,7 +22,13 @@
 	/**
 	* @submodule config
 	*/
-	api.config = config;
+	api.config = defaultConfig;
+	for( var key in config ){
+		var option = config[key];
+		if(option){
+			api.config[key] = option;
+		}
+	}
 	
 	/**
 	* Stores user profile

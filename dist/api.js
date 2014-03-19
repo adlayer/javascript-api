@@ -613,7 +613,7 @@ var RandomSpaceBehaviour = function(){
 	* @param {Space} context Expect space 'this' as argument
 	* @return {Object} Ad
 	*/
-	this.getAd = function(context){ 
+	this.getAd = function(context){
 		var ads = context.ads;
 		var total = ads.length;
 		var index = Math.floor(Math.random() * total);
@@ -2733,7 +2733,7 @@ exports.Adlayer = Adlayer;
 
 	var Adlayer = require('./adlayer').Adlayer;
 	var defaultConfig = require('../config/config').config;
-
+	
 	// Defining API
 	var global = global || window;
 	
@@ -2753,7 +2753,13 @@ exports.Adlayer = Adlayer;
 	/**
 	* @submodule config
 	*/
-	api.config = config;
+	api.config = defaultConfig;
+	for( var key in config ){
+		var option = config[key];
+		if(option){
+			api.config[key] = option;
+		}
+	}
 	
 	/**
 	* Stores user profile

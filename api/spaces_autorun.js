@@ -30,7 +30,7 @@
 		var SpaceApi = api.lib.SpaceApi;
 		var contentloaded = require('../lib/src/utils/contentloaded').contentloaded;
 		var config = api.config;
-		
+
 		contentloaded(global, function(){
 			var document = global.document;
 			var spaces = getElementsByClass('adlayer_space_global', document);
