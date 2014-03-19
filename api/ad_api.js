@@ -73,10 +73,9 @@
 				delete data.link;
 				delete data.type;
 				
-				ad.setImpression(null, data);
-				
 				// Listener for 'LOAD' event
 				ad.on('load', function(){
+					ad.setImpression(null, data);
 					tracker.track(ad.impression);
 				});
 				

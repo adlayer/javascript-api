@@ -66,7 +66,7 @@
 			if(!err && data){
 				data.document = self.document;
 				var space = spaces.create(data);
-				space = self.renderSpace(space, {space_id: data._id});
+				space = self.renderSpace(space, {space_id: data.id});
 				if(callback){
 					callback.call(space);
 				}

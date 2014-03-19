@@ -1450,6 +1450,19 @@ var DomElement = function(){
 		new AdDom(space, config);
 	*/
 	AdDom.prototype.setImpression = function(space, config){
+		//IE 5 does not support
+		//http://reference.sitepoint.com/javascript/Node/ownerDocument
+		var document = this.element.ownerDocument;
+		//http://stackoverflow.com/questions/10173236/window-innerheight-ie8-alternative
+		var doc = {
+			height: document.documentElement.clientHeight,
+			width: document.documentElement.clientWidth
+		};
+		
+		var horizontalVisible = (this.element.offsetLeft <= doc.width) && (this.element.offsetLeft >= 0);
+		var verticalVisible = (this.element.offsetTop <= doc.height) && (this.element.offsetTop >= 0);
+		
+		config.visible = horizontalVisible && verticalVisible;
 		config.type = 'impression';
 		config.ad_id = this.id;
 		
@@ -1980,9 +1993,10 @@ exports.Swf = Swf;
 			// Create an ad for space from 'this.ads' array, Selection made by behaviour by default will be random
 			var ad = ads.create(this.getAd());
 			ad.trackerUrl = tracker.connection.getUrl();
-			ad.setImpression(this, config);
 			
+			var self = this;
 			ad.on('load', function(){
+				ad.setImpression(self, config);
 				tracker.track(ad.impression);	
 			});
 			
