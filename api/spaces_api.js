@@ -42,8 +42,16 @@
 	* @public
 	* @return this
 	*/
-	SpaceApi.prototype.renderSpace = function (space, data){
-		var result = space.init(this.tracker, data);
+	SpaceApi.prototype.renderSpace = function (data){
+		data.document = this.document;
+		this.width = data.width;
+		this.height = data.height;
+		this.type = data.type;
+		this.id = data.id;
+		
+		var space = spaces.create(data);
+
+		var result = space.init(this.tracker, {space_id:data.id});
 		this.element = result.element;
 		
 		if(result.ad){
@@ -64,9 +72,14 @@
 		// Get all page data
 		this.getData(function(err, data){
 			if(!err && data){
-				data.document = self.document;
-				var space = spaces.create(data);
-				space = self.renderSpace(space, {space_id: data.id});
+				//data.document = self.document;
+				//var space = spaces.create(data);
+				//space = self.renderSpace(space, {space_id: data.id});
+				var space = self.renderSpace(data);
+				space.width = data.width;
+				space.height = data.height;
+				space.type = data.type;
+				space.id = data.id;
 				if(callback){
 					callback.call(space);
 				}

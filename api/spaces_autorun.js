@@ -47,9 +47,10 @@
 				});
 				
 				// notify the parent api using callback
-				api.spaces[element.id] = space.init(function(){
+				space.init(function(){
+					api.spaces[element.id] = this;
 					api.ads[this.ad.id] = this.ad;
-				});	
+				});
 			}
 			
 		});

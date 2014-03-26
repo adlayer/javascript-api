@@ -1555,6 +1555,7 @@ var DomElement = function(){
 	* @return {Object} return this to chain methods
 	*/
 	SpaceDom.prototype.placeAd = function(ad){
+		this.element.innerHTML = '';
 		this.element.appendChild(ad.element);
 		ad.emit('placement');
 		this.ad = ad;
@@ -2196,9 +2197,9 @@ exports.Swf = Swf;
 			* @param {Object} data Config to create the Space
 			*/
 			create: function(data){
-				data.id = data._id;
-				data.width = data.size.width;
-				data.height = data.size.height;
+				data.id = data._id || data.id;
+				data.width = data.width || data.size.width;
+				data.height = data.height || data.size.height;	
 				delete data._id;
 				delete data.size;
 

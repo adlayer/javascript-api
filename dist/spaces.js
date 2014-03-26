@@ -1555,6 +1555,7 @@ var DomElement = function(){
 	* @return {Object} return this to chain methods
 	*/
 	SpaceDom.prototype.placeAd = function(ad){
+		this.element.innerHTML = '';
 		this.element.appendChild(ad.element);
 		ad.emit('placement');
 		this.ad = ad;
@@ -2196,9 +2197,9 @@ exports.Swf = Swf;
 			* @param {Object} data Config to create the Space
 			*/
 			create: function(data){
-				data.id = data._id;
-				data.width = data.size.width;
-				data.height = data.size.height;
+				data.id = data._id || data.id;
+				data.width = data.width || data.size.width;
+				data.height = data.height || data.size.height;	
 				delete data._id;
 				delete data.size;
 
@@ -2878,8 +2879,16 @@ exports.Adlayer = Adlayer;
 	* @public
 	* @return this
 	*/
-	SpaceApi.prototype.renderSpace = function (space, data){
-		var result = space.init(this.tracker, data);
+	SpaceApi.prototype.renderSpace = function (data){
+		data.document = this.document;
+		this.width = data.width;
+		this.height = data.height;
+		this.type = data.type;
+		this.id = data.id;
+		
+		var space = spaces.create(data);
+
+		var result = space.init(this.tracker, {space_id:data.id});
 		this.element = result.element;
 		
 		if(result.ad){
@@ -2900,9 +2909,14 @@ exports.Adlayer = Adlayer;
 		// Get all page data
 		this.getData(function(err, data){
 			if(!err && data){
-				data.document = self.document;
-				var space = spaces.create(data);
-				space = self.renderSpace(space, {space_id: data.id});
+				//data.document = self.document;
+				//var space = spaces.create(data);
+				//space = self.renderSpace(space, {space_id: data.id});
+				var space = self.renderSpace(data);
+				space.width = data.width;
+				space.height = data.height;
+				space.type = data.type;
+				space.id = data.id;
 				if(callback){
 					callback.call(space);
 				}
@@ -2962,9 +2976,10 @@ exports.Adlayer = Adlayer;
 				});
 				
 				// notify the parent api using callback
-				api.spaces[element.id] = space.init(function(){
+				space.init(function(){
+					api.spaces[element.id] = this;
 					api.ads[this.ad.id] = this.ad;
-				});	
+				});
 			}
 			
 		});
