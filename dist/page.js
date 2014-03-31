@@ -144,12 +144,12 @@ var EventEmitter = function(){
 	* @param {String} event Name of event
 	* @return {Array}
 	*/
-	this.emit = function(event){
+	this.emit = function(event, data){
 		var eventListeners = listeners[event];
 		if(eventListeners && (eventListeners.length > 0)){
 			var i = 0;
 			for(i; i < eventListeners.length; i++){
-				eventListeners[i].call();
+				(data && eventListeners[i].call(this, data)) || eventListeners[i].call();
 			}
 			return eventListeners;
 		}
@@ -388,6 +388,12 @@ var Event = function( attributes ){
 	* @public
 	*/
 	this.browser = undefined;
+	
+	/**
+	* @property {String} visible Visibility of event
+	* @public
+	*/
+	this.visible = undefined;
 	
 	/**
 	* @method getFullDate
@@ -2597,6 +2603,13 @@ var Adlayer = function(api){
 	
 	
 	/**
+	* Plugins to be triggered by widgets
+	*
+	* @submodule plugins
+	*/
+	this.plugins = api.plugins || null;
+	
+	/**
 	* Define or extends configuration for API
 	* You can use this for customize default attributes
 	*
@@ -2744,16 +2757,201 @@ Adlayer.prototype.connect = function(){
 };
 
 exports.Adlayer = Adlayer;
+(function(window){
+
+	var Adlayer = require('./adlayer').Adlayer;
+	var defaultConfig = require('../config/config').config;
+	
+	// Defining API
+	var global = global || window;
+	
+	var api = global.adlayer || {};
+
+	// Define config
+	var config = api.config || {};
+
+	/**
+	* A reference for the current rendered page
+	* Also stores references for spaces and ads rendered on the page
+	*
+	* @submodule page
+	*/
+	api.page = api.page || null;
+
+	/**
+	* Plugins to be triggered by widgets
+	*
+	* @submodule plugins
+	*/
+	api.plugins = api.plugins || null;
+	
+	/**
+	* @submodule config
+	*/
+	api.config = defaultConfig;
+	for( var key in config ){
+		var option = config[key];
+		if(option){
+			api.config[key] = option;
+		}
+	}
+	
+	/**
+	* Stores user profile
+	*
+	* @submodule targeting
+	*/
+	api.targeting = api.targeting;
+
+	/**
+	* Stores all connections
+	*
+	* @submodule connections
+	*/
+	api.connections = api.connections;
+	
+	/**
+	* Handle adserver connections
+	*
+	* @submodule adserver
+	*/
+	api.adserver = api.adserver || null;
+	
+	/**
+	* Handle tracker operations
+	*
+	* @submodule tracker
+	*/
+	api.tracker = api.tracker || null;
+	
+	
+	/**
+	* Stores in a hash all spaces rendered on this page 
+	*
+	* @submodule spaces
+	* @example
+		console.log(window.adlayer.spaces);
+	*/
+	api.spaces = api.spaces || null;
+
+	/**
+	* Stores all placed and rendered ads on this page
+	*
+	* @submodule ads
+	*/
+	api.ads = api.ads || null;
+
+	
+	// api as an instance of Adlayer
+	var instance = new Adlayer(api);
+	
+	/**
+	* Shortcut for all internal classes
+	*
+	* @submodule lib
+	*/
+	instance.lib = require('*');
+	global.adlayer = instance;
+	
+})(this);
+/**
+* @module api
+* @require events, core, request, spaces
+*/
+(function(){
+	var EventEmitter = require('../lib/src//node_modules/events').events.EventEmitter;
+	var Space = require('../lib/src/domain/page').Space;
+	var request = require('../lib/src/request/request').request;
+	var spaces = require('../lib/src/spaces/spaces').spaces;
+	
+	/**
+	* @class SpaceApi
+	* @constructor
+	* @extends Space
+	* @uses EventEmitter
+	*/			
+	var SpaceApi = function(){
+		Space.apply(this, arguments);
+		EventEmitter.apply(this, arguments);
+		
+		this.document;
+		this.tracker;
+		this.adserver;
+		this.ad = {};
+	};
+	
+	/**
+	* @method getData
+	* @param {Function} callback
+	*/
+	SpaceApi.prototype.getData = function(callback){
+		var qs = {
+			ads_per_space: this.adsPerSpace
+		};
+		this.adserver.spaces(this.id, qs, callback);
+	};
+	
+	/**
+	* @method renderSpace
+	* @param {Object} data Data of current view to track events
+	* @public
+	* @return this
+	*/
+	SpaceApi.prototype.renderSpace = function (data, context){
+		data.document = this.document;
+		var space = spaces.create(data);
+
+		context =  context || {};
+		
+		var result = space.init(this.tracker, context);
+		this.element = result.element;
+		
+		if(result.ad){
+			this.ad = result.ad;
+			this.ads = result.ads;
+		}
+		
+		this.width = data.width
+		this.height = data.height;
+		this.type = data.type;
+		this.id = data.id;
+		
+		return this;
+	};
+
+	/**
+	* @method init
+	* @param {Function} callback Function to be called ofter space rendering process
+	* @async
+	* @public
+	*/
+	SpaceApi.prototype.init = function(callback){
+		var self = this;
+		// Get all page data
+		this.getData(function(err, data){
+			if(!err && data){
+				var space = self.renderSpace(data);
+				if(callback){
+					callback.call(space);
+				}
+			}
+		});
+		return this;	
+	};
+	
+	exports.SpaceApi = SpaceApi;
+})();
 /**
 * @module api
 * @requires events, core, request, spaces
 */
 (function(){
-	var EventEmitter = require('../node_modules/events').events.EventEmitter;
-	var Page = require('../domain/page').Page;
-	var request = require('../request/request').request;
-	var spaces = require('../spaces/spaces').spaces;
-	
+	var EventEmitter = require('../lib/src/node_modules/events').events.EventEmitter;
+	var Page = require('../lib/src/domain/page').Page;
+	var request = require('../lib/src/request/request').request;
+	var spaces = require('../lib/src/spaces/spaces').spaces;
+	var SpaceApi = require('./spaces_api').SpaceApi;
+
 	/**
 	* @class PageApi
 	* @constructor
@@ -2825,8 +3023,7 @@ exports.Adlayer = Adlayer;
 		for( var i = 0; i < collection.length; i++ ){
 			var space = collection[i];
 			space.document = this.document;
-			space = spaces.create(space);
-			space.element = space.getElement();
+			space.element = this.document.getElementById(space._id);
 			
 			if ( space.element ){
 				callback(null, space);
@@ -2838,6 +3035,7 @@ exports.Adlayer = Adlayer;
 				callback(error, null);
 			}
 		}
+		
 	};
 	
 	/**
@@ -2867,19 +3065,25 @@ exports.Adlayer = Adlayer;
 			// When we get spaces in this page
 			if(data && data.spaces){
 				// For each space found in document
-				page.scanSpaces(data.spaces, function(err, space){
+				page.scanSpaces(data.spaces, function(err, data){
 					// When find spaces
 					if(!err){
+						var space = new SpaceApi({
+							id: data.id,
+							adserver: page.adserver,
+							tracker: page.tracker,
+							document: page.document
+						});
 
-						var config = {
+						var context = {
 							domain: page.domain,
 							page_url: page.url,
 							page_id: page.id,
 							site_id: page.site_id
 						};
-						page.renderSpace(space, config);
-						// exporting space to api
-						page.spacesCollection[space.id] = space;
+						var render = space.renderSpace(data, context);
+						page.spacesCollection[render.id] = render;
+						page.adsCollection[render.ad.id] = render.ad;
 					}
 				});
 			}
@@ -2889,97 +3093,6 @@ exports.Adlayer = Adlayer;
 	
 	exports.PageApi = PageApi;
 })();
-(function(window){
-
-	var Adlayer = require('./adlayer').Adlayer;
-	var defaultConfig = require('../config/config').config;
-	
-	// Defining API
-	var global = global || window;
-	
-	var api = global.adlayer || {};
-
-	// Define config
-	var config = api.config || {};
-
-	/**
-	* A reference for the current rendered page
-	* Also stores references for spaces and ads rendered on the page
-	*
-	* @submodule page
-	*/
-	api.page = api.page || null;
-
-	/**
-	* @submodule config
-	*/
-	api.config = defaultConfig;
-	for( var key in config ){
-		var option = config[key];
-		if(option){
-			api.config[key] = option;
-		}
-	}
-	
-	/**
-	* Stores user profile
-	*
-	* @submodule targeting
-	*/
-	api.targeting = api.targeting;
-
-	/**
-	* Stores all connections
-	*
-	* @submodule connections
-	*/
-	api.connections = api.connections;
-	
-	/**
-	* Handle adserver connections
-	*
-	* @submodule adserver
-	*/
-	api.adserver = api.adserver || null;
-	
-	/**
-	* Handle tracker operations
-	*
-	* @submodule tracker
-	*/
-	api.tracker = api.tracker || null;
-	
-	
-	/**
-	* Stores in a hash all spaces rendered on this page 
-	*
-	* @submodule spaces
-	* @example
-		console.log(window.adlayer.spaces);
-	*/
-	api.spaces = api.spaces || null;
-
-	/**
-	* Stores all placed and rendered ads on this page
-	*
-	* @submodule ads
-	*/
-	api.ads = api.ads || null;
-
-
-	
-	// api as an instance of Adlayer
-	var instance = new Adlayer(api);
-	
-	/**
-	* Shortcut for all internal classes
-	*
-	* @submodule lib
-	*/
-	instance.lib = require('*');
-	global.adlayer = instance;
-	
-})(this);
 /**
 * @modules widgets
 */

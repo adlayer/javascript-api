@@ -144,12 +144,12 @@ var EventEmitter = function(){
 	* @param {String} event Name of event
 	* @return {Array}
 	*/
-	this.emit = function(event){
+	this.emit = function(event, data){
 		var eventListeners = listeners[event];
 		if(eventListeners && (eventListeners.length > 0)){
 			var i = 0;
 			for(i; i < eventListeners.length; i++){
-				eventListeners[i].call();
+				(data && eventListeners[i].call(this, data)) || eventListeners[i].call();
 			}
 			return eventListeners;
 		}
@@ -388,6 +388,12 @@ var Event = function( attributes ){
 	* @public
 	*/
 	this.browser = undefined;
+	
+	/**
+	* @property {String} visible Visibility of event
+	* @public
+	*/
+	this.visible = undefined;
 	
 	/**
 	* @method getFullDate
@@ -2597,6 +2603,13 @@ var Adlayer = function(api){
 	
 	
 	/**
+	* Plugins to be triggered by widgets
+	*
+	* @submodule plugins
+	*/
+	this.plugins = api.plugins || null;
+	
+	/**
 	* Define or extends configuration for API
 	* You can use this for customize default attributes
 	*
@@ -2766,6 +2779,13 @@ exports.Adlayer = Adlayer;
 	api.page = api.page || null;
 
 	/**
+	* Plugins to be triggered by widgets
+	*
+	* @submodule plugins
+	*/
+	api.plugins = api.plugins || null;
+	
+	/**
 	* @submodule config
 	*/
 	api.config = defaultConfig;
@@ -2820,7 +2840,6 @@ exports.Adlayer = Adlayer;
 	* @submodule ads
 	*/
 	api.ads = api.ads || null;
-
 
 	
 	// api as an instance of Adlayer

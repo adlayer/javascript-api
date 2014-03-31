@@ -20,6 +20,13 @@
 	api.page = api.page || null;
 
 	/**
+	* Plugins to be triggered by widgets
+	*
+	* @submodule plugins
+	*/
+	api.plugins = api.plugins || null;
+	
+	/**
 	* @submodule config
 	*/
 	api.config = defaultConfig;
@@ -74,7 +81,6 @@
 	* @submodule ads
 	*/
 	api.ads = api.ads || null;
-
 
 	
 	// api as an instance of Adlayer

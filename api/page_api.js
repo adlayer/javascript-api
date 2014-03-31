@@ -3,11 +3,12 @@
 * @requires events, core, request, spaces
 */
 (function(){
-	var EventEmitter = require('../node_modules/events').events.EventEmitter;
-	var Page = require('../domain/page').Page;
-	var request = require('../request/request').request;
-	var spaces = require('../spaces/spaces').spaces;
-	
+	var EventEmitter = require('../lib/src/node_modules/events').events.EventEmitter;
+	var Page = require('../lib/src/domain/page').Page;
+	var request = require('../lib/src/request/request').request;
+	var spaces = require('../lib/src/spaces/spaces').spaces;
+	var SpaceApi = require('./spaces_api').SpaceApi;
+
 	/**
 	* @class PageApi
 	* @constructor
@@ -79,8 +80,7 @@
 		for( var i = 0; i < collection.length; i++ ){
 			var space = collection[i];
 			space.document = this.document;
-			space = spaces.create(space);
-			space.element = space.getElement();
+			space.element = this.document.getElementById(space._id);
 			
 			if ( space.element ){
 				callback(null, space);
@@ -92,6 +92,7 @@
 				callback(error, null);
 			}
 		}
+		
 	};
 	
 	/**
@@ -121,19 +122,25 @@
 			// When we get spaces in this page
 			if(data && data.spaces){
 				// For each space found in document
-				page.scanSpaces(data.spaces, function(err, space){
+				page.scanSpaces(data.spaces, function(err, data){
 					// When find spaces
 					if(!err){
+						var space = new SpaceApi({
+							id: data.id,
+							adserver: page.adserver,
+							tracker: page.tracker,
+							document: page.document
+						});
 
-						var config = {
+						var context = {
 							domain: page.domain,
 							page_url: page.url,
 							page_id: page.id,
 							site_id: page.site_id
 						};
-						page.renderSpace(space, config);
-						// exporting space to api
-						page.spacesCollection[space.id] = space;
+						var render = space.renderSpace(data, context);
+						page.spacesCollection[render.id] = render;
+						page.adsCollection[render.ad.id] = render.ad;
 					}
 				});
 			}

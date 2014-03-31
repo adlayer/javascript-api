@@ -72,8 +72,8 @@ var pageApi = [
 	"./api/tracker.js",
 	"./api/adserver.js",
 	"./api/adlayer.js",
-	"./api/page_api.js",
 	"./api/api.js",
+	"./api/spaces_api.js",
 	"./api/page_api.js",
 	"./api/page_autorun.js"
 ];

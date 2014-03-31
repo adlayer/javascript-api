@@ -3,10 +3,10 @@
 * @require events, core, request, spaces
 */
 (function(){
-	var EventEmitter = require('../node_modules/events').events.EventEmitter;
-	var Space = require('../domain/page').Space;
-	var request = require('../request/request').request;
-	var spaces = require('../spaces/spaces').spaces;
+	var EventEmitter = require('../lib/src//node_modules/events').events.EventEmitter;
+	var Space = require('../lib/src/domain/page').Space;
+	var request = require('../lib/src/request/request').request;
+	var spaces = require('../lib/src/spaces/spaces').spaces;
 	
 	/**
 	* @class SpaceApi
@@ -37,27 +37,29 @@
 	
 	/**
 	* @method renderSpace
-	* @param {Object} space Instance of Space Class to find and render in DOM
 	* @param {Object} data Data of current view to track events
 	* @public
 	* @return this
 	*/
-	SpaceApi.prototype.renderSpace = function (data){
+	SpaceApi.prototype.renderSpace = function (data, context){
 		data.document = this.document;
-		this.width = data.width;
-		this.height = data.height;
-		this.type = data.type;
-		this.id = data.id;
-		
 		var space = spaces.create(data);
 
-		var result = space.init(this.tracker, {space_id:data.id});
+		context =  context || {};
+		
+		var result = space.init(this.tracker, context);
 		this.element = result.element;
 		
 		if(result.ad){
 			this.ad = result.ad;
 			this.ads = result.ads;
 		}
+		
+		this.width = data.width
+		this.height = data.height;
+		this.type = data.type;
+		this.id = data.id;
+		
 		return this;
 	};
 
@@ -72,14 +74,7 @@
 		// Get all page data
 		this.getData(function(err, data){
 			if(!err && data){
-				//data.document = self.document;
-				//var space = spaces.create(data);
-				//space = self.renderSpace(space, {space_id: data.id});
 				var space = self.renderSpace(data);
-				space.width = data.width;
-				space.height = data.height;
-				space.type = data.type;
-				space.id = data.id;
 				if(callback){
 					callback.call(space);
 				}

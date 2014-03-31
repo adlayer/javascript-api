@@ -168,6 +168,13 @@ var Adlayer = function(api){
 	
 	
 	/**
+	* Plugins to be triggered by widgets
+	*
+	* @submodule plugins
+	*/
+	this.plugins = api.plugins || null;
+	
+	/**
 	* Define or extends configuration for API
 	* You can use this for customize default attributes
 	*
