@@ -66,10 +66,11 @@
 					space.init(function(){
 						api.spaces[this.id] = this;
 						api.ads[this.ad.id] = this.ad;
-						
-						for(var i = 0; i < events.placement.length; i++){
-							var fn = events.placement[i];
-							fn(api.spaces[this.id]);
+						if(events.placement){
+							for(var i = 0; i < events.placement.length; i++){
+								var fn = events.placement[i];
+								fn(api.spaces[this.id]);
+							}
 						}
 					});
 				})(space, api);
