@@ -1443,6 +1443,7 @@ var DomElement = function(){
 		//IE 5 does not support
 		//http://reference.sitepoint.com/javascript/Node/ownerDocument
 		var document = this.element.ownerDocument;
+		
 		//http://stackoverflow.com/questions/10173236/window-innerheight-ie8-alternative
 		var doc = {
 			top: document.body.scrollTop,
@@ -1465,9 +1466,6 @@ var DomElement = function(){
 		var verticalVisible = ((element.top + element.halfHeight) <= doc.height) && ((element.top + element.halfHeight) >= doc.top) && (element.top >= 0);
 		var display = true;
 		var visibility = true;
-		//style não existe => true
-		//style existe e display none => false
-		//style existe e display block => true
 		if(element.style){
 			display = element.style.display != 'none';
 			visibility = element.style.visibility != 'hidden';
@@ -1507,7 +1505,7 @@ var DomElement = function(){
 		
 		var horizontalVisible = (this.element.offsetLeft <= doc.width) && (this.element.offsetLeft >= 0);
 		var verticalVisible = (this.element.offsetTop <= doc.height) && (this.element.offsetTop >= 0);
-		console.log(this.isVisible());
+	
 		config.visible = this.isVisible();
 		config.type = 'impression';
 		config.ad_id = this.id;
