@@ -1446,8 +1446,8 @@ var DomElement = function(){
 		
 		//http://stackoverflow.com/questions/10173236/window-innerheight-ie8-alternative
 		var doc = {
-			top: document.body.scrollTop,
-			left: document.body.scrollLeft,
+			top: document.body.scrollTop || document.documentElement.scrollTop,
+			left: document.body.scrollLeft || document.documentElement.scrollLeft,
 			height: document.documentElement.clientHeight,
 			width: document.documentElement.clientWidth
 		};
@@ -1459,6 +1459,10 @@ var DomElement = function(){
 			width: this.element.offsetWidth,
 			style: document.defaultView.getComputedStyle(this.element, null)
 		}
+		
+		console.log(doc.top);
+		console.log(doc.left);
+		
 		element.halfHeight = element.height/2;
 		element.halfWidth = element.width/2;
 
