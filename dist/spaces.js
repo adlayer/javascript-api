@@ -199,8 +199,15 @@ var queryString = {
 		var list =  [];
 		
 		for( var param in obj ){
-			if( obj[param] && typeof obj[param] !== 'function'){
-				list.push(param + eq + obj[param]);
+			if(obj[param] && typeof obj[param] !== 'function'){
+				if(typeof obj[param] === 'object'){
+					for(var key in obj[param]){
+						var value = obj[param][key];
+						list.push(param + '[' + key + ']' + eq + value);
+					}
+				} else {
+					list.push(param + eq + obj[param]);
+				}
 			}
 		}
 		return list.join(sep);
@@ -1460,9 +1467,6 @@ var DomElement = function(){
 			style: document.defaultView.getComputedStyle(this.element, null)
 		}
 		
-		console.log(doc.top);
-		console.log(doc.left);
-		
 		element.halfHeight = element.height/2;
 		element.halfWidth = element.width/2;
 
@@ -2412,8 +2416,8 @@ exports.config = {
 		opts.host = opts.host;
 		opts.path = path;
 		
-		opts.qs = this.targeting || {};
-		opts.qs = merge(opts.qs, query);
+		opts.qs = query;
+		opts.qs.targeting = this.targeting;
 		
 		opts.qs.callback = 'adlayer.connections.' + opts.name + '.requests.' + sign + '.callback';
 		var req = request().get(opts, callback);
@@ -2791,7 +2795,6 @@ Adlayer.prototype.connect = function(){
 	this.adserver = new Adserver();
 	this.adserver.connection = this.connections.adserver;
 	this.adserver.targeting = this.targeting;
-	
 
 	// Set tracker	
 	this.tracker = new Tracker();

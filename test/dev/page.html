@@ -7,24 +7,30 @@
 	</style>
 	<title>index</title>
 	<script id="navegg" type="text/javascript" src="//tag.navdmp.com/tm20915.js"></script>
-	<script type="text/javascript" src="../../../javascript-plugins/navegg.js" language="javascript"></script>
 
 	<script type="text/javascript">
-		var adlayer = adlayer || {};
-		adlayer.config = {
-			url: {
-				adserver: {
-					host: 'dev.jocasta.adlayerapp.com'
-				},
-				tracker: {
-					host: 'dev.tracker.adlayerapp.com'
-				}
+	var adlayer = adlayer || {};
+	adlayer.config = {
+		url: {
+			adserver: {
+				host: 'dev.jocasta.adlayerapp.com'
 			},
-			adsPerSpace: 1
-		}
-	  </script>
-	<script type="text/javascript" src="../../../javascript-plugins/rotative.js" language="javascript"></script>
-	<script type="text/javascript" src="../../dist/page.js?page=5c659223469fc3bc283d555afb0b77d0&site=aceb937855c0b615549bb49701024cf4" async="true" language="javascript" id="adlayerScript"></script>
+			tracker: {
+				host: 'dev.tracker.adlayerapp.com'
+			},
+			preloader: {
+				url: 'http://localhost/xframe/main.swf'
+			}
+		},
+		adsPerSpace: 3
+	};
+	adlayer.targeting = {Idade:'10-20', Sexo: 'Masculino'};
+	</script>
+	<!---
+
+	!-->
+		<script type="text/javascript" src="../../../javascript-plugins/navegg.js" language="javascript"></script>
+<script type="text/javascript" src="../../dist/page.min.js?page=7aa6aa19e4a490dc7edc76953d0a4214&site=7aa6aa19e4a490dc7edc76953d0a378b" async="true" language="javascript" id="adlayerScript"></script>
 	
 	
 </head>
@@ -32,7 +38,7 @@
 <body>
 	<h1>Meu site</h1>
 
-		<div id="5c659223469fc3bc283d555afb0b7fbc" class="adlayer_space"></div>
+	<div id="7aa6aa19e4a490dc7edc76953d0a4b20" class="adlayer_space"></div>
 
 	<p>
 		

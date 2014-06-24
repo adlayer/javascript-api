@@ -314,7 +314,6 @@ Adlayer.prototype.connect = function(){
 	this.adserver = new Adserver();
 	this.adserver.connection = this.connections.adserver;
 	this.adserver.targeting = this.targeting;
-	
 
 	// Set tracker	
 	this.tracker = new Tracker();
