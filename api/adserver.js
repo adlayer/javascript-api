@@ -57,8 +57,8 @@
 		opts.host = opts.host;
 		opts.path = path;
 		
-		opts.qs = query;
-		opts.qs.targeting = this.targeting;
+		opts.qs = query || {};
+		opts.qs.targeting = this.targeting || {};
 		
 		opts.qs.callback = 'adlayer.connections.' + opts.name + '.requests.' + sign + '.callback';
 		var req = request().get(opts, callback);
