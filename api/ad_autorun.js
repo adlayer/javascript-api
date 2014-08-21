@@ -68,7 +68,6 @@
 						}
 					});
 				})(placeholder, parent, ad);
-				
 			}
 		});
 	})();

@@ -63,6 +63,7 @@
 		// Get all page data
 		this.getData(function(err, data){
 			if(!err && data){
+				data.trackerUrl = tracker.connection.getUrl();
 				var ad = ads.create(data);
 				ad.trackerUrl = tracker.connection.getUrl();
 				

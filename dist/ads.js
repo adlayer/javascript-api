@@ -1536,15 +1536,15 @@ var DomElement = function(){
 	AdDom.prototype.getClickTag = function(config){
 		// Tracker url
 		var trackerUrl = this.trackerUrl;
-		
+
 		var event = new Event({
 			ad_id: this.id,
 			type: 'click',
 			campaign_id: this.campaign_id,
-			space_id: this.getSpaceId(),
-			site_id: config.site_id,
-			page_id: config.page_id,
-			page_url: config.page_url,
+			space_id: this.getSpaceId() || undefined,
+			site_id: config.site_id || undefined,
+			page_id: config.page_id || undefined,
+			page_url: config.page_url || undefined,
 			link: escape(this.link)
 		});
 
@@ -1680,17 +1680,18 @@ var Swf = function(){
 	* @return {String} src Will return the preloder url if defined
 	*/
 	this.getSrc = function(){
+		var self = this;
 		if(!this.preloader){
 			return this.src;
 		}
-		
+
 		var url = this.preloader + '?' + queryString.stringify({
-			src: this.src,
-			link: this.link, 
-			callback: this.callback, 
-			value: this.id
+			src: self.src,
+			link: escape(self.link),
+			callback: self.callback, 
+			value: self.id
 		});
-		
+
 		return url;
 	};
 };
@@ -1712,12 +1713,14 @@ exports.Swf = Swf;
 	* @extends AdDom
 	* @uses Swf
 	*/
-	var EmbedAd = function(){
+	var EmbedAd = function(data){
 		AdDom.apply(this, arguments);
 		Swf.apply(this, arguments);
+		this.trackerUrl = data.trackerUrl;
 		
 		var __construct = (function(self){
 			self.create('EMBED');
+			self.link = self.getClickTag({});
 			self.element.src = self.getSrc();
 			self.element.setAttribute('height', self.height);
 			self.element.setAttribute('width', self.width);
@@ -1822,7 +1825,8 @@ exports.Swf = Swf;
 			
 			// http://stackoverflow.com/questions/1168494/how-do-i-programmatically-set-all-objects-to-have-the-wmode-set-to-opaque
 			var clone = self.element.cloneNode(true);
-
+			
+			self.link = self.getClickTag({});
 			clone.appendChild(new Param("movie", self.getSrc()));
 			clone.appendChild(new Param("quality", self.quality));		
 			clone.appendChild(new Param("src", self.src));
@@ -1986,7 +1990,7 @@ exports.Swf = Swf;
 				data.src = data.file;
 				delete data.file;
 				delete data._id;
-				
+
 				switch(data.type){
 					case 'flash':
 						data.preloader = 'http://xframe.adlayerjavascriptsdk.com/main.swf';
@@ -2964,6 +2968,7 @@ exports.Adlayer = Adlayer;
 		// Get all page data
 		this.getData(function(err, data){
 			if(!err && data){
+				data.trackerUrl = tracker.connection.getUrl();
 				var ad = ads.create(data);
 				ad.trackerUrl = tracker.connection.getUrl();
 				
@@ -3060,7 +3065,6 @@ exports.Adlayer = Adlayer;
 						}
 					});
 				})(placeholder, parent, ad);
-				
 			}
 		});
 	})();
